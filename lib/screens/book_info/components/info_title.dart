@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:coverist/screens/book_info/components/info_genre.dart';
 
 //앱의 시작점
 void main() {
@@ -30,33 +31,88 @@ class MyHomePage extends StatelessWidget {
       ),
       backgroundColor: Colors.blueGrey[200],
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text('제목 입력(필수)',
-                style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.5)),
-            TextField(
-                decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: '제목 입력',
-            )),
-            SizedBox(height: 30),
-            Text('작가명 입력(필수)',
-                style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.5)),
-            TextField(
-                decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: '작가명 입력',
-            ))
-          ],
+        child: Container(
+          height: (MediaQuery.of(context).size.height) * 0.7,
+          width: (MediaQuery.of(context).size.width) * 0.8,
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            // crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                  child: Row(
+                children: <Widget>[
+                  Container(
+                    child: Text('제목 입력',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.5)),
+                  ),
+                  Container(
+                    child: Text('(필수)',
+                        style: TextStyle(fontSize: 14, letterSpacing: 1.5)),
+                  ),
+                ],
+              )),
+              TextField(
+                  decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: '제목 입력',
+              )),
+              SizedBox(height: 30),
+              Container(
+                  child: Row(
+                children: <Widget>[
+                  Container(
+                    child: Text('작가명 입력',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.5)),
+                  ),
+                  Container(
+                    child: Text('(필수)',
+                        style: TextStyle(fontSize: 14, letterSpacing: 1.5)),
+                  ),
+                ],
+              )),
+              TextField(
+                  decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: '작가명 입력',
+              )),
+              SizedBox(height: 30),
+
+//버튼
+              ButtonBar(
+                alignment: MainAxisAlignment.center,
+                children: [
+                  OutlinedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => InfoGenrePage()));
+                      },
+                      child: Text('Next'),
+                      style: OutlinedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)))),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
+  }
+}
+
+_getPosition(GlobalKey key) {
+  if (key.currentContext != null) {
+    final RenderBox renderBox =
+        key.currentContext!.findRenderObject() as RenderBox;
+    final position = renderBox.localToGlobal(Offset.zero);
+    return position;
   }
 }
