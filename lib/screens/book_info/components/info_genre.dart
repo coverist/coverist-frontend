@@ -1,7 +1,6 @@
 import 'dart:html';
 
 import 'package:flutter/material.dart'; //이거 없음 아무것도 못함 일종의 가이드라인
-import 'package:coverist/savepoint.dart';
 
 //함수명은 소문자 class(위젯)는 대문자
 void main() => runApp(MyApp()); //최상위함수 한번 호출 파라미터는 반드시 argument
