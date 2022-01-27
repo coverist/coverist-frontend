@@ -1,4 +1,5 @@
 import 'package:coverist/screens/book_info/components/info_title.dart';
+import 'package:coverist/screens/book_info/components/info_publishe.dart';
 import 'package:flutter/material.dart'; //이거 없음 아무것도 못함 일종의 가이드라인
 
 //함수명은 소문자 class(위젯)는 대문자
@@ -141,47 +142,20 @@ class MyHomePage extends StatelessWidget {
             ),
             SizedBox(width: 50), //유사 padding 주기
             OutlinedButton(onPressed: (){
-                    print('text~~~~~~~');
-                  },
+                    Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => InfoLogo()));       
+                   },
                     child: Text('next'),
                     style: OutlinedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0)
                       )
                     )
-                  )            
+                  )      
           ],)
               ),
     );
   }
 }
-
-
-// class genreButton extends StatefulWidget{
-//   @override
-//     State createState() {
-//         return genreBottonState();
-//     }
-// }
-
-// class genreBottonState extends State<genreButton>{
-//     //var backColor = Colors.black;
-//     @override
-//     Widget build(BuildContext context) {
-//         return Center(
-//             child: RaisedButton(
-//                 child: Text('상태'),
-//                 onPressed: () {
-//                     // 에러는 아니지만, 배경색을 바꿀 수 없음
-//                     // backColor = Colors.lightBlue;
-                    
-//                     setState(() {
-//                         backColor = (backColor == Colors.black) ? Colors.lightBlue : Colors.black;
-//                     });
-//                 },
-//                 textColor: Colors.white,
-//                 color: backColor,
-//             ),
-//         );
-//     }
-// }
