@@ -1,5 +1,5 @@
-import 'package:coverist/screens/book_info/components/publishe/DropZoneWidget.dart';
-import 'package:coverist/screens/book_info/components/publishe/DroppedFileWidget.dart';
+import 'package:coverist/screens/book_info/components/publishe_dropzone/DropZoneWidget.dart';
+import 'package:coverist/screens/book_info/components/publishe_dropzone/DroppedFileWidget.dart';
 import 'package:coverist/screens/book_info/model/file_DataModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
@@ -8,10 +8,6 @@ import 'package:coverist/screens/book_info/components/info_genre.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(InfoLogo()); //반드시 widget을 argument로 가져야 함
-}
 
 class InfoLogo extends StatelessWidget {
   @override
@@ -106,6 +102,3 @@ class LogoPageState extends State<LogoPage> {
     );
   }
 }
-
-
-
