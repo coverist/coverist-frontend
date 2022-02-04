@@ -1,11 +1,11 @@
 import 'package:coverist/screens/book_info/components/info_title.dart';
 import 'package:coverist/screens/book_info/components/info_publishe.dart';
-import 'package:coverist/screens/book_info/components/genre_chip/GenreWidget.dart';
+import 'package:coverist/screens/book_info/components/genre_chip/genreWidget_main.dart';
 
 import 'package:flutter/material.dart'; //이거 없음 아무것도 못함 일종의 가이드라인
 
 //함수명은 소문자 class(위젯)는 대문자
-void main() => runApp(InfoGenrePage()); //최상위함수 한번 호출 파라미터는 반드시 argument
+void main() => runApp(const InfoGenrePage()); //최상위함수 한번 호출 파라미터는 반드시 argument
 
 //이하 다 위젯 트리의 위젯들
 
@@ -65,15 +65,15 @@ class MyHomePage extends StatelessWidget {
               ],
             ),
             SizedBox(width: 50), 
-            move(str1:"next",str2:"1")//유사 padding 주기
+            movePage(str1:"next",str2:"1")//유사 padding 주기
         ],)
       ),
     );
   }
 }
 
-class move extends StatelessWidget {
-  const move({
+class movePage extends StatelessWidget {
+  const movePage({
     Key? key, required this.str1 ,required this.str2   
   }) : super(key: key);
 
@@ -96,14 +96,14 @@ class move extends StatelessWidget {
               builder: (context) => InfoLogo()));  
           break;
       }     
-           },
-            child: Text(str1),
-            style: OutlinedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0)
-              )
-            )
-          );
+    },
+      child: Text(str1),
+      style: OutlinedButton.styleFrom(
+      shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10.0)
+      )
+    )
+    );
   }
 }
 

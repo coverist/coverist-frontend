@@ -4,12 +4,13 @@ import 'package:coverist/screens/book_info/model/file_DataModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
 
-import 'package:coverist/screens/book_info/components/genre_chip/info_genre.dart';
+import 'package:coverist/screens/book_info/components/info_genre_main.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class InfoLogo extends StatelessWidget {
+  const InfoLogo({Key? key}) : super(key: key);//?
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

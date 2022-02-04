@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:coverist/screens/book_info/components/info_genre.dart';
+import 'package:coverist/screens/book_info/components/info_genre_main.dart';
 
 //앱의 시작점
 void main() {
