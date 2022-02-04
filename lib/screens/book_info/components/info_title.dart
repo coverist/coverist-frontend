@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:coverist/screens/book_info/components/info_genre_main.dart';
-=======
-import 'package:coverist/screens/book_info/components/info_genre.dart';
 import 'package:coverist/screens/book_info/components/image_view.dart';
->>>>>>> 057cb788b5d7675cd9b0410b46cac506b80e49f7
-
 import 'input_text.dart';
 
 // //앱의 시작점
