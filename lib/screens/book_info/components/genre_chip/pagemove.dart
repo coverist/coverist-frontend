@@ -1,6 +1,8 @@
 
+import 'package:coverist/screens/book_info/components/info_title.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';\
+import '../info_title.dart';
 import '../info_Publishe.dart';
 
 class movePage extends StatelessWidget {

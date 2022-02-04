@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:coverist/screens/book_info/components/info_genre_main.dart';
-import 'package:coverist/screens/book_info/components/image_view.dart';
-import 'input_text.dart';
+
+import 'image_view.dart';
+
+import '/widgets/book_info/input_text_widget.dart';
 
 // //앱의 시작점
 // void main() {
@@ -10,8 +11,8 @@ import 'input_text.dart';
 
 //우리가 커스텀해야하는 위젯(screen 레이아웃 최초 빌드 역할)
 class InfoTitle extends StatefulWidget {
-  final info;
-  const InfoTitle({Key? key, required this.info}) : super(key: key);
+  final event;
+  const InfoTitle({Key? key, required this.event}) : super(key: key);
 
   @override
   _InfoTitleState createState() => _InfoTitleState();
