@@ -36,6 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_dropzone: ^3.0.5
   dotted_border: ^2.0.0+2
+  steps: ^1.0.1
+  animations: ^2.0.2
 
 dev_dependencies:
   flutter_test:
