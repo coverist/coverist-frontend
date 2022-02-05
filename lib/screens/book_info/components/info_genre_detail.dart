@@ -1,7 +1,8 @@
 import 'package:coverist/screens/book_info/components/info_title.dart';
-import 'package:coverist/screens/book_info/components/info_publishe.dart';
-import 'package:coverist/screens/book_info/components/genre_chip/genreWidget_main.dart';
+import 'package:coverist/screens/book_info/components/info_publisher.dart';
+import 'package:coverist/widgets/book_info/pagemove_widget.dart';
 
+import 'package:coverist/widgets/book_info/genre_element/genre_chip_widget.dart';
 import 'package:flutter/material.dart'; //이거 없음 아무것도 못함 일종의 가이드라인
 
 //함수명은 소문자 class(위젯)는 대문자
@@ -18,13 +19,13 @@ class InfoGenrePageDetail extends StatelessWidget {   //최상위는 레이아�
       theme: ThemeData(
         primarySwatch: Colors.blueGrey
         ),
-    home: MyHomePage(), //밖에서 커스텀 위젯 선언 home이 있어야 함 첫 화면
+    home: InfoGenrePageDetailElement(), //밖에서 커스텀 위젯 선언 home이 있어야 함 첫 화면
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({ Key? key }) : super(key: key);
+class InfoGenrePageDetailElement extends StatelessWidget {
+  const InfoGenrePageDetailElement({ Key? key }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,20 +39,7 @@ class MyHomePage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [           
-            OutlinedButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                    builder: (context) => InfoTitle()));
-              },
-              child: Text('prev'),
-              style: OutlinedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0)
-              )
-              )
-            ),
+            movePage(str1:"next",str2:"1"),
             SizedBox(width: 50), //유사 padding 주기
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -62,7 +50,7 @@ class MyHomePage extends StatelessWidget {
                                                 letterSpacing: 1.5)),
                 Text('column은 세로 배치를 의미'),
                 SizedBox(height: 30),
-                GenreWidget(),
+                Dialog(child: GenreWidget()),
               ],
             ),
             SizedBox(width: 50), 
@@ -72,41 +60,3 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
-
-class movePage extends StatelessWidget {
-  const movePage({
-    Key? key, required this.str1 ,required this.str2   
-  }) : super(key: key);
-
-  final String str1;
-  final String str2;
-  @override
-  Widget build(BuildContext context) {
-    return OutlinedButton(onPressed: (){
-      switch (str2) {
-        case "1":
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-              builder: (context) => InfoLogo()));
-            break;  
-        case "2":
-             Navigator.push(
-              context,
-              MaterialPageRoute(
-              builder: (context) => InfoLogo()));  
-          break;
-      }     
-    },
-      child: Text(str1),
-      style: OutlinedButton.styleFrom(
-      shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(10.0)
-      )
-    )
-    );
-  }
-}
-
-
-
