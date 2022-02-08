@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '/widgets/book_info/tag_chip.dart';
+
 class InputText extends StatelessWidget {
-  const InputText({Key? key, required this.string}) : super(key: key);
+  InputText({Key? key, required this.string}) : super(key: key);
 
   final String string;
 
   @override
   Widget build(BuildContext context) {
+    final _infoTextEditController = TextEditingController();
+
     return Column(
       children: [
         Row(
@@ -24,11 +28,18 @@ class InputText extends StatelessWidget {
             ),
           ],
         ),
+        SizedBox(height: 10),
         TextField(
+            textInputAction: TextInputAction.go,
+            controller: _infoTextEditController,
             decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          labelText: string + ' 입력',
-        )),
+              border: OutlineInputBorder(),
+              labelText: string + ' 입력',
+            ),
+            onSubmitted: (value) async {
+              _infoTextEditController.text = value;
+              print('value : $value');
+            }),
         SizedBox(height: 30),
       ],
     );
