@@ -32,8 +32,6 @@ class MainListCreate {
   //   genre item =  genre(s,"InfoGenreRomance", Colors.green, false);
   //   chipList.add(item);
   // }
-
-
 }
 
 class DetailListCreate{

@@ -52,8 +52,6 @@ class detailGenreDialogElement extends State<detailGenreDialog> with DetailListC
     return chips;
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return  AlertDialog(
@@ -62,6 +60,4 @@ class detailGenreDialogElement extends State<detailGenreDialog> with DetailListC
           children: const<Widget>[Text("as"),]),)); 
     //return setAlertDialog();
   }
-  
 }
-
