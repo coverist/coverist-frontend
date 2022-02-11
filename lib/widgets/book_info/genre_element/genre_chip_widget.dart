@@ -49,7 +49,7 @@ class GenreWidgetElement extends State<GenreWidget> with MainListCreate{
     }
     return str;
   }
-
+  
   List<Widget> genreChip() {
     List<Widget> chips = [];
     for (int i = 0; i < chipsList.length; i++) {
@@ -69,16 +69,14 @@ class GenreWidgetElement extends State<GenreWidget> with MainListCreate{
               }
               print(chipsList[i].isSelected);
             });
-
-            //detailGenreDialog();            
-         
-            showDialog(
-              context: context,
-              builder: (BuildContext context){
+            if(chipsList[i].isSelected == true){
+              showDialog(
+                context: context,
+                builder: (BuildContext context){
                 return detailGenreDialog();
-              }
-            );
-
+                }
+              ); 
+            } 
             /*Navigator.push(
               context,
               MaterialPageRoute(

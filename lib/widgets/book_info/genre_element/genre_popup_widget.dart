@@ -11,20 +11,29 @@ class detailGenreDialog extends StatefulWidget{
 }
 
 class detailGenreDialogElement extends State<detailGenreDialog> with DetailListCreate{
-
+  
   setAlertDialog(){
-    AlertDialog(
-      title: Text("중분류 선택"),
+    return AlertDialog(
+      title: const Text("중분류 선택"),
       content: Container(
-              constraints: BoxConstraints(
-                  maxHeight: 100.0,
-              ),
-              // child: SingleChildScrollView(
-              //   child: Row(children: genreChip(),)
-              // ),
-            )
+        constraints: const BoxConstraints(
+          maxHeight: 300.0,
+          minHeight: 150.0,
+          minWidth:  1000.0,
+        ),
+        child: SingleChildScrollView(
+          child: Row(children: genreChip(),)
+        ), 
+      ),
+      actions: <Widget>[
+        OutlinedButton(
+          child: Text("선택완료"),
+          onPressed: ()=> Navigator.of(context).pop(),
+        )
+      ],
     );  
   }  
+  
   List<Widget> genreChip() {
     List<Widget> chips = [];
     for (int i = 0; i < chipsList.length; i++) {
@@ -54,10 +63,10 @@ class detailGenreDialogElement extends State<detailGenreDialog> with DetailListC
 
   @override
   Widget build(BuildContext context) {
-    return  AlertDialog(
+    return setAlertDialog();
+    /*return AlertDialog(
       content :SingleChildScrollView(
         child: ListBody(
-          children: const<Widget>[Text("as"),]),)); 
-    //return setAlertDialog();
+          children: const<Widget>[Text("as"),]),)); */
   }
 }
