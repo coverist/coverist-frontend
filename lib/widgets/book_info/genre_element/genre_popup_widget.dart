@@ -19,10 +19,13 @@ class detailGenreDialogElement extends State<detailGenreDialog> with DetailListC
         constraints: const BoxConstraints(
           maxHeight: 300.0,
           minHeight: 150.0,
-          minWidth:  1000.0,
+          minWidth:  500.0,
         ),
         child: SingleChildScrollView(
-          child: Row(children: genreChip(),)
+          child: Row(
+            children: genreChip(),
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,)
         ), 
       ),
       actions: <Widget>[
@@ -32,9 +35,9 @@ class detailGenreDialogElement extends State<detailGenreDialog> with DetailListC
         )
       ],
     );  
-  }  
-  
-  List<Widget> genreChip() {
+  }
+
+  List<Widget> genreChip(){
     List<Widget> chips = [];
     for (int i = 0; i < chipsList.length; i++) {
       Widget item = Padding(

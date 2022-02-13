@@ -32,7 +32,7 @@ class MyHomePage extends StatelessWidget {
         centerTitle: true,
       ),
       body: Center(
-          child: Row(
+        child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           movePage(str1: "prev", str2: "2"),
@@ -47,7 +47,10 @@ class MyHomePage extends StatelessWidget {
                       letterSpacing: 1.5)),
               Text('column은 세로 배치를 의미'),
               SizedBox(height: 30),
-              GenreWidget(),
+              SizedBox(
+                width: 500,
+                child: GenreWidget(),
+              )
             ],
           ),
           SizedBox(width: 50),

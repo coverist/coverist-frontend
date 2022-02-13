@@ -14,6 +14,7 @@ List<String> MainGenre =["컴퓨터/IT","소설",	"외국어",	"예술/대중문
 class MainListCreate {
 
   List<genre> chipsList = [
+    genre(MainGenre[0], "InfoGenreRomance", Colors.green, false),
     genre(MainGenre[1], "InfoGenreRomance", Colors.green, false),
     genre(MainGenre[2], "InfoGenreRomance", Colors.blueGrey, false),
     genre(MainGenre[3], "InfoGenreRomance", Colors.deepOrange, false),
@@ -23,19 +24,49 @@ class MainListCreate {
     genre(MainGenre[7], "InfoGenreRomance", Colors.blueGrey, false),
     genre(MainGenre[8], "InfoGenreRomance", Colors.deepOrange, false),
     genre(MainGenre[9], "InfoGenreRomance", Colors.cyan, false),
-    genre(MainGenre[10], 'InfoGenreRomance', Colors.yellow, false)
+    genre(MainGenre[10], 'InfoGenreRomance', Colors.yellow, false),
+    genre(MainGenre[11], "InfoGenreRomance", Colors.green, false),
+    genre(MainGenre[12], "InfoGenreRomance", Colors.blueGrey, false),
+    genre(MainGenre[13], "InfoGenreRomance", Colors.deepOrange, false),
+    genre(MainGenre[14], "InfoGenreRomance", Colors.cyan, false),
+    genre(MainGenre[15], 'InfoGenreRomance', Colors.yellow, false),
+    genre(MainGenre[16], "InfoGenreRomance", Colors.green, false),
+    genre(MainGenre[17], "InfoGenreRomance", Colors.blueGrey, false),
+    genre(MainGenre[18], "InfoGenreRomance", Colors.deepOrange, false),
+    genre(MainGenre[19], "InfoGenreRomance", Colors.cyan, false),
+    genre(MainGenre[20], 'InfoGenreRomance', Colors.yellow, false),
+    genre(MainGenre[21], "InfoGenreRomance", Colors.green, false),
+    genre(MainGenre[22], "InfoGenreRomance", Colors.blueGrey, false),
+    genre(MainGenre[23], "InfoGenreRomance", Colors.deepOrange, false),
+    genre(MainGenre[24], "InfoGenreRomance", Colors.cyan, false),
+    genre(MainGenre[25], 'InfoGenreRomance', Colors.yellow, false),
+    genre(MainGenre[26], "InfoGenreRomance", Colors.green, false),
+    genre(MainGenre[27], "InfoGenreRomance", Colors.blueGrey, false),
   ]; 
-
-  // List<genre> chipList = [];
-
-  // for(String s in MainGenre){
-  //   genre item =  genre(s,"InfoGenreRomance", Colors.green, false);
-  //   chipList.add(item);
-  // }
 }
+
+//이런식으로는 왜 안돌아가지
+// class MainListCreate{
+//   List<Widget> chipsList(){
+//     List<Widget> chipsList = [];
+//     for(int i =0;i<MainGenre.length;i++){
+//       Widget item = genre(
+//         MainGenre[i], 'InfoGenreRomance', Colors.yellow, false) as Widget;
+//       chipsList.add(item);
+//     }
+//     return chipsList;
+//   }
+// } 
 
 class DetailListCreate{
   List<genre> chipsList = [
+    genre("로맨스", "InfoGenreRomance", Colors.green, false),
+    genre("액션", "InfoGenreRomance", Colors.blueGrey, false),
+    genre("호러", "InfoGenreRomance", Colors.deepOrange, false),
+    genre("성인", "InfoGenreRomance", Colors.cyan, false),
+    genre("잔혹", 'InfoGenreRomance', Colors.yellow, false)
+  ];
+  List<genre> chipsFor = [
     genre("로맨스", "InfoGenreRomance", Colors.green, false),
     genre("액션", "InfoGenreRomance", Colors.blueGrey, false),
     genre("호러", "InfoGenreRomance", Colors.deepOrange, false),

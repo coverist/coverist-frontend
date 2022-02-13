@@ -76,7 +76,7 @@ class GenreWidgetElement extends State<GenreWidget> with MainListCreate{
                 return detailGenreDialog();
                 }
               ); 
-            } 
+            }
             /*Navigator.push(
               context,
               MaterialPageRoute(
@@ -93,6 +93,9 @@ class GenreWidgetElement extends State<GenreWidget> with MainListCreate{
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: genreChip());
+    return Wrap(
+      alignment: WrapAlignment.center,
+      runSpacing: 10,
+      children:genreChip());
   }
 }
