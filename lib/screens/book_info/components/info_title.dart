@@ -5,9 +5,8 @@ import 'image_view.dart';
 import '/widgets/book_info/input_text_widget.dart';
 
 // //앱의 시작점
-// void main() {
-//   runApp(InfoTitle()); //반드시 widget을 argument로 가져야 함
-// }
+void main() =>
+    runApp(const InfoTitle(event: 0,)); 
 
 //우리가 커스텀해야하는 위젯(screen 레이아웃 최초 빌드 역할)
 class InfoTitle extends StatefulWidget {

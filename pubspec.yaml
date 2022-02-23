@@ -29,7 +29,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+    
   ##csv 파일로드를 위해 추가
   csv: ^5.0.0
   path_provider: ^2.0.2
@@ -45,6 +45,7 @@ dependencies:
   dotted_border: ^2.0.0+2
   steps: ^1.0.1
   animations: ^2.0.2
+  provider: ^6.0.2
 
 dev_dependencies:
   flutter_test:
