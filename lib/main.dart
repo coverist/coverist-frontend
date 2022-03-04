@@ -72,20 +72,22 @@ class _MyAppState extends StatelessWidget {
         body: Column(
             // height: (MediaQuery.of(context).size.height) * 0.7,
             // width: (MediaQuery.of(context).size.width) * 0.8,
-            children: [
-              PageTransitionSwitcher(
+            children: [ Expanded(child:  PageTransitionSwitcher(
                   transitionBuilder: (
                     Widget child,
                     Animation<double> animation,
                     Animation<double> secondaryAnimation,
                   ) {
                     return SharedAxisTransition(
+                      child: child,
                       animation: animation,
                       secondaryAnimation: secondaryAnimation,
                       transitionType: SharedAxisTransitionType.horizontal,
                     );
-                  },
+                  }, 
                   child: _getStepComponents(step)),
+            ),
+             
               ButtonBar(
                 alignment: MainAxisAlignment.center,
                 children: [
@@ -111,6 +113,7 @@ class _MyAppState extends StatelessWidget {
   }
 
   Widget _getStepComponents(int step) {
+    print("pushed");
     switch (step) {
       case 0:
         return InfoTitle(event: 0);

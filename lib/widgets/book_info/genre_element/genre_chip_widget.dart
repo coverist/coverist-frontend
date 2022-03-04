@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
+
 
 import 'package:coverist/widgets/book_info/genre_element/genre_popup_widget.dart';
 import './genre_list.dart';
+import '../../../models/genre.dart';
 
-import '/screens/book_info/components/info_title.dart';
+//import '/screens/book_info/components/info_title.dart';
 
 
 class GenreWidget extends StatefulWidget {
@@ -11,43 +14,13 @@ class GenreWidget extends StatefulWidget {
   GenreWidgetElement createState() => GenreWidgetElement();
 }
 
-// class genre {
-//   String label;
-//   String moveDetailPage;
-//   Color color;
-//   bool isSelected;
-//   genre(this.label, this.moveDetailPage, this.color, this.isSelected);
-// }
-
-// final List<genre> _chipsList = [
-//   genre("로멘스", "InfoGenreRomance", Colors.green, false),
-//   genre("액션", "InfoGenreRomance", Colors.blueGrey, false),
-//   genre("호러", "InfoGenreRomance", Colors.deepOrange, false),
-//   genre("성인", "InfoGenreRomance", Colors.cyan, false),
-//   genre("잔혹", 'InfoGenreRomance', Colors.yellow, false)
-// ]; //일단 final로 만들어봄
-
 class GenreWidgetElement extends State<GenreWidget> with MainListCreate{
-  /*bool selected = false;
-  final List<genre> _chipsList = [
-    genre("로멘스","InfoGenreRomance" ,Colors.green, false),
-    genre("액션","InfoGenreRomance" ,Colors.blueGrey, false),
-    genre("호러", "InfoGenreRomance",Colors.deepOrange, false),
-    genre("성인","InfoGenreRomance" ,Colors.cyan, false),
-    genre("잔혹", 'InfoGenreRomance',Colors.yellow, false)
-  ]; //일단 final로 만들어봄*/
-  moveDetailPage(str) {
-    //page 이동을 해준는 부분쓰 여기서 세부로 하나씩 추가쓰
-    switch (str) {
-      case "InfoGenreRomance":
-        print("1");
-        //return Dialog(child: GenreWidget());
-        return InfoTitle(event: 0);
-      case "InfoGenreHorror":
-        return ;
-      default:
-    }
-    return str;
+  late Future<List<Genre>> genres;
+
+  @override
+  void initState(){
+    super.initState();
+    genres = _fetchGenreData();
   }
   
   List<Widget> genreChip() {
@@ -77,12 +50,6 @@ class GenreWidgetElement extends State<GenreWidget> with MainListCreate{
                 }
               ); 
             }
-            /*Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      moveDetailPage(_chipsList[i].moveDetailPage)),
-            );*/
           },
         ),
       );
@@ -91,11 +58,45 @@ class GenreWidgetElement extends State<GenreWidget> with MainListCreate{
     return chips;
   }
 
+  FutureBuilder<List<Genre>> genreChip2(){
+    final a = FutureBuilder<List<Genre>>(
+      future: genres,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Wrap(
+              children: List.generate(
+                  snapshot.data!.length,
+                  (index) =>
+                      Chip(label: Text(snapshot.data![index].text))));
+        } else if (snapshot.hasError) {
+          return Text(snapshot.stackTrace.toString());
+        }
+        return const CircularProgressIndicator();
+      });
+    
+    return a;
+  } // 될까? 
+
+
   @override
   Widget build(BuildContext context) {
-    return Wrap(
+    return 
+    Wrap(
       alignment: WrapAlignment.center,
       runSpacing: 10,
-      children:genreChip());
+      children:genreChip()
+    );
+  }
+
+  Future<List<Genre>> _fetchGenreData() async {
+    var dio = Dio();
+    final response = await dio.get("http://3.37.43.37:8080/api/v1/book/genre");
+    //final genreData1 = (response.data as List).map((e) => e.toString()).toList();
+    
+    final  genreData =
+     List<Genre>.generate(response.data.length,
+      (index) => Genre.fromJson(response.data[index]));
+
+    return genreData;
   }
 }
