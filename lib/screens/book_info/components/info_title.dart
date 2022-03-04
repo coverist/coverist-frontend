@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 // Center(
 //       child: Container(
 //         height: (MediaQuery.of(context).size.height) * 0.7,
 //         width: (MediaQuery.of(context).size.width) * 0.8,
 //         child:
+=======
+import 'dart:html';
+
+import 'package:flutter/material.dart';
+>>>>>>> 20334db8c7c73c0e632d8105885ddb26c6c7bfdb
 
 import 'package:flutter/material.dart';
 
@@ -22,6 +28,7 @@ class _InfoTitleState extends State<InfoTitle> {
   @override
   Widget build(BuildContext context) {
     return Column(
+<<<<<<< HEAD
       children: <Widget>[
         InputText(
           string: inputList[0],
@@ -133,3 +140,18 @@ _getPosition(GlobalKey key) {
 //     return position;
 //   }
 // }
+=======
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        InputText(
+          string: inputList[0],
+        ),
+        InputText(
+          string: inputList[1],
+        ),
+      ],
+    );
+  }
+}
+>>>>>>> 20334db8c7c73c0e632d8105885ddb26c6c7bfdb

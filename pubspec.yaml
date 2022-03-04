@@ -29,7 +29,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+    
+  ##csv 파일로드를 위해 추가
+  csv: ^5.0.0
+  path_provider: ^2.0.2
+  permission_handler: ^7.1.0
+  file_picker: ^3.0.4
+  ###############
+  dio: ^4.0.0
+  ###############
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -38,8 +46,12 @@ dependencies:
   dotted_border: ^2.0.0+2
   steps: ^1.0.1
   animations: ^2.0.2
+<<<<<<< HEAD
   dio: ^4.0.4
   status_change: ^2.0.0
+=======
+  provider: ^6.0.2
+>>>>>>> 20334db8c7c73c0e632d8105885ddb26c6c7bfdb
 
 dev_dependencies:
   flutter_test:

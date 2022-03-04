@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '/widgets/book_info/tag_chip.dart';
+//import '/widgets/book_info/tag_chip.dart';
 
 class InputText extends StatelessWidget {
   InputText({Key? key, required this.string}) : super(key: key);
@@ -42,7 +42,7 @@ class InputText extends StatelessWidget {
           // }
         ),
         SizedBox(height: 30),
-      ],
+      ],                                                                                                                                                                                                                                                                                               
     );
   }
 }

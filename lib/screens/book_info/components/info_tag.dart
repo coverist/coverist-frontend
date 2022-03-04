@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import '/widgets/book_info/input_text_widget.dart';
 
 class InfoTag extends StatefulWidget {
+<<<<<<< HEAD
   const InfoTag({Key? key}) : super(key: key);
+=======
+  final event;
+  const InfoTag({Key? key, required this.event}) : super(key: key);
+>>>>>>> 20334db8c7c73c0e632d8105885ddb26c6c7bfdb
 
   @override
   _InfoTagState createState() => _InfoTagState();
@@ -70,6 +75,7 @@ class _InfoTagState extends State<InfoTag> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
+<<<<<<< HEAD
         // InputText(title: "태그", content: "입력 예) 창업"),
         Row(
           children: <Widget>[
@@ -114,6 +120,39 @@ class _InfoTagState extends State<InfoTag> {
                 //alertDialog 띄워야 함
               }
             }),
+=======
+        SizedBox(height: 10),
+        InputText(
+          string: "태그",
+        ),
+        // TextField(
+        //     textInputAction: TextInputAction.go,
+        //     controller: _infoTextEditController,
+        //     decoration: InputDecoration(
+        //       border: OutlineInputBorder(),
+        //       labelText: '입력 예) #창업',
+        //     ),
+        //     onSubmitted: (value) {
+        //       if ('${_infoTextEditController.text}'.startsWith("#")) {
+        //         _values.add(_infoTextEditController.text);
+        //         // _selected.add(true);
+        //         _infoTextEditController.clear();
+        //         print('values : $_values');
+        //         setState(() {
+        //           // _infoTextEditController.text = value;
+        //           // inputTagList.add(value);
+        //           _values = _values;
+        //           // _selected = _selected;
+
+        //           print('value : $value');
+        //         });
+        //       } else {
+        //         _showDialog("입력 형식이 올바르지 않습니다.");
+        //         // print('#태그 형식이 아님');
+        //         //alertDialog 띄워야 함
+        //       }
+        //     }),
+>>>>>>> 20334db8c7c73c0e632d8105885ddb26c6c7bfdb
         SizedBox(height: 10),
 
         // buildChips(),
@@ -133,6 +172,7 @@ class _InfoTagState extends State<InfoTag> {
       // ],
     );
   }
+<<<<<<< HEAD
 }
 
 
@@ -325,3 +365,6 @@ class _InfoTagState extends State<InfoTag> {
 //         ));
 //   }
 // }
+=======
+}
+>>>>>>> 20334db8c7c73c0e632d8105885ddb26c6c7bfdb
