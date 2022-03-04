@@ -1,9 +1,4 @@
-import 'dart:html';
-import 'dart:ui';
 import 'dart:io';
-import 'package:animations/animations.dart';
-import 'package:coverist/screens/book_info/components/info_tag.dart';
-import 'package:coverist/screens/book_info/components/info_title.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +18,7 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key, required this.event}) : super(key: key);
 
   @override
-  _MyAppState createState() => _MyAppState();
+  // _MyAppState createState() => _MyAppState();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: _createMaterialColor(kThemeColor),
       ),
-      home: _MyAppState(),
+      // home: _MyAppState(),
     );
   }
 
@@ -55,72 +50,5 @@ class MyApp extends StatelessWidget {
       );
     });
     return MaterialColor(color.value, swatch);
-  }
-}
-
-class _MyAppState extends StatelessWidget {
-  int step = 0;
-  var page = InfoTitle(event: 0);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('INFO_TITLE'),
-          centerTitle: true,
-        ),
-        backgroundColor: Colors.blueGrey[200],
-        body: Column(
-            // height: (MediaQuery.of(context).size.height) * 0.7,
-            // width: (MediaQuery.of(context).size.width) * 0.8,
-            children: [ Expanded(child:  PageTransitionSwitcher(
-                  transitionBuilder: (
-                    Widget child,
-                    Animation<double> animation,
-                    Animation<double> secondaryAnimation,
-                  ) {
-                    return SharedAxisTransition(
-                      child: child,
-                      animation: animation,
-                      secondaryAnimation: secondaryAnimation,
-                      transitionType: SharedAxisTransitionType.horizontal,
-                    );
-                  }, 
-                  child: _getStepComponents(step)),
-            ),
-             
-              ButtonBar(
-                alignment: MainAxisAlignment.center,
-                children: [
-                  OutlinedButton(
-                      onPressed: () {
-                        this.step += 1;
-                        print(step);
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    _getStepComponents(step)));
-                      },
-                      child: Text('Next'),
-                      style: OutlinedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0)))),
-                ],
-              ),
-            ])
-        // ),
-        );
-  }
-
-  Widget _getStepComponents(int step) {
-    print("pushed");
-    switch (step) {
-      case 0:
-        return InfoTitle(event: 0);
-      case 1:
-        return InfoTag(event: 0);
-      default:
-        return Container(child: Text("유효하지 않음"));
-    }
   }
 }

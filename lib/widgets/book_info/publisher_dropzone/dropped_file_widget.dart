@@ -1,4 +1,3 @@
-import 'dart:js';
 import 'package:flutter/material.dart';
 
 import '../../../models/file_data_model.dart';

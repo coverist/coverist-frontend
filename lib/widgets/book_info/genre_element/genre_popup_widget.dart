@@ -1,43 +1,40 @@
 import 'package:flutter/material.dart';
 
-import 'package:coverist/widgets/book_info/genre_element/genre_chip_widget.dart';
 import './genre_list.dart';
 
-
-
-class detailGenreDialog extends StatefulWidget{
+class detailGenreDialog extends StatefulWidget {
   @override
   detailGenreDialogElement createState() => detailGenreDialogElement();
 }
 
-class detailGenreDialogElement extends State<detailGenreDialog> with DetailListCreate{
-  
-  setAlertDialog(){
+class detailGenreDialogElement extends State<detailGenreDialog>
+    with DetailListCreate {
+  setAlertDialog() {
     return AlertDialog(
       title: const Text("중분류 선택"),
       content: Container(
         constraints: const BoxConstraints(
           maxHeight: 300.0,
           minHeight: 150.0,
-          minWidth:  500.0,
+          minWidth: 500.0,
         ),
         child: SingleChildScrollView(
-          child: Row(
-            children: genreChip(),
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,)
-        ), 
+            child: Row(
+          children: genreChip(),
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+        )),
       ),
       actions: <Widget>[
         OutlinedButton(
           child: Text("선택완료"),
-          onPressed: ()=> Navigator.of(context).pop(),
+          onPressed: () => Navigator.of(context).pop(),
         )
       ],
-    );  
+    );
   }
 
-  List<Widget> genreChip(){
+  List<Widget> genreChip() {
     List<Widget> chips = [];
     for (int i = 0; i < chipsList.length; i++) {
       Widget item = Padding(
