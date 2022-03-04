@@ -38,6 +38,8 @@ dependencies:
   dotted_border: ^2.0.0+2
   steps: ^1.0.1
   animations: ^2.0.2
+  dio: ^4.0.4
+  status_change: ^2.0.0
 
 dev_dependencies:
   flutter_test:

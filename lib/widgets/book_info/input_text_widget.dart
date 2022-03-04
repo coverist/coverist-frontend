@@ -30,16 +30,17 @@ class InputText extends StatelessWidget {
         ),
         SizedBox(height: 10),
         TextField(
-            textInputAction: TextInputAction.go,
-            controller: _infoTextEditController,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: string + ' 입력',
-            ),
-            onSubmitted: (value) async {
-              _infoTextEditController.text = value;
-              print('value : $value');
-            }),
+          textInputAction: TextInputAction.go,
+          controller: _infoTextEditController,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            labelText: string + ' 입력',
+          ),
+          // onSubmitted: (value) async {
+          //   _infoTextEditController.text = value;
+          //   print('value : $value');
+          // }
+        ),
         SizedBox(height: 30),
       ],
     );

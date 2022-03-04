@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import './info_genre_main.dart';
 import '/widgets/book_info/publisher_dropzone/dropzone_widget.dart';
 import '/widgets/book_info/publisher_dropzone/dropped_file_widget.dart';
-import '../../../models/file_data_model.dart';
+import '/models/file_data_model.dart';
 
 class InfoLogo extends StatelessWidget {
   const InfoLogo({Key? key}) : super(key: key); //?
@@ -45,7 +45,7 @@ class LogoPageState extends State<LogoPage> {
             OutlinedButton(
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => InfoGenrePage()));
+                      MaterialPageRoute(builder: (context) => InfoGenre()));
                 },
                 child: Text('prev'),
                 style: OutlinedButton.styleFrom(
