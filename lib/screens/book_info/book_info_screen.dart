@@ -1,10 +1,13 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '/constants.dart';
 import 'package:coverist/screens/book_info/components/body.dart';
 import 'package:coverist/constants.dart';
+import 'package:coverist/models/provider.dart';
+
 
 void main() {
   FlutterError.onError = (FlutterErrorDetails details) {
@@ -63,8 +66,10 @@ class _BookInfoScreenState extends StatelessWidget {
         centerTitle: true,
       ),
       backgroundColor: Colors.blueGrey[200],
-      body: Body(),
-      // ),
+      body: ChangeNotifierProvider(
+        create: (BuildContext context) => BookInfo(),
+        child: Body(),
+      ),
     );
   }
 }
@@ -72,7 +77,6 @@ class _BookInfoScreenState extends StatelessWidget {
 //   List inputList = ["제목", "저자명"];
 //   int step = 0;
 //   book_info_screen({Key? key, required this.step}) : super(key: key);
-
 //   @override
 //   Widget build(BuildContext context) {
 //     return Column(

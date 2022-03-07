@@ -18,12 +18,16 @@ class _InfoGenreState extends State<InfoGenre> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Text('도서 장르를 선택해주세요!!',
+        const Text('도서 장르와 세부장르를 선택하세요!!',
             style: TextStyle(
                 fontSize: 30, fontWeight: FontWeight.bold, letterSpacing: 1.5)),
-        Text('column은 세로 배치를 의미'),
-        SizedBox(height: 30),
-        GenreWidget(),
+        const Text('각 장르는 1개씩만 선택 가능합니다'),
+        const SizedBox(height: 50),
+        SizedBox(
+          width: 1000,
+          child: GenreWidget(),
+        )
+       
       ],
     );
     // SizedBox(width: 50),
