@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 const kThemeColor = Color(0xFF001924);
 const kScaffoldBackgroundColor = Color(0xFFfcfeff);
 const kDefaultFontColor = Color(0xFF001924);
+const kNextButtonColor = Color(0xFFb0bfc6); //bluegrey 색상코드임
 
 const kDefaultPadding = 15.0;
+
+const kBookInfoWidth = 0.4;
+const kBookInfoHeight = 0.7;
 
 Route slidePageRouting(Widget page) {
   return PageRouteBuilder(

@@ -1,7 +1,9 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../models/provider.dart';
 import '/constants.dart';
 import 'package:coverist/screens/book_info/components/body.dart';
 import 'package:coverist/constants.dart';
@@ -11,7 +13,11 @@ void main() {
     FlutterError.presentError(details);
     if (kReleaseMode) exit(1);
   };
-  runApp(book_info_screen());
+  runApp(
+    MultiProvider(providers: [
+      ChangeNotifierProvider(create: (_) => bookInfo()),
+    ], child: book_info_screen()),
+  );
 }
 
 class book_info_screen extends StatelessWidget {
@@ -58,14 +64,12 @@ class _BookInfoScreenState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('COVERIST : BOOK INFO'),
-        centerTitle: true,
-      ),
-      backgroundColor: Colors.blueGrey[200],
-      body: Body(),
-      // ),
-    );
+        appBar: AppBar(
+          title: Text('COVERIST : BOOK INFO'),
+          centerTitle: true,
+        ),
+        backgroundColor: Colors.blueGrey[200],
+        body: Body());
   }
 }
 

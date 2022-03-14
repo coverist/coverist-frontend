@@ -17,11 +17,13 @@ class bookInfo with ChangeNotifier {
   void setTitle(String title) {
     _title = title;
     notifyListeners(); //위젯을 변화를 통보한다
+    print("provider title : " + title);
   }
 
   void setAuthor(String author) {
     _author = author;
     notifyListeners();
+    print("provider author : " + author);
   }
 
   void setGenre(String addgenre) {
@@ -30,10 +32,13 @@ class bookInfo with ChangeNotifier {
     print('wait');
   }
 
-  void setTag(String addTag) {
-    _genre.add(addTag);
+  void setTag(List<String> addTag) {
+    //tag 리스트로 만들기
+    _tag = addTag;
     notifyListeners();
-    print('wait');
+    // print('wait');
+    for (int i = 0; i < _tag.length; i++)
+      print("provider tag : " + addTag.toString());
   }
 
   void delGenre(String delgenre) {
@@ -46,5 +51,15 @@ class bookInfo with ChangeNotifier {
     _genre.remove(delTag);
     notifyListeners();
     print('wait');
+  }
+
+  //값 확인용
+  void printItem() {
+    print("title : " +
+        this._title +
+        ", author: " +
+        this._author +
+        ", tag : " +
+        this._tag.toString());
   }
 }
