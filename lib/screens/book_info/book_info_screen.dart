@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 
 import '/constants.dart';
 import 'package:coverist/screens/book_info/components/body.dart';
-import 'package:coverist/constants.dart';
 import 'package:coverist/models/provider.dart';
 
 void main() {
@@ -70,65 +69,3 @@ class _BookInfoScreenState extends StatelessWidget {
     );
   }
 }
-
-//   List inputList = ["제목", "저자명"];
-//   int step = 0;
-//   book_info_screen({Key? key, required this.step}) : super(key: key);
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//         // height: (MediaQuery.of(context).size.height) * 0.7,
-//         // width: (MediaQuery.of(context).size.width) * 0.8,
-//         children: [
-//           Expanded(
-//               child: PageTransitionSwitcher(
-//                   transitionBuilder: (
-//                     Widget child,
-//                     Animation<double> animation,
-//                     Animation<double> secondaryAnimation,
-//                   ) {
-//                     return SharedAxisTransition(
-//                       child: child,
-//                       animation: animation,
-//                       secondaryAnimation: secondaryAnimation,
-//                       fillColor: kScaffoldBackgroundColor,
-//                       transitionType: SharedAxisTransitionType.horizontal,
-//                     );
-//                   },
-//                   child: _getStepComponents(step))),
-//           ButtonBar(
-//             alignment: MainAxisAlignment.center,
-//             children: [
-//               OutlinedButton(
-//                   onPressed: () {
-//                     this.step += 1;
-//                     print(step);
-//                     Navigator.push(
-//                         // context,
-//                         // MaterialPageRoute(
-//                         //     builder: (context) =>
-//                         //         _getStepComponents(step)));
-//                         context,
-//                         slidePageRouting(_getStepComponents(step)));
-//                   },
-//                   child: Text('Next'),
-//                   style: OutlinedButton.styleFrom(
-//                       shape: RoundedRectangleBorder(
-//                           borderRadius: BorderRadius.circular(10.0)))),
-//             ],
-//           ),
-//         ]);
-//   }
-
-//   Widget _getStepComponents(int step) {
-//     switch (step) {
-//       case 0:
-//         return InfoTag(event: 0);
-//       case 1:
-//         return InfoTitle(event: 0);
-
-//       default:
-//         return Container(child: Text("유효하지 않음"));
-//     }
-//   }
-// }

@@ -1,12 +1,12 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'info_title.dart';
 import 'info_tag.dart';
 import 'info_genre_main.dart';
-import 'image_view.dart';
-
 import 'package:coverist/constants.dart';
+
+import 'package:coverist/widgets/book_info/genre_element/genre_list.dart';
+
+import '/models/provider.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -25,14 +25,21 @@ class _BodyState extends State<Body> {
       currentStep: _index,
       controlsBuilder: (context, ControlsDetails details) {
         return Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            OutlinedButton(
+            RaisedButton(
+              textTheme: ButtonTextTheme.normal,
               onPressed: details.onStepCancel,
-              child: const Text('이전으로'),
+              child: const Text('PREV'),
             ),
-            TextButton(
+            SizedBox(width: 420),
+            RaisedButton(
+              textColor: Colors.white,
+              color: Colors.blueGrey,
+              textTheme: ButtonTextTheme.normal,
               onPressed: details.onStepContinue,
-              child: const Text('다음'),
+              child: const Text('NEXT'),
             ),
           ],
         );
@@ -77,7 +84,7 @@ class _BodyState extends State<Body> {
             state: StepState.complete),
         Step(
             title: Text('Step 4 '),
-            content: InfoGenre(),
+            content: InfoTag(),
             isActive: _index > 3,
             state: StepState.complete),
       ],

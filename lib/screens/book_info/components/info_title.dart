@@ -1,11 +1,6 @@
-import 'dart:html';
-
-import 'package:flutter/material.dart';
-
 import 'package:flutter/material.dart';
 
 import '/widgets/book_info/input_text_widget.dart';
-import 'info_tag.dart';
 
 class InfoTitle extends StatefulWidget {
   const InfoTitle({Key? key}) : super(key: key);
