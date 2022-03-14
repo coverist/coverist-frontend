@@ -63,67 +63,66 @@ class _InfoTagState extends State<InfoTag> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          SizedBox(
-              height: (MediaQuery.of(context).size.height) * kBookInfoHeight,
-              width: (MediaQuery.of(context).size.width) * kBookInfoWidth,
-              child: Column(
+    return Column(children: <Widget>[
+      SizedBox(
+          height: (MediaQuery.of(context).size.height) * kBookInfoHeight,
+          width: (MediaQuery.of(context).size.width) * kBookInfoWidth,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Row(
                 children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        child: Text('태그 입력',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 1.5)),
-                      ),
-                      Container(
-                        child: Text('(필수)',
-                            style: TextStyle(fontSize: 14, letterSpacing: 1.5)),
-                      ),
-                    ],
+                  Container(
+                    child: Text('태그 입력',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.5)),
                   ),
-                  SizedBox(height: 10),
-                  TextField(
-                      textInputAction: TextInputAction.go,
-                      controller: _infoTextEditController,
-                      maxLength: 20,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: '입력 예) 창업',
-                          prefixText: "#"),
-                      onSubmitted: (value) {
-                        if (_tags.length >= maxNum) {
-                          _showDialog(
-                              "최대 " + maxNum.toString() + "개까지 입력할 수 있습니다.");
-                        } else if (_tags.contains(value.trim())) {
-                          _showDialog("이미 존재하는 태그입니다.");
-                        } else if (_tags.length < maxNum &&
-                            !_tags.contains(value.trim())) {
-                          _tags.add(value.trim());
-                          context.read<BookInfo>().setTag(_tags);
-                        }
-
-                        _infoTextEditController.clear();
-                        print('tags : $_tags');
-
-                        setState(() {
-                          _tags = _tags;
-                        });
-                      }),
-                  SizedBox(height: 10),
-                  Wrap(
-                      direction: Axis.horizontal, // 정렬 방향
-                      alignment: WrapAlignment.center, // 정렬 방식
-                      spacing: 10, // 상하(좌우) 공간
-                      runSpacing: 10, // 좌우(상하) 공간
-                      children: buildChips()),
+                  Container(
+                    child: Text('(필수)',
+                        style: TextStyle(fontSize: 14, letterSpacing: 1.5)),
+                  ),
                 ],
-              ))
-        ]);
+              ),
+              SizedBox(height: 10),
+              TextField(
+                  textInputAction: TextInputAction.go,
+                  controller: _infoTextEditController,
+                  maxLength: 20,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: '입력 예) 창업',
+                      prefixText: "#"),
+                  onSubmitted: (value) {
+                    if (_tags.length >= maxNum) {
+                      _showDialog(
+                          "최대 " + maxNum.toString() + "개까지 입력할 수 있습니다.");
+                    } else if (_tags.contains(value.trim())) {
+                      _showDialog("이미 존재하는 태그입니다.");
+                    } else if (_tags.length < maxNum &&
+                        !_tags.contains(value.trim())) {
+                      _tags.add(value.trim());
+                      context.read<BookInfo>().setTag(_tags);
+                    }
+
+                    _infoTextEditController.clear();
+                    print('tags : $_tags');
+
+                    setState(() {
+                      _tags = _tags;
+                    });
+                  }),
+              SizedBox(height: 10),
+              Wrap(
+                  direction: Axis.horizontal, // 정렬 방향
+                  alignment: WrapAlignment.center, // 정렬 방식
+                  spacing: 10, // 상하(좌우) 공간
+                  runSpacing: 10, // 좌우(상하) 공간
+                  children: buildChips()),
+            ],
+          ))
+    ]);
   }
 }

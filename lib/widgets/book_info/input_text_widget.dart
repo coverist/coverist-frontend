@@ -20,46 +20,43 @@ class _InputTextState extends State<InputText> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        width: (MediaQuery.of(context).size.width) * kBookInfoWidth,
-        child: Column(
-          children: [
-            Row(
-              children: <Widget>[
-                Container(
-                  child: Text(str + ' 입력',
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.5)),
-                ),
-                Container(
-                  child: Text('(필수)',
-                      style: TextStyle(fontSize: 14, letterSpacing: 1.5)),
-                ),
-              ],
+    return Column(
+      children: [
+        Row(
+          children: <Widget>[
+            Container(
+              child: Text(str + ' 입력',
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.5)),
             ),
-            SizedBox(height: 10),
-            TextField(
-              textInputAction: TextInputAction.go,
-              // controller: infoTextEditController,
-              onChanged: (value) {
-                if (str.compareTo("제목") == 0)
-                  context.read<BookInfo>().setTitle(value);
-                else if (str.compareTo("저자명") == 0)
-                  context.read<BookInfo>().setAuthor(value);
-              },
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: str + '을 입력하세요',
-              ),
-              // onSubmitted: (value) async {
-              //   _infoTextEditController.text = value;
-              //   print('value : $value');
-              // }
+            Container(
+              child: Text('(필수)',
+                  style: TextStyle(fontSize: 14, letterSpacing: 1.5)),
             ),
-            SizedBox(height: 30),
           ],
-        ));
+        ),
+        SizedBox(height: 10),
+        TextField(
+          textInputAction: TextInputAction.go,
+          // controller: infoTextEditController,
+          onChanged: (value) {
+            if (str.compareTo("제목") == 0)
+              context.read<BookInfo>().setTitle(value);
+            else if (str.compareTo("저자명") == 0)
+              context.read<BookInfo>().setAuthor(value);
+          },
+          decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            hintText: str + '을 입력하세요',
+          ),
+          // onSubmitted: (value) async {
+          //   _infoTextEditController.text = value;
+          //   print('value : $value');
+          // }
+        ),
+      ],
+    );
   }
 }
