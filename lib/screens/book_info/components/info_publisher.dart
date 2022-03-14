@@ -42,15 +42,7 @@ class LogoPageState extends State<LogoPage> {
             child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            OutlinedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => InfoGenre()));
-                },
-                child: Text('prev'),
-                style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0)))),
+           
             SizedBox(width: 50), //유사 padding 주기
             SingleChildScrollView(
               child: Container(

@@ -31,7 +31,7 @@ class DroppedFileWidget extends StatelessWidget {
           width: 150,
           height: 150,
           // 불러온 이미지 크기
-          fit: BoxFit.cover,
+          //fit: BoxFit.cover,
           errorBuilder: (context, error, _) => buildEmptyFile('No Preview'),
         ),
       ],

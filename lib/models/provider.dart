@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import '/models/provider.dart';
 
@@ -11,6 +13,9 @@ class BookInfo with ChangeNotifier {
   String _subgenre = 'nan';
 
   List<String> _tag = [];
+
+  File? _publisher;
+  File? get publisher => _publisher;
 
   String get title => _title; //외부에서 접근이 가능하도록
   String get author => _author;
@@ -51,6 +56,11 @@ class BookInfo with ChangeNotifier {
     // print('wait');
     for (int i = 0; i < _tag.length; i++)
       print("provider tag : " + addTag.toString());
+  }
+
+  void setFile(File? a) {
+    _publisher = a;
+    notifyListeners();
   }
 
   void delGenre(String delgenre) {
