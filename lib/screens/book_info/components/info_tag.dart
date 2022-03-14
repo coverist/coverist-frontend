@@ -105,7 +105,7 @@ class _InfoTagState extends State<InfoTag> {
                         } else if (_tags.length < maxNum &&
                             !_tags.contains(value.trim())) {
                           _tags.add(value.trim());
-                          context.read<bookInfo>().setTag(_tags);
+                          context.read<BookInfo>().setTag(_tags);
                         }
 
                         _infoTextEditController.clear();

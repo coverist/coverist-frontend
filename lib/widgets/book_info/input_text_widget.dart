@@ -45,9 +45,9 @@ class _InputTextState extends State<InputText> {
               // controller: infoTextEditController,
               onChanged: (value) {
                 if (str.compareTo("제목") == 0)
-                  context.read<bookInfo>().setTitle(value);
+                  context.read<BookInfo>().setTitle(value);
                 else if (str.compareTo("저자명") == 0)
-                  context.read<bookInfo>().setAuthor(value);
+                  context.read<BookInfo>().setAuthor(value);
               },
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
