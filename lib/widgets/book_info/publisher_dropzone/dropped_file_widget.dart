@@ -62,6 +62,7 @@ class DroppedFileWidget extends StatelessWidget {
             height: 8,
           ),
           Text('Type: ${file?.mime}', style: style),
+          Text('Data: ${file?.data}', style: style),
           const SizedBox(
             height: 8,
           ),
