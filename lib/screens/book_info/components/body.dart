@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'info_title.dart';
 import 'info_tag.dart';
 import 'info_genre_main.dart';
-import 'package:coverist/constants.dart';
-
-import 'package:coverist/widgets/book_info/genre_element/genre_list.dart';
-
-import '/models/provider.dart';
+import 'info_publisher.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -83,8 +79,8 @@ class _BodyState extends State<Body> {
             isActive: _index > 2,
             state: StepState.complete),
         Step(
-            title: Text('Step 4 '),
-            content: InfoTag(),
+            title: Text('Step 4 출판사'),
+            content: InfoLogo(),
             isActive: _index > 3,
             state: StepState.complete),
       ],

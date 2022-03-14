@@ -1,29 +1,30 @@
-import 'dart:html';
+import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import '/models/provider.dart';
-
-import 'package:coverist/widgets/book_info/genre_element/genre_list.dart';
 
 class BookInfo with ChangeNotifier {
   String _title = 'nan';
   String _author = 'nan';
-  //List<String> _genre = []; //장르만, 전해주면 되니 string
+
   String _genre = 'nan';
   String _subgenre = 'nan';
 
   List<String> _tag = [];
-
+  String _path = 'image.txt';
   File? _publisher;
-  File? get publisher => _publisher;
 
   String get title => _title; //외부에서 접근이 가능하도록
   String get author => _author;
-  //List<String> get genre => _genre;
+
   String get genre => _genre;
   String get subgenre => _subgenre;
 
   List<String> get tag => _tag;
+
+  File? get publisher => _publisher;
+
+  String get path => _path;
 
   void setTitle(String title) {
     _title = title;
@@ -40,13 +41,13 @@ class BookInfo with ChangeNotifier {
   void setGenre(String addgenre) {
     _genre = addgenre;
     notifyListeners();
-    print(_genre);
+    print('wait');
   }
 
   void setSubGenre(String addgenre) {
     _subgenre = addgenre;
     notifyListeners();
-    print(_subgenre);
+    print('wait');
   }
 
   void setTag(List<String> addTag) {
@@ -83,5 +84,16 @@ class BookInfo with ChangeNotifier {
         this._author +
         ", tag : " +
         this._tag.toString());
+  }
+
+  // void setFile(String url) {
+  //   _path = url;
+  //   _file = file(_path);
+  //   print('file : ' + file.toString());
+  // }
+
+  dynamic getData(Uint8List data) {
+    _publisher = File.fromRawPath(data);
+    print('file : ' + _publisher.toString());
   }
 }

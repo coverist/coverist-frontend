@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '/widgets/book_info/input_text_widget.dart';
+import 'package:coverist/constants.dart';
 
 class InfoTitle extends StatefulWidget {
   const InfoTitle({Key? key}) : super(key: key);
@@ -14,17 +15,23 @@ class _InfoTitleState extends State<InfoTitle> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        InputText(
-          string: inputList[0],
-        ),
-        InputText(
-          string: inputList[1],
-        ),
-      ],
-    );
+    return Column(children: <Widget>[
+      SizedBox(
+        height: (MediaQuery.of(context).size.height) * kBookInfoHeight,
+        width: (MediaQuery.of(context).size.width) * kBookInfoWidth,
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              InputText(
+                string: inputList[0],
+              ),
+              SizedBox(height: 60),
+              InputText(
+                string: inputList[1],
+              )
+            ]),
+      )
+    ]);
   }
 }

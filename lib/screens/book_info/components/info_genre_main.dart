@@ -19,7 +19,7 @@ class _InfoGenreState extends State<InfoGenre> {
         children: <Widget>[
           SizedBox(
               height: (MediaQuery.of(context).size.height) * kBookInfoHeight,
-              width: (MediaQuery.of(context).size.width) * kBookInfoWidth,
+              width: (MediaQuery.of(context).size.width) * 0.6,
               child: Column(
                 children: <Widget>[
                   Text('도서 장르를 선택해주세요!!',
