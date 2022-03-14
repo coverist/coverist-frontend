@@ -23,7 +23,7 @@ class _InfoTitleState extends State<InfoTitle> {
         ),
         InputText(
           string: inputList[1],
-        )
+        ),
       ],
     );
   }

@@ -3,9 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/provider.dart';
 import '/constants.dart';
 import 'package:coverist/screens/book_info/components/body.dart';
+import 'package:coverist/models/provider.dart';
 import 'package:coverist/constants.dart';
 
 void main() {
@@ -15,7 +15,7 @@ void main() {
   };
   runApp(
     MultiProvider(providers: [
-      ChangeNotifierProvider(create: (_) => bookInfo()),
+      ChangeNotifierProvider(create: (_) => BookInfo()),
     ], child: book_info_screen()),
   );
 }
@@ -76,7 +76,6 @@ class _BookInfoScreenState extends StatelessWidget {
 //   List inputList = ["제목", "저자명"];
 //   int step = 0;
 //   book_info_screen({Key? key, required this.step}) : super(key: key);
-
 //   @override
 //   Widget build(BuildContext context) {
 //     return Column(

@@ -32,7 +32,5 @@ class _InfoGenreState extends State<InfoGenre> {
                 ],
               ))
         ]);
-    // SizedBox(width: 50),
-    // movePage(str1: "next", str2: "1");
   }
 }
