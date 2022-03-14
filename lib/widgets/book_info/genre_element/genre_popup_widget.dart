@@ -8,17 +8,18 @@ import './genre_list.dart';
 
 class DetailGenreDialog extends StatefulWidget {
   const DetailGenreDialog({Key? key, required this.id});
- 
+
   final int id;
 
   @override
   DetailGenreDialogElement createState() => DetailGenreDialogElement(id: id);
 }
 
-class DetailGenreDialogElement extends State<DetailGenreDialog> with DetailListCreate {
+class DetailGenreDialogElement extends State<DetailGenreDialog> {
   DetailGenreDialogElement({required this.id});
-  int id ;
-
+  int id;
+  String subgenre = "";
+/*
   setAlertDialog() {
     return AlertDialog(
       title: const Text("중분류 선택"),
@@ -71,6 +72,7 @@ class DetailGenreDialogElement extends State<DetailGenreDialog> with DetailListC
     return chips;
   }
 //////////////////////////////////////////////////////
+*/
 
   late Future<List<Genre>> subgenres;
   @override
@@ -78,13 +80,14 @@ class DetailGenreDialogElement extends State<DetailGenreDialog> with DetailListC
     super.initState();
     subgenres = _fetchGenreData(id);
   }
+
   @override
   Widget build(BuildContext context) {
     //return setAlertDialog();
     return FutureBuilder<List<Genre>>(
         future: subgenres,
         builder: (context, snapshot) {
-          if (snapshot.hasData){
+          if (snapshot.hasData) {
             return AlertDialog(
               title: const Text("중분류 선택"),
               content: Container(
@@ -95,24 +98,27 @@ class DetailGenreDialogElement extends State<DetailGenreDialog> with DetailListC
                   maxWidth: 400.0,
                 ),
                 child: SingleChildScrollView(
-                    child: Wrap(//Row(
-                      alignment: WrapAlignment.center, runSpacing: 10,
-                      children: List<Widget>.generate(
-                        snapshot.data!.length,
-                        (index) => Padding(padding:const EdgeInsets.only(left: 10, right: 5),
-                          child: FilterChip(
-                            label: Text(snapshot.data![index].text), 
-                            onSelected: (bool value) {  
-
-                              context.read<BookInfo>().setGenre(snapshot.data![index].text);
-
+                    child: Wrap(
+                  alignment: WrapAlignment.center, runSpacing: 10,
+                  children: List<Widget>.generate(
+                      snapshot.data!.length,
+                      (index) => Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 5),
+                          child: ChoiceChip(
+                            label: Text(snapshot.data![index].text),
+                            selected: subgenre == snapshot.data![index].text,
+                            selectedColor: Colors.blue,
+                            onSelected: (bool value) {
+                              setState(() {
+                                subgenre = snapshot.data![index].text;
+                                context.read<BookInfo>().setSubGenre(subgenre);
+                              });
                             },
-                            padding: const EdgeInsets.only(left: 10, right: 5),)
-                        )
-                      ),   
-                    //mainAxisAlignment: MainAxisAlignment.center,
-                    //crossAxisAlignment: CrossAxisAlignment.center,
-                  )),
+                            padding: const EdgeInsets.only(left: 10, right: 5),
+                          ))),
+                  //mainAxisAlignment: MainAxisAlignment.center,
+                  //crossAxisAlignment: CrossAxisAlignment.center,
+                )),
               ),
               actions: <Widget>[
                 OutlinedButton(
@@ -128,9 +134,10 @@ class DetailGenreDialogElement extends State<DetailGenreDialog> with DetailListC
         });
   }
 
- Future<List<Genre>> _fetchGenreData(int id) async {
+  Future<List<Genre>> _fetchGenreData(int id) async {
     var dio = Dio();
-    final response = await dio.get("http://3.37.43.37:8080/api/v1/book/genre/$id/subgenre");
+    final response =
+        await dio.get("http://3.37.43.37:8080/api/v1/book/genre/$id/subgenre");
     //final genreData1 = (response.data as List).map((e) => e.toString()).toList();
 
     final genreData = List<Genre>.generate(
@@ -138,7 +145,6 @@ class DetailGenreDialogElement extends State<DetailGenreDialog> with DetailListC
 
     return genreData;
   }
-
 }
 
 

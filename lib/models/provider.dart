@@ -17,7 +17,7 @@ class BookInfo with ChangeNotifier {
   //List<String> get genre => _genre;
   String get genre => _genre;
   String get subgenre => _subgenre;
-  
+
   List<String> get tag => _tag;
 
   void setTitle(String title) {
@@ -31,15 +31,15 @@ class BookInfo with ChangeNotifier {
   }
 
   void setGenre(String addgenre) {
-    _genre = addgenre; 
+    _genre = addgenre;
     notifyListeners();
-    print('wait');
+    print(_genre);
   }
 
-   void setSubGenre(String addgenre) {
-    _subgenre = addgenre; 
+  void setSubGenre(String addgenre) {
+    _subgenre = addgenre;
     notifyListeners();
-    print('wait');
+    print(_subgenre);
   }
 
   void setTag(String addTag) {

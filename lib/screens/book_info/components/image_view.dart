@@ -15,13 +15,13 @@ class _GridviewPageState extends State<GridviewPage> {
       home: Scaffold(
         backgroundColor: Colors.blueGrey[200],
         appBar: AppBar(
-          title: Text('Coverist'),
+          title: const Text('Coverist'),
           centerTitle: true,
           backgroundColor: Colors.blueGrey,
         ),
         body: GridView.builder(
           itemCount: 8, //item 개수
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4, //1 개의 행에 보여줄 item 개수
             childAspectRatio: 3 / 5, //item 의 가로 3, 세로 5 의 비율
             mainAxisSpacing: 5, //수평 Padding
