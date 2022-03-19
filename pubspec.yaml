@@ -30,11 +30,11 @@ dependencies:
   flutter:
     sdk: flutter
     
-  ##csv 파일로드를 위해 추가
-  csv: ^5.0.0
-  path_provider: ^2.0.2
-  permission_handler: ^7.1.0
-  file_picker: ^3.0.4
+  ##파일로드를 위해 추가
+  # csv: ^5.0.0
+  # path_provider: ^2.0.2
+  # permission_handler: ^7.1.0
+  file_picker: ^4.5.1
   ###############
   dio: ^4.0.4
   provider: ^6.0.2
@@ -50,6 +50,7 @@ dependencies:
   steps: ^1.0.1
   animations: ^2.0.2
   status_change: ^2.0.0
+  flutter_file_picker: ^0.0.3
 
 dev_dependencies:
   flutter_test:

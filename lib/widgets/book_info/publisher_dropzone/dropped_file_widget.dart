@@ -19,8 +19,6 @@ class DroppedFileWidget extends StatelessWidget {
   Widget buildImage(BuildContext context) {
     if (file == null) return buildEmptyFile('선택된 이미지 없음');
 
-    print(file!.url);
-
     return Column(
       children: [
         if (file != null) buildFileDetail(file),
@@ -31,7 +29,7 @@ class DroppedFileWidget extends StatelessWidget {
           width: 150,
           height: 150,
           // 불러온 이미지 크기
-          //fit: BoxFit.cover,
+          fit: BoxFit.contain,
           errorBuilder: (context, error, _) => buildEmptyFile('No Preview'),
         ),
       ],
@@ -56,17 +54,16 @@ class DroppedFileWidget extends StatelessWidget {
         children: [
           Text(
             '파일이름: ${file?.name}',
-            style: TextStyle(fontWeight: FontWeight.w800),
+            style: const TextStyle(fontWeight: FontWeight.w800),
           ),
+          // const SizedBox(
+          //   height: 8,
+          // ),
+          // Text('Type: ${file?.mime}', style: style),
           const SizedBox(
             height: 8,
           ),
-          Text('Type: ${file?.mime}', style: style),
-          Text('Data: ${file?.data}', style: style),
           const SizedBox(
-            height: 8,
-          ),
-          SizedBox(
             height: 20,
           )
         ],

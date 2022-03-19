@@ -1,7 +1,11 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/widgets.dart';
 
 import '../../../models/file_data_model.dart';
 import '/models/provider.dart';
@@ -17,6 +21,8 @@ class DropZoneWidget extends StatefulWidget {
 class _DropZoneWidgetState extends State<DropZoneWidget> {
   late DropzoneViewController controller;
   bool highlight = false;
+  FilePickerResult? result;
+  //PlatformFile? file;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +31,7 @@ class _DropZoneWidgetState extends State<DropZoneWidget> {
       children: [
         DropzoneView(
           onCreated: (controller) => this.controller = controller,
-          onDrop: (context) => UploadedFile('', context),
+          onDrop: (context) => UploadedFile(context),
           onHover: () => setState(() => highlight = true),
           onLeave: () => setState(() => highlight = false),
         ),
@@ -33,7 +39,7 @@ class _DropZoneWidgetState extends State<DropZoneWidget> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
+              const Icon(
                 Icons.cloud_upload_outlined,
                 size: 60,
                 color: Colors.white,
@@ -43,29 +49,26 @@ class _DropZoneWidgetState extends State<DropZoneWidget> {
               ),
               TextButton(
                 onPressed: () async {
+                  // result = await FilePicker.platform.pickFiles(
+                  //     type: FileType.custom, allowedExtensions: ['png', 'jpg']);
+                  // if (result != null) {
+                  //   Uint8List? data = result!.files.single.bytes;
+                  //   context.read<BookInfo>().setFile(data!);
+
+                  //   final droppedFile = File_Data_Model(
+                  //       name: result!.files.single.name,
+                  //       mime: "nan",
+                  //       bytes: result!.files.single.size,
+                  //       url:  result!.files.single.,
+                  //       data: data);
+                  //   widget.onDroppedFile(droppedFile);
+                  // }
                   final events = await controller.pickFiles();
                   if (events.isEmpty) return;
-                  UploadedFile(events.first, context);
+                  UploadedFile(events.first);
                 },
-                child: Text("드래그하거나 클릭해서 업로드"),
-              )
-              // ElevatedButton.icon(
-              //   onPressed: () async {
-              //     final events = await controller.pickFiles();
-              //     if (events.isEmpty) return;
-              //     UploadedFile(events.first);
-              //   },
-              //   icon: Icon(Icons.search),
-              //   label: Text(
-              //     '이미지 찾아보기',
-              //     style: TextStyle(color: Colors.white), // fontSize: 15),
-              //   ),
-              //   style: ElevatedButton.styleFrom(
-              //       padding: EdgeInsets.symmetric(horizontal: 20),
-              //       primary:
-              //           highlight ? Colors.blueGrey[50] : Colors.blueGrey[100],
-              //       shape: RoundedRectangleBorder()),
-              // )
+                child: const Text("드래그하거나 클릭해서 업로드"),
+              ),
             ],
           ),
         ),
@@ -73,7 +76,7 @@ class _DropZoneWidgetState extends State<DropZoneWidget> {
     ));
   }
 
-  Future UploadedFile(dynamic event, BuildContext context) async {
+  Future UploadedFile(dynamic event) async {
     final name = event.name;
 
     final mime = await controller.getFileMIME(event);
@@ -88,12 +91,12 @@ class _DropZoneWidgetState extends State<DropZoneWidget> {
     print('URL: $url');
 
     print('Mime: $mime');
-    // print('Data: $data');
-
-    context.read<BookInfo>().getData(data);
+    //print('Data: $data');
 
     final droppedFile = File_Data_Model(
         name: name, mime: mime, bytes: byte, url: url, data: data);
+
+    context.read<BookInfo>().setFile(data);
 
     widget.onDroppedFile(droppedFile);
     setState(() {
@@ -107,13 +110,13 @@ class _DropZoneWidgetState extends State<DropZoneWidget> {
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: DottedBorder(
             borderType: BorderType.RRect,
             color: Colors.grey,
             strokeWidth: 3,
-            dashPattern: [8, 4],
-            radius: Radius.circular(10),
+            dashPattern: const [8, 4],
+            radius: const Radius.circular(10),
             padding: EdgeInsets.zero,
             child: child),
         color: colorBackground,

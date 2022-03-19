@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:coverist/constants.dart';
+import 'package:provider/provider.dart';
 import '/widgets/book_info/publisher_dropzone/dropzone_widget.dart';
 import '/widgets/book_info/publisher_dropzone/dropped_file_widget.dart';
 import '/models/file_data_model.dart';
+
+import '/models/provider.dart';
 
 class InfoLogo extends StatefulWidget {
   const InfoLogo({Key? key}) : super(key: key);
@@ -24,28 +27,35 @@ class InfoLogoState extends State<InfoLogo> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(width: 50), //유사 padding 주기
+              const SizedBox(width: 50), //유사 padding 주기
               Column(
                 children: [
-                  Container(
+                  SizedBox(
                     width: 220,
                     //height: 150, 이거 주면 짤림
                     child: DroppedFileWidget(file: file),
                   ),
                   //DroppedFileWidget(file:file ),
-                  SizedBox(
-                    height: 20,
+                  const SizedBox(
+                    height: 10,
                   ),
-                  Container(
+                  SizedBox(
                     width: (MediaQuery.of(context).size.width) * 0.6, //
                     height: 150,
                     child: DropZoneWidget(
                       onDroppedFile: (file) => setState(() => this.file = file),
                     ),
                   ),
+                  SizedBox(
+                      child: ElevatedButton(
+                    onPressed: () async {
+                      context.read<BookInfo>().sendProvider();
+                      print("send clicked");
+                    },
+                    child: const Text('send'),
+                  ))
                 ],
               ),
-              SizedBox(width: 50), //유사 padding 주기
             ],
           ))
     ]);

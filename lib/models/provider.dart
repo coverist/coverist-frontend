@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class BookInfo with ChangeNotifier {
@@ -11,8 +12,8 @@ class BookInfo with ChangeNotifier {
   String _subgenre = 'nan';
 
   List<String> _tag = [];
-  String _path = 'image.txt';
-  File? _publisher;
+  //String _path = 'image.txt';
+  Uint8List? _publisher;
 
   String get title => _title; //외부에서 접근이 가능하도록
   String get author => _author;
@@ -22,9 +23,8 @@ class BookInfo with ChangeNotifier {
 
   List<String> get tag => _tag;
 
-  File? get publisher => _publisher;
-
-  String get path => _path;
+  Uint8List? get publisher => _publisher;
+  //String get path => _path;
 
   void setTitle(String title) {
     _title = title;
@@ -59,21 +59,16 @@ class BookInfo with ChangeNotifier {
       print("provider tag : " + addTag.toString());
   }
 
-  void setFile(File? a) {
-    _publisher = a;
-    notifyListeners();
-  }
-
-  void delGenre(String delgenre) {
-    _genre = 'nan';
-    notifyListeners();
-    print('wait');
-  }
-
   void delTag(String delTag) {
     _tag.remove(delTag);
     notifyListeners();
     print('wait');
+  }
+
+  void setFile(Uint8List data) {
+    _publisher = data;
+    notifyListeners();
+    print('file : complete');
   }
 
   //값 확인용
@@ -86,14 +81,27 @@ class BookInfo with ChangeNotifier {
         this._tag.toString());
   }
 
-  // void setFile(String url) {
-  //   _path = url;
-  //   _file = file(_path);
-  //   print('file : ' + file.toString());
-  // }
+  Future<void> sendProvider() async {
+    var dio = Dio();
+    print("provider check1");
 
-  dynamic getData(Uint8List data) {
-    _publisher = File.fromRawPath(data);
-    print('file : ' + _publisher.toString());
+    var formData = FormData.fromMap({
+      'title': _title,
+      'author': _author,
+      'genre': _genre,
+      'sub_genre': _subgenre,
+      'tags': "태그1, 태그2, 태그3"
+      // 'publisher':
+      //     await MultipartFile.fromBytes(_publisher!, filename: "tempFilename.png")
+    });
+    print("1" + formData.fields.first.toString());
+    var response =
+        await dio.post("http://3.37.43.37:8080/api/v1/book", data: formData);
+    print("provider check2");
+    print("2" + response.toString());
+
+    //Response response1 = dio.get('http://3.37.43.37:8080/api/v1/book');
+    //RequestOptions? request;
+    //print("2" + request.toString());
   }
 }
