@@ -48,7 +48,7 @@ class DroppedFileWidget extends StatelessWidget {
   Widget buildFileDetail(File_Data_Model? file) {
     final style = TextStyle();
     return Container(
-      margin: EdgeInsets.only(left: 24),
+      margin: const EdgeInsets.only(left: 24),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -63,9 +63,6 @@ class DroppedFileWidget extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          const SizedBox(
-            height: 20,
-          )
         ],
       ),
     );

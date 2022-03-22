@@ -14,7 +14,7 @@ void main() {
     if (kReleaseMode) exit(1);
   };
   runApp(ChangeNotifierProvider(
-      create: (_) => BookInfo(), child: book_info_screen()));
+      create: (_) => BookInfo(), child: const book_info_screen()));
 }
 
 class book_info_screen extends StatelessWidget {

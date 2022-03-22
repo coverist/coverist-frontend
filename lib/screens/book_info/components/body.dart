@@ -1,4 +1,6 @@
+import 'package:coverist/models/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'info_title.dart';
 import 'info_tag.dart';
 import 'info_genre_main.dart';
@@ -17,7 +19,7 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     return Stepper(
-      type: StepperType.horizontal,
+      type: StepperType.vertical,
       currentStep: _index,
       controlsBuilder: (context, ControlsDetails details) {
         return Row(
@@ -27,7 +29,7 @@ class _BodyState extends State<Body> {
             RaisedButton(
               textTheme: ButtonTextTheme.normal,
               onPressed: details.onStepCancel,
-              child: const Text('PREV'),
+              child: const Text('이전'),
             ),
             SizedBox(width: 420),
             RaisedButton(
@@ -35,7 +37,7 @@ class _BodyState extends State<Body> {
               color: Colors.blueGrey,
               textTheme: ButtonTextTheme.normal,
               onPressed: details.onStepContinue,
-              child: const Text('NEXT'),
+              child: const Text('다음'),
             ),
           ],
         );

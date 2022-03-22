@@ -41,13 +41,13 @@ class BookInfo with ChangeNotifier {
   void setGenre(String addgenre) {
     _genre = addgenre;
     notifyListeners();
-    print('wait');
+    print(_genre);
   }
 
   void setSubGenre(String addgenre) {
     _subgenre = addgenre;
     notifyListeners();
-    print('wait');
+    print(_subgenre);
   }
 
   void setTag(List<String> addTag) {
@@ -90,11 +90,12 @@ class BookInfo with ChangeNotifier {
       'author': _author,
       'genre': _genre,
       'sub_genre': _subgenre,
-      'tags': "태그1, 태그2, 태그3"
+      'tags': "태그1, 태그2, 태그3",
       // 'publisher':
       //     await MultipartFile.fromBytes(_publisher!, filename: "tempFilename.png")
     });
-    print("1" + formData.fields.first.toString());
+    print("title : " + formData.fields.first.toString());
+    print("info : " + formData.fields.toString());
     var response =
         await dio.post("http://3.37.43.37:8080/api/v1/book", data: formData);
     print("provider check2");
@@ -103,5 +104,21 @@ class BookInfo with ChangeNotifier {
     //Response response1 = dio.get('http://3.37.43.37:8080/api/v1/book');
     //RequestOptions? request;
     //print("2" + request.toString());
+  }
+
+  String nullcheck() {
+    if (_title == 'nan') {
+      return "title";
+    } else if (_author == 'nan') {
+      return "author";
+    } else if (_tag == []) {
+      return "tag";
+    } else if (_genre == 'nan') {
+      return "genre";
+    } else if (_subgenre == 'nan') {
+      return "subgenre";
+    } else {
+      return "allpass";
+    }
   }
 }

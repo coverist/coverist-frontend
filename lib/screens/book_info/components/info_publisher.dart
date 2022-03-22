@@ -49,8 +49,14 @@ class InfoLogoState extends State<InfoLogo> {
                   SizedBox(
                       child: ElevatedButton(
                     onPressed: () async {
-                      context.read<BookInfo>().sendProvider();
-                      print("send clicked");
+                      String nullcheck = context.read<BookInfo>().nullcheck();
+                      if (nullcheck.compareTo("allpass") != 0) {
+                        print("가나나나나나나난나ㅏ나");
+                        _showDialog(nullcheck);
+                      } else {
+                        context.read<BookInfo>().sendProvider();
+                        print("send clicked");
+                      }
                     },
                     child: const Text('send'),
                   ))
@@ -59,5 +65,25 @@ class InfoLogoState extends State<InfoLogo> {
             ],
           ))
     ]);
+  }
+
+  void _showDialog(text) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Text(text + "를 입력해주세요!"),
+          actions: <Widget>[
+            FlatButton(
+              autofocus: true,
+              child: const Text("Close"),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
