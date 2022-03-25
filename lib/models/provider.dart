@@ -91,8 +91,8 @@ class BookInfo with ChangeNotifier {
       'genre': _genre,
       'sub_genre': _subgenre,
       'tags': "태그1, 태그2, 태그3",
-      // 'publisher':
-      //     await MultipartFile.fromBytes(_publisher!, filename: "tempFilename.png")
+      'publisher':
+          MultipartFile.fromBytes(_publisher!, filename: "tempFilename.png")
     });
     print("title : " + formData.fields.first.toString());
     print("info : " + formData.fields.toString());
