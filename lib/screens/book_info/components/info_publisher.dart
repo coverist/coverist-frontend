@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '/widgets/book_info/publisher_dropzone/dropzone_widget.dart';
 import '/widgets/book_info/publisher_dropzone/dropped_file_widget.dart';
 import '/models/file_data_model.dart';
+import './info_internetImage.dart';
 
 import '/models/provider.dart';
 
@@ -51,11 +52,15 @@ class InfoLogoState extends State<InfoLogo> {
                     onPressed: () async {
                       String nullcheck = context.read<BookInfo>().nullcheck();
                       if (nullcheck.compareTo("allpass") != 0) {
-                        print("가나나나나나나난나ㅏ나");
                         _showDialog(nullcheck);
                       } else {
-                        context.read<BookInfo>().sendProvider();
+                        //context.read<BookInfo>().sendProvider();
                         print("send clicked");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const GridviewPage()),
+                        );
                       }
                     },
                     child: const Text('send'),

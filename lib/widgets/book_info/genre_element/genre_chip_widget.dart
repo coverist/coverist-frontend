@@ -6,7 +6,6 @@ import 'package:dio/dio.dart';
 import 'package:provider/provider.dart';
 
 import 'package:coverist/widgets/book_info/genre_element/genre_popup_widget.dart';
-import './genre_list.dart';
 import '../../../models/genre.dart';
 import '../../../models/provider.dart';
 

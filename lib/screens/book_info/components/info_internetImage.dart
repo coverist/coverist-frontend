@@ -1,8 +1,9 @@
+import 'package:coverist/models/provider.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-
-
-void main() => runApp(const GridviewPage());
+import '../../../models/coverinfo.dart';
 
 class GridviewPage extends StatefulWidget {
   const GridviewPage({Key? key}) : super(key: key);
@@ -12,52 +13,90 @@ class GridviewPage extends StatefulWidget {
 }
 
 class _GridviewPageState extends State<GridviewPage> {
+  late Future<List<Coverinfo>> coverinfos;
+
+  @override
+  void initState() {
+    print("called1");
+    super.initState();
+    coverinfos = context.read<BookInfo>().sendProvider();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.blueGrey[200],
-        appBar: AppBar(
-          title: Text('Coverist'),
-          centerTitle: true,
-          backgroundColor: Colors.blueGrey,
-        ),
-        body: GridView.builder(
-          itemCount: 4, //item 개수
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4, //1 개의 행에 보여줄 item 개수
-            childAspectRatio: 3 / 5, //item 의 가로 3, 세로 5 의 비율
-            mainAxisSpacing: 5, //수평 Padding
-            crossAxisSpacing: 30, //수직 Padding
+          backgroundColor: Colors.blueGrey[200],
+          appBar: AppBar(
+            title: const Text('nextpage'),
+            centerTitle: true,
+            backgroundColor: Colors.blueGrey,
           ),
-          padding: EdgeInsets.all(50),
-          itemBuilder: (BuildContext context, int index) {
-            //item 의 반목문 항목 형성
-            return Container(
-              child: Column( 
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.network("https://picsum.photos/250?image=$index"), //일단 이런식으로
-                  Container(
-                    margin: EdgeInsets.all(10),
-                    height: 30,
-                    alignment: Alignment.center,
-                    color: Colors.blueGrey,
-                    child: 
-                      Text(
-                      '$index',
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
+          body: FutureBuilder<List<Coverinfo>>(
+            future: coverinfos,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Center(
+                    child: Column(
+                  children: [
+                    const Text("원하는 표지를 다운로드 해봐요!"),
+                    Expanded(
+                      child: GridView.builder(
+                          itemCount: 4, //item 개수
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 4, //1 개의 행에 보여줄 item 개수
+                            childAspectRatio: 3 / 5, //item 의 가로 3, 세로 5 의 비율
+                            mainAxisSpacing: 5, //수평 Padding
+                            crossAxisSpacing: 30, //수직 Padding
+                          ),
+                          padding: const EdgeInsets.all(50),
+                          itemBuilder: (BuildContext context, int index) {
+                            //item 의 반목문 항목 형성
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                //const Text("원하는 표지를 다운로드 해봐요!"),
+                                Image.network(
+                                    snapshot.data![index].url), //일단 이런식으로
+                                Container(
+                                  margin: const EdgeInsets.all(10),
+                                  height: 30,
+                                  alignment: Alignment.center,
+                                  color: Colors.blueGrey,
+                                  child: const Text(
+                                    '크게 보기',
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            );
+                          }),
                     ),
-                  ),
-                ],
-              ),
-            );
-          },
-        ),
-      ),
+                    Column(
+                      children: [
+                        const Text("도서 정보"),
+                        Text("제목 : " + snapshot.data![0].title),
+                        Text("저자 : " + snapshot.data![0].author),
+                        Text("분류 : " +
+                            snapshot.data![0].genre +
+                            "/" +
+                            snapshot.data![0].subgenre),
+                        Text("태그 : " + snapshot.data![0].tags.toString())
+                      ],
+                    )
+                  ],
+                ));
+              } else if (snapshot.hasError) {
+                print("called");
+                return Text(snapshot.stackTrace.toString());
+              }
+              return const Center(child: CircularProgressIndicator());
+            },
+          )),
     );
   }
 }

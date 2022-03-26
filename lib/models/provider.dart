@@ -4,6 +4,8 @@ import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
+import 'coverinfo.dart';
+
 class BookInfo with ChangeNotifier {
   String _title = 'nan';
   String _author = 'nan';
@@ -12,7 +14,6 @@ class BookInfo with ChangeNotifier {
   String _subgenre = 'nan';
 
   List<String> _tag = [];
-  //String _path = 'image.txt';
   Uint8List? _publisher;
 
   String get title => _title; //외부에서 접근이 가능하도록
@@ -24,11 +25,10 @@ class BookInfo with ChangeNotifier {
   List<String> get tag => _tag;
 
   Uint8List? get publisher => _publisher;
-  //String get path => _path;
 
   void setTitle(String title) {
     _title = title;
-    notifyListeners(); //위젯을 변화를 통보한다
+    notifyListeners();
     print("provider title : " + title);
   }
 
@@ -51,10 +51,8 @@ class BookInfo with ChangeNotifier {
   }
 
   void setTag(List<String> addTag) {
-    //tag 리스트로 만들기
     _tag = addTag;
     notifyListeners();
-    // print('wait');
     for (int i = 0; i < _tag.length; i++)
       print("provider tag : " + addTag.toString());
   }
@@ -71,39 +69,42 @@ class BookInfo with ChangeNotifier {
     print('file : complete');
   }
 
-  //값 확인용
-  void printItem() {
-    print("title : " +
-        this._title +
-        ", author: " +
-        this._author +
-        ", tag : " +
-        this._tag.toString());
-  }
-
-  Future<void> sendProvider() async {
+  Future<List<Coverinfo>> sendProvider() async {
     var dio = Dio();
     print("provider check1");
 
+    String formdataTag = "";
+    for (int i = 0; i < _tag.length; i++) {
+      formdataTag += _tag[i];
+      if (i < _tag.length - 1) {
+        formdataTag += ",";
+      }
+    }
     var formData = FormData.fromMap({
       'title': _title,
       'author': _author,
       'genre': _genre,
       'sub_genre': _subgenre,
-      'tags': "태그1, 태그2, 태그3",
+      'tags': formdataTag,
       'publisher':
           MultipartFile.fromBytes(_publisher!, filename: "tempFilename.png")
     });
-    print("title : " + formData.fields.first.toString());
-    print("info : " + formData.fields.toString());
+    // print("info : " + formData.fields.toString());
     var response =
         await dio.post("http://3.37.43.37:8080/api/v1/book", data: formData);
-    print("provider check2");
-    print("2" + response.toString());
 
-    //Response response1 = dio.get('http://3.37.43.37:8080/api/v1/book');
-    //RequestOptions? request;
-    //print("2" + request.toString());
+    print(response.toString());
+    print(response.data[1]);
+    print(response.data.length);
+
+    var coverData = List<Coverinfo>.generate(response.data.length,
+        (index) => Coverinfo.fromJson(response.data[index]));
+
+    print(coverData[0]);
+    print(coverData[0].url.toString());
+
+    return coverData;
+    // print("provider check2");
   }
 
   String nullcheck() {
