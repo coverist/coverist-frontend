@@ -1,12 +1,12 @@
 import 'dart:html';
 
+import 'package:coverist/models/provider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:image_downloader_web/image_downloader_web.dart';
 
 import '/models/coverinfo.dart';
-import 'package:coverist/models/provider.dart';
 
 class GridviewPage extends StatefulWidget {
   const GridviewPage({Key? key}) : super(key: key);
@@ -27,12 +27,15 @@ class _GridviewPageState extends State<GridviewPage> {
     coverinfos = context.read<BookInfo>().sendProvider();
   }
 
-  Future<void> _downloadImage(String a) async {
+  Future<void> _downloadImage(String url) async {
+    final Map<String, String> headers = {
+      'authorization': "cover",
+    };
     setState(() {
       downloading = true;
     });
     await _webImageDownloader.downloadImageFromWeb(
-      "https://coverist.s3.ap-northeast-2.amazonaws.com/cover/86/1fd5f197-4eba-4e3b-bd8e-a66b2cdbd6aa.jpeg",
+      url,
     );
     setState(() {
       downloading = false;
@@ -93,9 +96,6 @@ class _GridviewPageState extends State<GridviewPage> {
                                             _downloadImage(snapshot
                                                 .data![index].url
                                                 .toString());
-                                            print("유알엘 주소 : " +
-                                                snapshot.data![index].url
-                                                    .toString());
                                           },
                                           child: const Text(
                                             "이미지 다운",

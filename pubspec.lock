@@ -59,13 +59,6 @@ packages:
     version: "1.15.0"
   crypto:
     dependency: transitive
-<<<<<<< HEAD
-    description:
-      name: crypto
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.1"
-=======
     description:
       name: crypto
       url: "https://pub.dartlang.org"
@@ -78,7 +71,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.1"
->>>>>>> d5f8dbfa967ab36ebc8c0595dbe2d63f6eead158
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -351,10 +343,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.0"
-<<<<<<< HEAD
-  universal_io:
-    dependency: "direct main"
-=======
   universal_html:
     dependency: transitive
     description:
@@ -363,8 +351,7 @@ packages:
     source: hosted
     version: "2.0.8"
   universal_io:
-    dependency: transitive
->>>>>>> d5f8dbfa967ab36ebc8c0595dbe2d63f6eead158
+    dependency: "direct main"
     description:
       name: universal_io
       url: "https://pub.dartlang.org"
@@ -385,10 +372,5 @@ packages:
     source: hosted
     version: "2.4.1"
 sdks:
-<<<<<<< HEAD
   dart: ">=2.16.0 <3.0.0"
   flutter: ">=2.5.0"
-=======
-  dart: ">=2.15.1 <3.0.0"
-  flutter: ">=2.0.0"
->>>>>>> d5f8dbfa967ab36ebc8c0595dbe2d63f6eead158
