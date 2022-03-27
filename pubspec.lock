@@ -59,26 +59,11 @@ packages:
     version: "1.15.0"
   crypto:
     dependency: transitive
-<<<<<<< HEAD
     description:
       name: crypto
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
-=======
-    description:
-      name: crypto
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.1"
-  csslib:
-    dependency: transitive
-    description:
-      name: csslib
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.17.1"
->>>>>>> d5f8dbfa967ab36ebc8c0595dbe2d63f6eead158
   cupertino_icons:
     dependency: "direct main"
     description:
