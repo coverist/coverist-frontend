@@ -23,8 +23,9 @@ class MyApp extends StatelessWidget {
         title: 'Coverist',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: _createMaterialColor(Color(0xFFbcabd2)),
-        ),
+            primarySwatch:
+                _createMaterialColor(Color.fromARGB(255, 30, 27, 34)),
+            backgroundColor: Colors.black),
         home: MainPage());
   }
 
@@ -53,16 +54,50 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          // title: Text("Coverist : 표지 제작 AI 서비스"),
-          centerTitle: true,
-          elevation: 0.0,
-          flexibleSpace: Image(
-            image: AssetImage('images/logo6.png'),
-            fit: BoxFit.contain,
-            height: 60,
-          ),
-        ),
+        // resizeToAvoidBottomInset: false,
+        // appBar: AppBar(
+        //   // title: Text("Coverist : 표지 제작 AI 서비스"),
+        //   centerTitle: true,
+        //   elevation: 0.0,
+        //   flexibleSpace: Image(
+        //     image: AssetImage('images/logo6.png'),
+        //     fit: BoxFit.contain,
+        //     height: 60,
+        //   ),
+        // ),
+        // appBar: AppBar(
+        //   title: Text("표지 제작 AI 서비스"),
+        //   centerTitle: true,
+        //   elevation: 0.0,
+        //   flexibleSpace: SafeArea(
+        //     child: Column(
+        //       mainAxisAlignment: MainAxisAlignment.end,
+        //       children: [
+        //         Expanded(
+        //           child: Row(
+        //             children: <Widget>[
+        //               SizedBox(
+        //                 width: 10,
+        //               ),
+        //               IconButton(
+        //                   icon: Image.asset(
+        //                     'images/logo7.png',
+        //                     fit: BoxFit.contain,
+        //                   ),
+        //                   iconSize: 50,
+        //                   onPressed: () {
+        //                     Navigator.push(
+        //                         context,
+        //                         MaterialPageRoute(
+        //                             builder: (context) => MyApp()));
+        //                   })
+        //             ],
+        //           ),
+        //         ),
+        //       ],
+        //     ),
+        //   ),
+        // ),
         backgroundColor: Colors.white,
         body: Container(
             height: (MediaQuery.of(context).size.height),
@@ -79,7 +114,7 @@ class MainPage extends StatelessWidget {
             child: Column(children: <Widget>[
               SizedBox(height: 200),
               Image(
-                image: AssetImage('images/logo6.png'),
+                image: AssetImage('images/logo7.png'),
                 fit: BoxFit.contain,
                 height: 100,
               ),
@@ -89,14 +124,17 @@ class MainPage extends StatelessWidget {
               SizedBox(height: 50),
               ElevatedButton(
                   style: ButtonStyle(
-                      padding: MaterialStateProperty.all<EdgeInsets>(
-                          EdgeInsets.only(
-                              top: 15, bottom: 15, left: 20, right: 20)),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                        //side: BorderSide(color: Colors.red) // border line color
-                      ))),
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                        EdgeInsets.only(
+                            top: 15, bottom: 15, left: 20, right: 20)),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                      //side: BorderSide(color: Colors.red) // border line color
+                    )),
+                    backgroundColor:
+                        MaterialStateProperty.all(Color(0xFFbcabd2)),
+                  ),
                   child: Text('   표지 제작 시작하기   ',
                       style: TextStyle(color: Colors.black, fontSize: 20)),
                   onPressed: () {
