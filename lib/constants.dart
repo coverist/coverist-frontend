@@ -4,6 +4,8 @@ const kThemeColor = Color(0xFF001924);
 const kScaffoldBackgroundColor = Color(0xFFfcfeff);
 const kDefaultFontColor = Color(0xFF001924);
 const kNextButtonColor = Color(0xFFb0bfc6); //bluegrey 색상코드임
+const kMainColor = Color(0xFF1895a3);
+const kMainTheme = Color(0xFFbcabd2); //새로운 테마 색상
 
 const kDefaultPadding = 15.0;
 
