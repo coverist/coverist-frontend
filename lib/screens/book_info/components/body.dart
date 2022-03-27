@@ -45,7 +45,6 @@ class _BodyState extends State<Body> {
         }
       },
       onStepContinue: () {
-        // int page = context.read<BookInfo>().nullCheck();
         String inputText = '';
 
         if (_index <= 3) {

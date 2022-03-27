@@ -5,9 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/widgets.dart';
 
-import '../../../models/file_data_model.dart';
+import '/models/file_data_model.dart';
 import '/models/provider.dart';
 
 class DropZoneWidget extends StatefulWidget {
@@ -20,6 +19,7 @@ class DropZoneWidget extends StatefulWidget {
 
 class _DropZoneWidgetState extends State<DropZoneWidget> {
   late DropzoneViewController controller;
+  bool isChecked = false;
   bool highlight = false;
   FilePickerResult? result;
   //PlatformFile? file;
@@ -41,11 +41,11 @@ class _DropZoneWidgetState extends State<DropZoneWidget> {
             children: [
               const Icon(
                 Icons.cloud_upload_outlined,
-                size: 60,
+                size: 50,
                 color: Colors.white,
               ),
               const SizedBox(
-                height: 16,
+                height: 10,
               ),
               TextButton(
                 onPressed: () async {
@@ -54,7 +54,6 @@ class _DropZoneWidgetState extends State<DropZoneWidget> {
                   // if (result != null) {
                   //   Uint8List? data = result!.files.single.bytes;
                   //   context.read<BookInfo>().setFile(data!);
-
                   //   final droppedFile = File_Data_Model(
                   //       name: result!.files.single.name,
                   //       mime: "nan",
@@ -68,6 +67,22 @@ class _DropZoneWidgetState extends State<DropZoneWidget> {
                   UploadedFile(events.first);
                 },
                 child: const Text("드래그하거나 클릭해서 업로드"),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('이미지 없음'),
+                  Checkbox(
+                    activeColor: Colors.white,
+                    checkColor: Colors.red,
+                    value: isChecked,
+                    onChanged: (value) {
+                      setState(() {
+                        isChecked = value!;
+                      });
+                    },
+                  ),
+                ],
               ),
             ],
           ),

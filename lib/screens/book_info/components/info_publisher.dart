@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:coverist/constants.dart';
+
+import 'info_internetImage.dart';
 import '/widgets/book_info/publisher_dropzone/dropzone_widget.dart';
 import '/widgets/book_info/publisher_dropzone/dropped_file_widget.dart';
 import '/models/file_data_model.dart';
@@ -48,5 +49,25 @@ class InfoLogoState extends State<InfoLogo> {
             ],
           ))
     ]);
+  }
+
+  void _showDialog(text) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Text(text + "를 입력해주세요!"),
+          actions: <Widget>[
+            FlatButton(
+              autofocus: true,
+              child: const Text("Close"),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
