@@ -11,7 +11,6 @@ import '/models/provider.dart';
 
 class InfoLogo extends StatefulWidget {
   const InfoLogo({Key? key}) : super(key: key);
-
   @override
   InfoLogoState createState() => InfoLogoState();
 }
