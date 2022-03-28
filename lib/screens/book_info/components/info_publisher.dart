@@ -8,7 +8,6 @@ import '/models/file_data_model.dart';
 
 class InfoLogo extends StatefulWidget {
   const InfoLogo({Key? key}) : super(key: key);
-
   @override
   InfoLogoState createState() => InfoLogoState();
 }
