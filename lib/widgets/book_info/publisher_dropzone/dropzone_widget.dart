@@ -5,9 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/widgets.dart';
 
-import '../../../models/file_data_model.dart';
+import '/models/file_data_model.dart';
 import '/models/provider.dart';
 
 class DropZoneWidget extends StatefulWidget {

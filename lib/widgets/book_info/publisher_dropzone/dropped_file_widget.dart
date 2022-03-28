@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/file_data_model.dart';
+import '/models/file_data_model.dart';
 
 class DroppedFileWidget extends StatelessWidget {
   final File_Data_Model? file;

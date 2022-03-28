@@ -1,10 +1,11 @@
-import 'package:coverist/models/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 import 'info_title.dart';
 import 'info_tag.dart';
 import 'info_genre_main.dart';
 import 'info_publisher.dart';
+
+import '/widgets/book_info/step_button_widget.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -15,30 +16,23 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   int _index = 0;
+  String? stepText = '다음';
 
   @override
   Widget build(BuildContext context) {
-    return Stepper(
-      type: StepperType.vertical,
+    return Container(
+        child: Stepper(
+      type: StepperType.horizontal,
       currentStep: _index,
       controlsBuilder: (context, ControlsDetails details) {
         return Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            RaisedButton(
-              textTheme: ButtonTextTheme.normal,
-              onPressed: details.onStepCancel,
-              child: const Text('이전'),
-            ),
-            SizedBox(width: 420),
-            RaisedButton(
-              textColor: Colors.white,
-              color: Colors.blueGrey,
-              textTheme: ButtonTextTheme.normal,
-              onPressed: details.onStepContinue,
-              child: const Text('다음'),
-            ),
+            StepButton(
+                step: _index,
+                onPressedPrev: details.onStepCancel!,
+                onPressedNext: details.onStepContinue!),
           ],
         );
       },
@@ -51,10 +45,14 @@ class _BodyState extends State<Body> {
         }
       },
       onStepContinue: () {
+        String inputText = '';
+
         if (_index <= 3) {
           setState(() {
             _index += 1;
             print(_index);
+
+            print("stepText body : " + stepText!);
           });
         }
       },
@@ -71,13 +69,13 @@ class _BodyState extends State<Body> {
             isActive: _index > 0,
             state: StepState.complete),
         Step(
-            title: Text('Step 2 태그'),
-            content: InfoTag(),
+            title: Text('Step 2 장르'),
+            content: InfoGenre(),
             isActive: _index > 1,
             state: StepState.complete),
         Step(
-            title: Text('Step 3 장르'),
-            content: InfoGenre(),
+            title: Text('Step 3 태그'),
+            content: InfoTag(),
             isActive: _index > 2,
             state: StepState.complete),
         Step(
@@ -86,6 +84,6 @@ class _BodyState extends State<Body> {
             isActive: _index > 3,
             state: StepState.complete),
       ],
-    );
+    ));
   }
 }

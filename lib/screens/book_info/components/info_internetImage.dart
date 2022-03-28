@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:image_downloader_web/image_downloader_web.dart';
 
-import '../../../models/coverinfo.dart';
+import '/models/coverinfo.dart';
 
 class GridviewPage extends StatefulWidget {
   const GridviewPage({Key? key}) : super(key: key);

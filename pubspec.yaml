@@ -47,11 +47,14 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_dropzone: ^3.0.5
+  universal_io: ^2.0.4
+
   dotted_border: ^2.0.0+2
   steps: ^1.0.1
   animations: ^2.0.2
   status_change: ^2.0.0
   flutter_file_picker: ^0.0.3
+  blur: ^3.0.0
 
 dev_dependencies:
   flutter_test:
