@@ -7,11 +7,6 @@ import 'package:coverist/screens/book_info/components/body.dart';
 import 'package:coverist/constants.dart';
 import 'package:coverist/models/provider.dart';
 
-// void main() {
-//   runApp(ChangeNotifierProvider(
-//       create: (_) => BookInfo(), child: book_info_screen()));
-// }
-
 class book_info_screen extends StatefulWidget {
   const book_info_screen({Key? key}) : super(key: key);
 

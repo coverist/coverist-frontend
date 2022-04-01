@@ -15,7 +15,7 @@ class _InfoTagState extends State<InfoTag> {
   final _infoTextEditController = TextEditingController();
 
   List<String> _tags = [];
-  int maxNum = 2;
+  int maxNum = 5;
   int flag = 0;
 
   void _showDialog(text) {
@@ -86,7 +86,7 @@ class _InfoTagState extends State<InfoTag> {
                   ),
                 ],
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               TextField(
                   textInputAction: TextInputAction.go,
                   controller: _infoTextEditController,
@@ -114,7 +114,7 @@ class _InfoTagState extends State<InfoTag> {
                       _tags = _tags;
                     });
                   }),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Wrap(
                   direction: Axis.horizontal, // 정렬 방향
                   alignment: WrapAlignment.center, // 정렬 방식

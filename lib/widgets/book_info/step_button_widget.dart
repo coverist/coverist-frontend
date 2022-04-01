@@ -66,10 +66,7 @@ class StepButton extends StatelessWidget {
                   _showDialog(context, nullcheck);
                 } else {
                   print("send clicked");
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((context) => const GridviewPage())));
+                  _showDialog2(context);
                 }
               }
             : onPressedNext,
@@ -109,6 +106,49 @@ class StepButton extends StatelessWidget {
               child: const Text("Close"),
               onPressed: () {
                 Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showDialog2(context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Container(
+            // maxHeight: 300.0,
+            //       minHeight: 100.0,
+            //       minWidth: 200.0,
+            //       maxWidth: 400.0,
+            child: Column(
+              children: [
+                const Text("입력하신 정보를 확인해 주세요!"),
+                SizedBox(
+                  height: 30,
+                ),
+                Text("제목 : " + context.read<BookInfo>().title),
+                Text("저자 : " + context.read<BookInfo>().author),
+                Text("분류 : " +
+                    context.read<BookInfo>().genre +
+                    "/" +
+                    context.read<BookInfo>().subgenre),
+                Text("태그 : " + context.read<BookInfo>().tag.toString())
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              autofocus: true,
+              child: const Text("정확히 입력했어요!"),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => const GridviewPage())));
               },
             ),
           ],

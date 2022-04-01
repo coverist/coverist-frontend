@@ -49,24 +49,4 @@ class InfoLogoState extends State<InfoLogo> {
           ))
     ]);
   }
-
-  void _showDialog(text) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          content: Text(text + "를 입력해주세요!"),
-          actions: <Widget>[
-            FlatButton(
-              autofocus: true,
-              child: const Text("Close"),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
 }

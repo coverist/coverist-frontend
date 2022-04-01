@@ -39,29 +39,3 @@ class Coverinfo {
         createddate: json['created_date']);
   }
 }
-
-// class Coverinfo {
-//   int coverid;
-//   int bookid;
-//   String title;
-//   String author;
-//   String genre;
-//   List<String> tags;
-//   String publisher;
-//   String url;
-//   String createddate;
-
-//   Coverinfo(this.coverid, this.bookid, this.title, this.author, this.genre,
-//       this.tags, this.publisher, this.url, this.createddate);
-
-//   Coverinfo.fromJson(Map<String, dynamic> json)
-//       : coverid = json['cover_id'],
-//         bookid = json['book_id'],
-//         title = json['title'],
-//         author = json['author'],
-//         genre = json['genre'],
-//         tags = json['tags'],
-//         publisher = json['publisher'],
-//         url = json['url'],
-//         createddate = json['created_date'];
-// }
