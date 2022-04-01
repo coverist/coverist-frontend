@@ -36,7 +36,7 @@ class DetailGenreDialogElement extends State<DetailGenreDialog> {
               title: const Text("중분류 선택"),
               content: Container(
                 constraints: const BoxConstraints(
-                  maxHeight: 200.0,
+                  maxHeight: 300.0,
                   minHeight: 100.0,
                   minWidth: 200.0,
                   maxWidth: 400.0,
@@ -57,23 +57,18 @@ class DetailGenreDialogElement extends State<DetailGenreDialog> {
                               setState(() {
                                 subgenre = snapshot.data![index].text;
                                 context.read<BookInfo>().setSubGenre(subgenre);
+                                Navigator.pop(context);
                               });
                             },
                             padding: const EdgeInsets.only(left: 10, right: 5),
                           ))),
                 )),
               ),
-              actions: <Widget>[
-                OutlinedButton(
-                  child: const Text("선택완료"),
-                  onPressed: () => Navigator.of(context).pop(),
-                )
-              ],
             );
           } else if (snapshot.hasError) {
             return Text(snapshot.stackTrace.toString());
           }
-          return const CircularProgressIndicator();
+          return Center(child: SizedBox(child: CircularProgressIndicator()));
         });
   }
 
