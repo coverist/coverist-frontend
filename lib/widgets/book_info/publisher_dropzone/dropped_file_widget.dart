@@ -37,11 +37,20 @@ class DroppedFileWidget extends StatelessWidget {
   }
 
   Widget buildEmptyFile(String text) {
-    return Container(
-      width: 100, //120,
-      height: 100, //,
-      color: Colors.blueGrey.shade300,
-      child: Center(child: Text(text)),
+    return Opacity(
+      opacity: 0.5,
+      child: Container(
+        width: 100, //120,
+        height: 100, //,
+        color: Colors.black,
+        child: Center(
+            child: Text(
+          text,
+          style: const TextStyle(
+            color: Colors.white,
+          ),
+        )),
+      ),
     );
   }
 

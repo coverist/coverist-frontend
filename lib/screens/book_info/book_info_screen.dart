@@ -58,7 +58,7 @@ class _BookInfoScreenState extends State<book_info_screen> {
               Expanded(
                   child: Container(
                 decoration: BoxDecoration(
-                  // color: Colors.black,
+                  color: Colors.black,
                   image: DecorationImage(
                       fit: BoxFit.cover,
                       image: AssetImage('images/cover1.png'),

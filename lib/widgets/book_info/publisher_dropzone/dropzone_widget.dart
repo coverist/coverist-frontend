@@ -49,19 +49,6 @@ class _DropZoneWidgetState extends State<DropZoneWidget> {
               ),
               TextButton(
                 onPressed: () async {
-                  // result = await FilePicker.platform.pickFiles(
-                  //     type: FileType.custom, allowedExtensions: ['png', 'jpg']);
-                  // if (result != null) {
-                  //   Uint8List? data = result!.files.single.bytes;
-                  //   context.read<BookInfo>().setFile(data!);
-                  //   final droppedFile = File_Data_Model(
-                  //       name: result!.files.single.name,
-                  //       mime: "nan",
-                  //       bytes: result!.files.single.size,
-                  //       url:  result!.files.single.,
-                  //       data: data);
-                  //   widget.onDroppedFile(droppedFile);
-                  // }
                   final events = await controller.pickFiles();
                   if (events.isEmpty) return;
                   UploadedFile(events.first);
@@ -71,7 +58,7 @@ class _DropZoneWidgetState extends State<DropZoneWidget> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('이미지 없음'),
+                  const Text('이미지 없음', style: TextStyle(color: Colors.white)),
                   Checkbox(
                     activeColor: Colors.white,
                     checkColor: Colors.red,
@@ -120,22 +107,23 @@ class _DropZoneWidgetState extends State<DropZoneWidget> {
   }
 
   Widget buildDecoration({required Widget child}) {
-    final colorBackground =
-        highlight ? Colors.blueGrey[300] : Colors.blueGrey[400]; //앞은 뭐요
+    final colorBackground = highlight ? Colors.black : Colors.black; //앞은 뭐요
     return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        child: DottedBorder(
-            borderType: BorderType.RRect,
-            color: Colors.grey,
-            strokeWidth: 3,
-            dashPattern: const [8, 4],
-            radius: const Radius.circular(10),
-            padding: EdgeInsets.zero,
-            child: child),
-        color: colorBackground,
-      ),
-    );
+        borderRadius: BorderRadius.circular(12),
+        child: Opacity(
+          opacity: 0.8,
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            child: DottedBorder(
+                borderType: BorderType.RRect,
+                color: Colors.grey,
+                strokeWidth: 3,
+                dashPattern: const [8, 4],
+                radius: const Radius.circular(10),
+                padding: EdgeInsets.zero,
+                child: child),
+            color: colorBackground,
+          ),
+        ));
   }
 }
