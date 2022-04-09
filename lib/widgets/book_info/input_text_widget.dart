@@ -29,7 +29,8 @@ class _InputTextState extends State<InputText> {
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      letterSpacing: 1.5)),
+                      letterSpacing: 1.5,
+                      color: Colors.white)),
             ),
             Container(
               child: const Text('(필수)',
@@ -39,24 +40,25 @@ class _InputTextState extends State<InputText> {
         ),
         SizedBox(height: 10),
         TextField(
-          style: const TextStyle(color: Colors.white),
-          textInputAction: TextInputAction.go,
-          // controller: infoTextEditController,
-          onChanged: (value) {
-            if (str.compareTo("제목") == 0)
-              context.read<BookInfo>().setTitle(value);
-            else if (str.compareTo("저자명") == 0)
-              context.read<BookInfo>().setAuthor(value);
-          },
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            hintText: str + '을 입력하세요',
-          ),
-          // onSubmitted: (value) async {
-          //   _infoTextEditController.text = value;
-          //   print('value : $value');
-          // }
-        ),
+            textInputAction: TextInputAction.go,
+            // controller: infoTextEditController,
+            onChanged: (value) {
+              if (str.compareTo("제목") == 0)
+                context.read<BookInfo>().setTitle(value);
+              else if (str.compareTo("저자명") == 0)
+                context.read<BookInfo>().setAuthor(value);
+            },
+            decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                fillColor: Colors.white,
+                hintText: str + '을 입력하세요',
+                hintStyle: TextStyle(color: Colors.grey)),
+            style: TextStyle(color: Colors.white, decorationColor: Colors.white)
+            // onSubmitted: (value) async {
+            //   _infoTextEditController.text = value;
+            //   print('value : $value');
+            // }
+            ),
       ],
     );
   }

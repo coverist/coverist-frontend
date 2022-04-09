@@ -62,7 +62,7 @@ class _BookInfoScreenState extends State<book_info_screen> {
                   image: DecorationImage(
                       fit: BoxFit.cover,
                       image: AssetImage('images/cover1.png'),
-                      opacity: 0.3
+                      opacity: 0.7
                       // .blurred(blur: 3, blurColor: Colors.white), // 배경 이미지
                       ),
                 ),
