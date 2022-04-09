@@ -16,6 +16,8 @@ class BookInfo with ChangeNotifier {
   List<String> _tag = [];
   Uint8List? _publisher;
 
+  bool _nofile = false;
+
   String get title => _title; //외부에서 접근이 가능하도록
   String get author => _author;
 
@@ -25,6 +27,8 @@ class BookInfo with ChangeNotifier {
   List<String> get tag => _tag;
 
   Uint8List? get publisher => _publisher;
+
+  bool get nofile => _nofile;
 
   void setTitle(String title) {
     _title = title;
@@ -69,6 +73,11 @@ class BookInfo with ChangeNotifier {
     print('file : complete');
   }
 
+  void setNoFile(bool state) {
+    _nofile = state;
+    notifyListeners();
+  }
+
   Future<List<Coverinfo>> sendProvider() async {
     var dio = Dio();
     print("provider check1");
@@ -80,15 +89,28 @@ class BookInfo with ChangeNotifier {
         formdataTag += ",";
       }
     }
-    var formData = FormData.fromMap({
-      'title': _title,
-      'author': _author,
-      'genre': _genre,
-      'sub_genre': _subgenre,
-      'tags': formdataTag,
-      'publisher':
-          MultipartFile.fromBytes(_publisher!, filename: "tempFilename.png")
-    });
+
+    var formData;
+    if (!_nofile) {
+      print("예상한것처럼 작동");
+      formData = FormData.fromMap({
+        'title': _title,
+        'author': _author,
+        'genre': _genre,
+        'sub_genre': _subgenre,
+        'tags': formdataTag,
+        'publisher':
+            MultipartFile.fromBytes(_publisher!, filename: "tempFilename.png")
+      });
+    } else {
+      formData = FormData.fromMap({
+        'title': _title,
+        'author': _author,
+        'genre': _genre,
+        'sub_genre': _subgenre,
+        'tags': formdataTag
+      });
+    }
     // print("info : " + formData.fields.toString());
     var response =
         await dio.post("http://3.37.43.37:8080/api/v1/book", data: formData);
@@ -118,6 +140,8 @@ class BookInfo with ChangeNotifier {
       return "genre";
     } else if (_subgenre == 'nan') {
       return "subgenre";
+    } else if (_tag.isEmpty) {
+      return "tag";
     } else {
       return "allpass";
     }

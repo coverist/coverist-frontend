@@ -68,6 +68,7 @@ class _DropZoneWidgetState extends State<DropZoneWidget> {
                     onChanged: (value) {
                       setState(() {
                         isChecked = value!;
+                        context.read<BookInfo>().setNoFile(isChecked);
                       });
                     },
                   ),
