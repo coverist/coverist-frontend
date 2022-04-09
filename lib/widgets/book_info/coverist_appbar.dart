@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'components/body.dart';
-import 'package:coverist/widgets/book_info/coverist_appbar.dart';
+class Coverist_Appbar extends StatelessWidget {
+  final Widget onPressedPage;
+  final Widget body_child;
 
-class book_info_screen extends StatefulWidget {
-  const book_info_screen({Key? key}) : super(key: key);
+  const Coverist_Appbar(
+      {Key? key, required this.onPressedPage, required this.body_child})
+      : super(key: key);
 
-  @override
-  _BookInfoScreenState createState() => _BookInfoScreenState();
-}
-
-class _BookInfoScreenState extends State<book_info_screen> {
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     return MaterialApp(
         title: 'Coverist',
         debugShowCheckedModeBanner: false,
@@ -26,27 +22,19 @@ class _BookInfoScreenState extends State<book_info_screen> {
                 .copyWith(primary: Color.fromARGB(79, 255, 255, 255))),
         home: Scaffold(
             appBar: AppBar(
-              title:
-                  //  Text(
-                  //   "Coverist : 표지 제작 AI 서비스",
-                  //   style: TextStyle(color: Color(0xFFbcabd2)),
-                  // ),
-                  IconButton(
+              title: IconButton(
                 icon: Image.asset(
                   'images/logo6.png',
                   fit: BoxFit.fill,
                 ),
                 iconSize: 100,
                 onPressed: () {
-                  Navigator.pop(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => book_info_screen()));
+                  Navigator.pop(context,
+                      MaterialPageRoute(builder: (context) => onPressedPage));
                 },
               ),
               centerTitle: true,
               elevation: 0.0,
-              // leading:
             ),
             body: SafeArea(
                 child:
@@ -54,7 +42,7 @@ class _BookInfoScreenState extends State<book_info_screen> {
               Expanded(
                   child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Colors.black,
                   image: DecorationImage(
                       fit: BoxFit.cover,
                       image: AssetImage('images/cover1.png'),
@@ -62,12 +50,8 @@ class _BookInfoScreenState extends State<book_info_screen> {
                       // .blurred(blur: 3, blurColor: Colors.white), // 배경 이미지
                       ),
                 ),
-                child: Body(),
+                child: body_child,
               ))
             ]))));
-=======
-    return Coverist_Appbar(
-        onPressedPage: book_info_screen(), body_child: Body());
->>>>>>> Modify appbar widget
   }
 }
