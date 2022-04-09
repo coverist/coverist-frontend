@@ -45,7 +45,7 @@ class _DropZoneWidgetState extends State<DropZoneWidget> {
                 color: Colors.white,
               ),
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
               TextButton(
                 onPressed: () async {
@@ -53,13 +53,15 @@ class _DropZoneWidgetState extends State<DropZoneWidget> {
                   if (events.isEmpty) return;
                   UploadedFile(events.first);
                 },
-                child: const Text("드래그하거나 클릭해서 업로드"),
+                child: const Text("드래그하거나 클릭해서 업로드",
+                    style: TextStyle(color: Colors.white54)),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text('이미지 없음', style: TextStyle(color: Colors.white)),
                   Checkbox(
+                    fillColor: MaterialStateProperty.all(Colors.white),
                     activeColor: Colors.white,
                     checkColor: Colors.red,
                     value: isChecked,

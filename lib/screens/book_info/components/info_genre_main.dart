@@ -23,12 +23,12 @@ class _InfoGenreState extends State<InfoGenre> {
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    Text('도서 장르를 선택해주세요!!',
+                    const Text('도서 장르를 선택해주세요!!',
                         style: TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
                             letterSpacing: 1.5)),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     GenreWidget(),
                   ],
                 )

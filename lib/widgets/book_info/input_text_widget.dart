@@ -32,13 +32,14 @@ class _InputTextState extends State<InputText> {
                       letterSpacing: 1.5)),
             ),
             Container(
-              child: Text('(필수)',
+              child: const Text('(필수)',
                   style: TextStyle(fontSize: 14, letterSpacing: 1.5)),
             ),
           ],
         ),
         SizedBox(height: 10),
         TextField(
+          style: const TextStyle(color: Colors.white),
           textInputAction: TextInputAction.go,
           // controller: infoTextEditController,
           onChanged: (value) {
