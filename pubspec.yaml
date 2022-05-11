@@ -40,6 +40,9 @@ dependencies:
   provider: ^6.0.2
   ###############
   image_downloader_web: ^1.0.1
+  localstorage: ^4.0.0
+  shared_preferences: ^2.0.13
+
   ###############
 
 
