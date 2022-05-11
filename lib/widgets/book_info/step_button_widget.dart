@@ -136,7 +136,8 @@ class StepButton extends StatelessWidget {
                     context.read<BookInfo>().genre +
                     "/" +
                     context.read<BookInfo>().subgenre),
-                Text("태그 : " + context.read<BookInfo>().tag.toString())
+                Text("태그 : " + context.read<BookInfo>().tag.toString()),
+                Text("태그 : " + context.read<BookInfo>().publisher.toString())
               ],
             ),
           ),

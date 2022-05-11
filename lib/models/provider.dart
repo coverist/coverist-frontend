@@ -13,10 +13,9 @@ class BookInfo with ChangeNotifier {
   String _genre = 'nan';
   String _subgenre = 'nan';
 
-  List<String> _tag = [];
-  Uint8List? _publisher;
+  String _publisher = ' ';
 
-  bool _nofile = false;
+  List<String> _tag = [];
 
   String get title => _title; //외부에서 접근이 가능하도록
   String get author => _author;
@@ -26,9 +25,7 @@ class BookInfo with ChangeNotifier {
 
   List<String> get tag => _tag;
 
-  Uint8List? get publisher => _publisher;
-
-  bool get nofile => _nofile;
+  String? get publisher => _publisher;
 
   void setTitle(String title) {
     _title = title;
@@ -67,15 +64,10 @@ class BookInfo with ChangeNotifier {
     print('wait');
   }
 
-  void setFile(Uint8List data) {
+  void setPublisher(String data) {
     _publisher = data;
     notifyListeners();
-    print('file : complete');
-  }
-
-  void setNoFile(bool state) {
-    _nofile = state;
-    notifyListeners();
+    print('publisher : complete');
   }
 
   Future<List<Coverinfo>> sendProvider() async {
@@ -91,27 +83,16 @@ class BookInfo with ChangeNotifier {
     }
 
     var formData;
-    if (!_nofile) {
-      print("예상한것처럼 작동");
-      formData = FormData.fromMap({
-        'title': _title,
-        'author': _author,
-        'genre': _genre,
-        'sub_genre': _subgenre,
-        'tags': formdataTag,
-        'publisher':
-            MultipartFile.fromBytes(_publisher!, filename: "tempFilename.png")
-      });
-    } else {
-      formData = FormData.fromMap({
-        'title': _title,
-        'author': _author,
-        'genre': _genre,
-        'sub_genre': _subgenre,
-        'tags': formdataTag
-      });
-    }
-    // print("info : " + formData.fields.toString());
+    print("예상한것처럼 작동");
+    formData = FormData.fromMap({
+      'title': _title,
+      'author': _author,
+      'genre': _genre,
+      'sub_genre': _subgenre,
+      'tags': formdataTag,
+      'publisher': _publisher
+    });
+
     var response =
         await dio.post("http://3.37.43.37:8080/api/v1/book", data: formData);
 
@@ -126,7 +107,6 @@ class BookInfo with ChangeNotifier {
     print(coverData[0].url.toString());
 
     return coverData;
-    // print("provider check2");
   }
 
   String nullcheck() {
