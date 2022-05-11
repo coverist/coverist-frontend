@@ -43,7 +43,7 @@ class _InfoTagState extends State<InfoTag> {
 
     for (int i = 0; i < _tags.length; i++) {
       InputChip actionChip = InputChip(
-        label: Text(_tags[i]),
+        label: Text('#' + _tags[i]),
         elevation: 5,
         shadowColor: Colors.blueGrey,
         onDeleted: () {

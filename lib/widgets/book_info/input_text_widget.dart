@@ -8,15 +8,19 @@ import 'package:coverist/constants.dart';
 
 class InputText extends StatefulWidget {
   final String string;
-  const InputText({Key? key, required this.string}) : super(key: key);
+  final bool? inputType;
+  const InputText({Key? key, required this.string, required this.inputType})
+      : super(key: key);
 
   @override
-  _InputTextState createState() => _InputTextState(str: string);
+  _InputTextState createState() =>
+      _InputTextState(str: string, inputType: inputType!);
 }
 
 class _InputTextState extends State<InputText> {
   String str;
-  _InputTextState({required this.str});
+  bool inputType;
+  _InputTextState({required this.str, required this.inputType});
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +37,8 @@ class _InputTextState extends State<InputText> {
                       color: Colors.white)),
             ),
             Container(
-              child: const Text('(필수)',
-                  style: TextStyle(fontSize: 14, letterSpacing: 1.5)),
-            ),
+                child: Text((inputType == true ? '(필수)' : '(선택)'),
+                    style: TextStyle(fontSize: 14, letterSpacing: 1.5))),
           ],
         ),
         SizedBox(height: 10),

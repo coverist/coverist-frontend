@@ -25,10 +25,12 @@ class _InfoTitleState extends State<InfoTitle> {
             children: [
               InputText(
                 string: inputList[0],
+                inputType: true,
               ),
               SizedBox(height: 60),
               InputText(
                 string: inputList[1],
+                inputType: true,
               )
             ]),
       )
