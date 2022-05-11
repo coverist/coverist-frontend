@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:coverist/screens/book_info/book_info_screen.dart';
+import 'package:coverist/screens/book_shelf/book_shelf_screen.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -54,50 +56,6 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // resizeToAvoidBottomInset: false,
-        // appBar: AppBar(
-        //   // title: Text("Coverist : 표지 제작 AI 서비스"),
-        //   centerTitle: true,
-        //   elevation: 0.0,
-        //   flexibleSpace: Image(
-        //     image: AssetImage('images/logo6.png'),
-        //     fit: BoxFit.contain,
-        //     height: 60,
-        //   ),
-        // ),
-        // appBar: AppBar(
-        //   title: Text("표지 제작 AI 서비스"),
-        //   centerTitle: true,
-        //   elevation: 0.0,
-        //   flexibleSpace: SafeArea(
-        //     child: Column(
-        //       mainAxisAlignment: MainAxisAlignment.end,
-        //       children: [
-        //         Expanded(
-        //           child: Row(
-        //             children: <Widget>[
-        //               SizedBox(
-        //                 width: 10,
-        //               ),
-        //               IconButton(
-        //                   icon: Image.asset(
-        //                     'images/logo7.png',
-        //                     fit: BoxFit.contain,
-        //                   ),
-        //                   iconSize: 50,
-        //                   onPressed: () {
-        //                     Navigator.push(
-        //                         context,
-        //                         MaterialPageRoute(
-        //                             builder: (context) => MyApp()));
-        //                   })
-        //             ],
-        //           ),
-        //         ),
-        //       ],
-        //     ),
-        //   ),
-        // ),
         backgroundColor: Colors.black,
         body: Container(
             height: (MediaQuery.of(context).size.height),
@@ -141,7 +99,7 @@ class MainPage extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => book_info_screen()));
+                            builder: (context) => book_shelf_screen()));
                   })
             ])));
   }
