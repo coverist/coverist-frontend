@@ -3,34 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:image_downloader_web/image_downloader_web.dart';
 
-final imageList = [
-  // FlatButton(
-  //     onPressed:()=> a(1), child: Image.network('https://picsum.photos/250?image=9')),
-  // FlatButton(
-  //     onPressed:()=> a(2), child: Image.network('https://picsum.photos/250?image=9')),
-  // FlatButton(
-  //     onPressed:()=> a(3), child: Image.network('https://picsum.photos/250?image=9')),
-  Test(),
-  Test(),
-  Test(),
-  Test()
-];
-
-// void a(i) {
-//   switch(i){
-//     case 1:
-//       print("object");
-
-//       break;
-//     case 2:
-//       print("object");
-//       break;
-//     case 3:
-//       print("object");
-//       break;
-//   }
-//   print("헤헤헤헤");
-// }
+final imageList = [Test(), Test(), Test(), Test()];
 
 void main() {
   runApp(TestApplication());
