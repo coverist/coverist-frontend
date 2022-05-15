@@ -7,15 +7,25 @@ import 'package:flutter/material.dart';
 import 'coverinfo.dart';
 
 class BookInfo with ChangeNotifier {
-  String _title = 'nan';
-  String _author = 'nan';
+  List<List<Coverinfo>> allCoverInfo = [];
 
-  String _genre = 'nan';
-  String _subgenre = 'nan';
+  // String _title = 'nan';
+  // String _author = 'nan';
 
+  // String _genre = 'nan';
+  // String _subgenre = 'nan';
+
+  // String _publisher = ' ';
+
+  // List<String> _tag = [];
+
+// default 고정
+  String _title = 'my_title';
+  String _author = 'my_author';
+  String _genre = '컴퓨터/IT';
+  String _subgenre = '모바일프로그래밍';
   String _publisher = ' ';
-
-  List<String> _tag = [];
+  List<String> _tag = ['my_tag'];
 
   String get title => _title; //외부에서 접근이 가능하도록
   String get author => _author;
@@ -70,6 +80,14 @@ class BookInfo with ChangeNotifier {
     print('publisher : complete');
   }
 
+  void setAllList(List<Coverinfo> ci) {
+    allCoverInfo.add(ci);
+    print('allCoverInfo : ');
+    print(allCoverInfo[0][0].url.toString());
+    print('\nlen(allCoverInfo) : ');
+    print(allCoverInfo[0].length);
+  }
+
   Future<List<Coverinfo>> sendProvider() async {
     var dio = Dio();
     print("provider check1");
@@ -96,15 +114,23 @@ class BookInfo with ChangeNotifier {
     var response =
         await dio.post("http://3.37.43.37:8080/api/v1/book", data: formData);
 
+    print('response.toString() : ');
     print(response.toString());
+    print('\nresponse.data[1]) : ');
     print(response.data[1]);
+//    //{cover_id: 0, book_id: 0, title: a, author: b, genre: 컴퓨터/IT, sub_genre: 모바일프로그래밍, tags: [dd], publisher: Coverist, url: https://coverist.s3.ap-northeast-2.amazonaws.com/XL.jpg, created_date: 2022-01-01T00:00:00}
+    print('\nresponse.data.length : ');
     print(response.data.length);
 
     var coverData = List<Coverinfo>.generate(response.data.length,
         (index) => Coverinfo.fromJson(response.data[index]));
 
-    print(coverData[0]);
-    print(coverData[0].url.toString());
+    // print('\ncoverData[0] : ');
+    // print(coverData[0]); //Instance of 'Coverinfo'
+    // print('\ncoverData[0].url.toString() : ');
+    // print(coverData[0].url.toString()); //https://coverist.s3.ap-northeast-2.amazonaws.com/XL.jpg
+
+    setAllList(coverData);
 
     return coverData;
   }

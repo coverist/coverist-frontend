@@ -203,12 +203,11 @@ class addCover extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-        child: Center(
+    return Center(
       child: IconButton(
         onPressed: () {},
         icon: const Icon(Icons.add_box_sharp),
       ),
-    ));
+    );
   }
 }
