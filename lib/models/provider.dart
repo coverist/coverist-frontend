@@ -8,6 +8,7 @@ import 'coverinfo.dart';
 
 class BookInfo with ChangeNotifier {
   List<List<Coverinfo>> allCoverInfo = [];
+  List<String> allItemList = [];
 
   // String _title = 'nan';
   // String _author = 'nan';
@@ -85,10 +86,20 @@ class BookInfo with ChangeNotifier {
     print('allCoverInfo : ');
     print(allCoverInfo[0][0].url.toString());
     print('\nlen(allCoverInfo) : ');
-    print(allCoverInfo[0].length);
+    print(allCoverInfo.length);
   }
 
-  Future<List<Coverinfo>> sendProvider() async {
+  List<String> getAllItem() {
+    allItemList.add(title);
+    allItemList.add(author);
+    allItemList.add(genre);
+    allItemList.add(subgenre);
+    allItemList.add(tag.toString());
+    print(allItemList);
+    return allItemList;
+  }
+
+  Future<List<Coverinfo>> sendProvider(String seturl) async {
     var dio = Dio();
     print("provider check1");
 
@@ -110,9 +121,8 @@ class BookInfo with ChangeNotifier {
       'tags': formdataTag,
       'publisher': _publisher
     });
-
-    var response =
-        await dio.post("http://3.37.43.37:8080/api/v1/book", data: formData);
+    String api_path = "http://3.37.43.37:8080/api/v1/" + seturl;
+    var response = await dio.post(api_path, data: formData);
 
     print('response.toString() : ');
     print(response.toString());

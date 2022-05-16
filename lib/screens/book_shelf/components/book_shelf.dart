@@ -4,30 +4,173 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:image_downloader_web/image_downloader_web.dart';
 import 'package:provider/src/provider.dart';
+import '/models/coverinfo.dart';
 
-void main() {
-  runApp(TestApplication());
-}
+class BookShelf extends StatefulWidget {
+  const BookShelf({Key? key}) : super(key: key);
 
-class TestApplication extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'BOOK SHELF',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MainPage(),
-    );
-  }
+  _BookShelfList createState() => _BookShelfList();
 }
 
-class MainPage extends StatefulWidget {
-  @override
-  _MainPageState createState() => _MainPageState();
-}
+class _BookShelfList extends State<BookShelf> {
+//   @override
+//   Widget build(BuildContext context) {
+//     List<Widget> imageList = [
+//       Test(url: 'https://picsum.photos/250?image=9'),
+//       Test(url: 'https://picsum.photos/250?image=9'),
+//       Test(url: context.read<BookInfo>().allCoverInfo[0][0].url.toString()),
+//       addCover()
+//     ];
 
-class _MainPageState extends State<MainPage> {
+//     return Center(
+//         child: SizedBox(
+//             width: 800,
+//             child: ListView(
+//               children: <Widget>[
+//                 _buildTop(),
+//                 _buildMiddle(imageList),
+//                 _buildBottom(),
+//                 _buildMiddle(imageList),
+//                 _buildBottom(),
+//               ],
+//             )));
+//   }
+
+//   Widget _buildTop() {
+//     return Padding(
+//       padding: const EdgeInsets.only(top: 20, bottom: 20),
+//       child: Column(
+//         children: [
+//           SizedBox(
+//             height: 20,
+//           ),
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             crossAxisAlignment: CrossAxisAlignment.center,
+//             children: [
+//               Text('지금까지 만든 도서를 조회 해보아요~~',
+//                   style: const TextStyle(
+//                       fontSize: 20,
+//                       fontWeight: FontWeight.bold,
+//                       letterSpacing: 1.5)),
+//               SizedBox(height: 10),
+//             ],
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+
+//   Widget _buildMiddle(List<Widget> imageList) {
+//     return SizedBox(
+//         width: 100,
+//         child: CarouselSlider(
+//           options: CarouselOptions(
+//             height: 150.0,
+//             autoPlay: true,
+//             viewportFraction: 0.3,
+//           ),
+//           items: imageList.map((image) {
+//             return Builder(
+//               builder: (BuildContext context) {
+//                 return Container(
+//                   width: MediaQuery.of(context).size.width,
+//                   margin: EdgeInsets.symmetric(horizontal: 5.0),
+//                   child: ClipRRect(
+//                     borderRadius: BorderRadius.circular(1.0),
+//                     child: image,
+//                   ),
+//                 );
+//               },
+//             );
+//           }).toList(),
+//         ));
+//   }
+
+//   Widget _buildBottom() {
+//     return ListView(
+//       physics: NeverScrollableScrollPhysics(),
+//       shrinkWrap: true,
+//       children: [
+//         Row(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           crossAxisAlignment: CrossAxisAlignment.center,
+//           children: const [
+//             SizedBox(
+//               height: 150,
+//             ),
+//             Text('도서 정보 : ',
+//                 style: TextStyle(
+//                     fontSize: 15,
+//                     fontWeight: FontWeight.bold,
+//                     letterSpacing: 1.5)),
+//             SizedBox(height: 10),
+//           ],
+//         ),
+//       ],
+//     );
+//   }
+// }
+
+// class Test extends StatelessWidget {
+//   String url;
+//   Test({Key? key, required this.url}) : super(key: key);
+//   final WebImageDownloader _webImageDownloader = WebImageDownloader();
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Center(
+//         child: ElevatedButton(
+//       onPressed: () {
+//         _showdialog(context);
+//       },
+//       child: Image.network(url),
+//     ));
+//   }
+
+//   Future<dynamic> _showdialog(BuildContext context) {
+//     return showDialog(
+//       context: context,
+//       builder: (BuildContext context) => AlertDialog(
+//         content: Image.network(url),
+//         actions: [
+//           ElevatedButton(
+//               onPressed: () async {
+//                 await _webImageDownloader.downloadImageFromWeb(
+//                   url,
+//                 );
+//                 Navigator.of(context).pop();
+//               },
+//               child: const Text('이미지 다운로드')),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+// class addCover extends StatelessWidget {
+//   late Future<List<Coverinfo>> coverinfos;
+
+//   //plus 버튼 만들기
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Material(
+//         child: Center(
+//       child: IconButton(
+//         onPressed: () {
+//           String text = 'book/' +
+//               context.read<BookInfo>().allCoverInfo[0][0].bookid.toString();
+//           print('finalimg text : ' + text);
+//           context.read<BookInfo>().sendProvider(text);
+//         },
+//         icon: const Icon(Icons.add_box_sharp),
+//       ),
+//     ));
+//   }
+// }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,93 +206,168 @@ class _MainPageState extends State<MainPage> {
 }
 
 class BookShelfList extends StatelessWidget {
+  List<Widget> imageList = [];
+  List<List<Widget>> allList = [];
+
   @override
   Widget build(BuildContext context) {
-    List<Widget> imageList = [
-      Test(url: 'https://picsum.photos/250?image=9'),
-      Test(url: 'https://picsum.photos/250?image=9'),
-      Test(url: context.read<BookInfo>().allCoverInfo[0][0].url.toString()),
-      addCover()
-    ];
+    for (int i = 0; i < context.read<BookInfo>().allCoverInfo.length; i++) {
+      for (int j = 0;
+          j < context.read<BookInfo>().allCoverInfo[0].length;
+          j++) {
+        imageList.add(Test(
+            url: context.read<BookInfo>().allCoverInfo[i][j].url.toString()));
+      }
+      imageList.add(addCover2());
+
+      allList.add(imageList);
+    }
+    print('=====================allList : ');
+    print(allList.toString());
+
+    // List<Widget> imageList = [];
+    // for (int i = 0; i < context.read<BookInfo>().allCoverInfo.length; i++) {
+    //   for (int j = 0;
+    //       j < context.read<BookInfo>().allCoverInfo[0].length;
+    //       j++) {
+    //     imageList.add(Test(
+    //         url: context.read<BookInfo>().allCoverInfo[i][j].url.toString()));
+    //   }
+    //   imageList.add(addCover());
+    // }
+    // print(context.read<BookInfo>().allCoverInfo[0].length);
+
+    // List<Widget> imageList = List<Widget>.generate(
+    //     context.read<BookInfo>().allCoverInfo[0].length,
+    //     (index) => Test(
+    //         url: context
+    //             .read<BookInfo>()
+    //             .allCoverInfo[0][index]
+    //             .url
+    //             .toString()));
+    // imageList.add(addCover());
 
     return Center(
         child: SizedBox(
             width: 800,
             child: ListView(
               children: <Widget>[
-                _buildTop(),
-                _buildMiddle(imageList),
-                _buildBottom(),
-                _buildMiddle(imageList),
-                _buildBottom(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: const [
+                    SizedBox(height: 100),
+                    Text('지금까지 만든 도서를 조회 해보아요~~',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.5)),
+                    SizedBox(height: 100),
+                  ],
+                ),
+
+                for (int i = 0; i < allList.length; i++)
+                  _buildMiddle(allList[i],
+                      context.read<BookInfo>().getAllItem(), context),
+                // _buildBottom(),
+
+                // _buildMiddle(imageList),
               ],
             )));
   }
 
-  Widget _buildTop() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20, bottom: 20),
-      child: Column(
+  // List<String> buildImageView(BuildContext context) {
+  //   List<String> imageList = [];
+
+  //   for (int i = 0; i < context.read<BookInfo>().allCoverInfo.length; i++) {
+  //     for (int j = 0;
+  //         j < context.read<BookInfo>().allCoverInfo[0].length;
+  //         j++) {
+  //       imageList
+  //           .add(context.read<BookInfo>().allCoverInfo[i][j].url.toString());
+  //     }
+  //   }
+  //   return imageList;
+  // }
+  Widget addCover2() {
+    return Center(
+        child: IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.add_box_sharp),
+            alignment: Alignment.center));
+  }
+
+  Widget _buildMiddle(
+      List<Widget> imageList, List<String> my_text, BuildContext context) {
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text('지금까지 만든 도서를 조회 해보아요~~',
-                  style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.5)),
-              SizedBox(height: 10),
-            ],
-          ),
-        ],
-      ),
-    );
+              // width: 300,
+              child: CarouselSlider(
+            options: CarouselOptions(
+              height: (MediaQuery.of(context).size.height) * 0.5,
+              autoPlay: true,
+              viewportFraction: 0.5,
+            ),
+            items: imageList.map((image) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return Column(children: [
+                    // width: MediaQuery.of(context).size.width,
+                    // margin: EdgeInsets.symmetric(horizontal: 5.0),
+                    // child:
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(1.0),
+                      child: image,
+                    ),
+                  ]);
+                },
+              );
+            }).toList(),
+          )),
+          Text(
+              '제목 : ' +
+                  my_text[0] +
+                  '\n저자명 : ' +
+                  my_text[1] +
+                  '\n장르 : ' +
+                  my_text[2] +
+                  '\n세부 장르 : ' +
+                  my_text[3] +
+                  '\n태그 : ' +
+                  my_text[4],
+              style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.5)),
+        ]);
   }
 
-  Widget _buildMiddle(List<Widget> imageList) {
-    return SizedBox(
-        width: 100,
-        child: CarouselSlider(
-          options: CarouselOptions(
-            height: 150.0,
-            autoPlay: true,
-            viewportFraction: 0.3,
-          ),
-          items: imageList.map((image) {
-            return Builder(
-              builder: (BuildContext context) {
-                return Container(
-                  width: MediaQuery.of(context).size.width,
-                  margin: EdgeInsets.symmetric(horizontal: 5.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(1.0),
-                    child: image,
-                  ),
-                );
-              },
-            );
-          }).toList(),
-        ));
-  }
-
-  Widget _buildBottom() {
+  Widget _buildBottom(List<String> my_text) {
     return ListView(
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
+          children: [
             SizedBox(
               height: 150,
             ),
-            Text('도서 정보 : ',
+            Text(
+                '제목 : ' +
+                    my_text[0] +
+                    '\n저자명 : ' +
+                    my_text[1] +
+                    '\n장르 : ' +
+                    my_text[2] +
+                    '\n세부 장르 : ' +
+                    my_text[3] +
+                    '\n태그 : ' +
+                    my_text[4],
                 style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
@@ -203,12 +421,11 @@ class addCover extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-        child: Center(
+    return Center(
       child: IconButton(
         onPressed: () {},
         icon: const Icon(Icons.add_box_sharp),
       ),
-    ));
+    );
   }
 }
