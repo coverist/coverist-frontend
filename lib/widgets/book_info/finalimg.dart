@@ -1,10 +1,13 @@
 import 'dart:html';
 
 import 'package:coverist/models/provider.dart';
+import 'package:coverist/screens/book_shelf/components/book_shelf.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:image_downloader_web/image_downloader_web.dart';
+
+import '../../screens/book_shelf/components/book_shelf.dart';
 
 import '/models/coverinfo.dart';
 
@@ -25,7 +28,7 @@ class _FinalImageState extends State<FinalImage> {
   void initState() {
     print("called1");
     super.initState();
-    coverinfos = context.read<BookInfo>().sendProvider();
+    coverinfos = context.read<BookInfo>().sendProvider('book');
   }
 
   Future<void> _downloadImage(String url) async {
@@ -116,7 +119,17 @@ class _FinalImageState extends State<FinalImage> {
                           snapshot.data![0].subgenre),
                       Text("태그 : " + snapshot.data![0].tags.toString())
                     ],
-                  ))
+                  )),
+                  Container(
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => BookShelf()));
+                        },
+                        child: const Text('책장 보러가기')),
+                  )
                 ],
               ));
         } else if (snapshot.hasError) {
