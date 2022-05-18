@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:image_downloader_web/image_downloader_web.dart';
 
+import '../../screens/book_shelf/components/book_shelf.dart';
+
 import '/models/coverinfo.dart';
 
 class FinalImage extends StatefulWidget {
@@ -26,7 +28,7 @@ class _FinalImageState extends State<FinalImage> {
   void initState() {
     print("called1");
     super.initState();
-    coverinfos = context.read<BookInfo>().sendProvider("book");
+    coverinfos = context.read<BookInfo>().sendProvider('book');
   }
 
   Future<void> _downloadImage(String url) async {
@@ -124,7 +126,7 @@ class _FinalImageState extends State<FinalImage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => BookShelfList()));
+                                  builder: (context) => BookShelf()));
                         },
                         child: const Text('책장 보러가기')),
                   )

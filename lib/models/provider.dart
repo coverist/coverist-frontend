@@ -99,6 +99,10 @@ class BookInfo with ChangeNotifier {
     return allItemList;
   }
 
+  List<List<Coverinfo>> getAllInfo() {
+    return allCoverInfo;
+  }
+
   Future<List<Coverinfo>> sendProvider(String seturl) async {
     var dio = Dio();
     print("provider check1");

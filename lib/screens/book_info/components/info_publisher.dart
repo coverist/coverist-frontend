@@ -30,15 +30,23 @@ class InfoLogoState extends State<InfoLogo> {
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1.5)),
+<<<<<<< HEAD
               Text("입력한 텍스트가 자연스럽게 표지에 포함되요!!!",
+=======
+              Text("입력한 텍스트가 자연스럽게 표지에 포함돼요!!!",
+>>>>>>> 72a825fdd9b91953769e00afa82a7beabcc0c930
                   style: const TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1.5)),
               SizedBox(height: 40),
+<<<<<<< HEAD
               InputText(
                 string: "출판사",
               ),
+=======
+              InputText(string: "출판사", inputType: false),
+>>>>>>> 72a825fdd9b91953769e00afa82a7beabcc0c930
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
