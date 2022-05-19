@@ -58,14 +58,24 @@ class _FinalImageState extends State<FinalImage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Container(
-                    child: SizedBox(height: 30),
+                    child: SizedBox(height: 50),
                   ),
                   Container(
-                      child: Text("원하는 표지를 다운로드 해봐요!",
+                      child: Text("표지가 생성되었어요!",
                           style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
                               letterSpacing: 1.5))),
+                  Container(
+                    child: SizedBox(height: 30),
+                  ),
+                  Center(
+                      child: Text(
+                          "이제 원하는 표지를 무료로 다운로드 할 수 있습니다.\ncoverist 를 통하여 더욱 다양한 표지를 제작해 봐요!",
+                          style: TextStyle(fontSize: 20, letterSpacing: 1.5))),
+                  Container(
+                    child: SizedBox(height: 10),
+                  ),
                   Container(
                     child: GridView.builder(
                         shrinkWrap: true,
@@ -101,34 +111,58 @@ class _FinalImageState extends State<FinalImage> {
                                         color: Colors.white,
                                       ),
                                     ),
-                                    color: Colors.blue,
+                                    color: Colors.purple[300],
                                   ))
                             ],
                           );
                         }),
                   ),
+                  // Container(
+                  //     child: Column(
+                  //   children: [
+                  //     const Text("도서 정보"),
+                  //     Text("제목 : " + snapshot.data![0].title),
+                  //     Text("저자 : " + snapshot.data![0].author),
+                  //     Text("분류 : " +
+                  //         snapshot.data![0].genre +
+                  //         "/" +
+                  //         snapshot.data![0].subgenre),
+                  //     Text("태그 : " + snapshot.data![0].tags.toString())
+                  //   ],
+                  // )),
                   Container(
-                      child: Column(
+                    child: SizedBox(height: 10),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text("도서 정보"),
-                      Text("제목 : " + snapshot.data![0].title),
-                      Text("저자 : " + snapshot.data![0].author),
-                      Text("분류 : " +
-                          snapshot.data![0].genre +
-                          "/" +
-                          snapshot.data![0].subgenre),
-                      Text("태그 : " + snapshot.data![0].tags.toString())
+                      const Text("지금까지 제작한 페이지를 내 책장에서 확인할 수 있습니다.",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold)),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Center(
+                        child: MaterialButton(
+                            color: Colors.purple,
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => BookShelf()));
+                            },
+                            child: const Text(
+                              '책장 보러가기',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            )),
+                      )
                     ],
-                  )),
-                  Container(
-                    child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => BookShelf()));
-                        },
-                        child: const Text('책장 보러가기')),
+                  ),
+                  const SizedBox(
+                    height: 300,
                   )
                 ],
               ));

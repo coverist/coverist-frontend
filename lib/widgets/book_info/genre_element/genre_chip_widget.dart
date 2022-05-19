@@ -42,8 +42,9 @@ class GenreWidgetElement extends State<GenreWidget> {
                         padding: const EdgeInsets.only(left: 10, right: 5),
                         child: ChoiceChip(
                           label: Text(snapshot.data![index].text),
+                          backgroundColor: Colors.white,
                           selected: genre == snapshot.data![index].text,
-                          selectedColor: Colors.blue,
+                          selectedColor: Colors.purple[450],
                           onSelected: (bool selected) {
                             setState(() {
                               genre = snapshot.data![index].text;

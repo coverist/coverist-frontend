@@ -120,31 +120,54 @@ class StepButton extends StatelessWidget {
       builder: (BuildContext context) {
         return AlertDialog(
           content: Container(
-            // maxHeight: 300.0,
-            //       minHeight: 100.0,
-            //       minWidth: 200.0,
-            //       maxWidth: 400.0,
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                const Text("입력하신 정보를 확인해 주세요!"),
+                const Text("입력하신 정보를 확인해 주세요!",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    )),
                 SizedBox(
                   height: 30,
                 ),
-                Text("제목 : " + context.read<BookInfo>().title),
-                Text("저자 : " + context.read<BookInfo>().author),
-                Text("분류 : " +
-                    context.read<BookInfo>().genre +
-                    "/" +
-                    context.read<BookInfo>().subgenre),
-                Text("태그 : " + context.read<BookInfo>().tag.toString()),
-                Text("태그 : " + context.read<BookInfo>().publisher.toString())
+                Row(
+                  children: [
+                    RichText(
+                        text: TextSpan(children: [
+                      TextSpan(
+                          text: context.read<BookInfo>().title + " ",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20)),
+                      TextSpan(
+                          text: "(" + context.read<BookInfo>().author + ")\n"),
+                      TextSpan(
+                          text: "분류 : " +
+                              context.read<BookInfo>().genre +
+                              "/" +
+                              context.read<BookInfo>().subgenre +
+                              "\n"),
+                      TextSpan(
+                          text: "태그 : " +
+                              context.read<BookInfo>().tag.toString() +
+                              "\n"),
+                      TextSpan(
+                          text: "출판사 : " +
+                              context.read<BookInfo>().publisher.toString() +
+                              "\n"),
+                    ])),
+                  ],
+                )
               ],
             ),
           ),
           actions: <Widget>[
-            FlatButton(
+            MaterialButton(
               autofocus: true,
-              child: const Text("정확히 입력했어요!"),
+              color: Colors.purple[200],
+              child: const Text(
+                "정확히 입력했어요!",
+                style: TextStyle(color: Colors.white),
+              ),
               onPressed: () {
                 Navigator.push(
                     context,

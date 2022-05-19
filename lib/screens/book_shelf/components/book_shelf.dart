@@ -218,42 +218,13 @@ class BookShelfList extends StatelessWidget {
         imageList.add(Test(
             url: context.read<BookInfo>().allCoverInfo[i][j].url.toString()));
       }
-<<<<<<< HEAD
-      imageList.add(addCover2());
-=======
       imageList.add(addCover());
->>>>>>> 72a825fdd9b91953769e00afa82a7beabcc0c930
 
       allList.add(imageList);
     }
     print('=====================allList : ');
     print(allList.toString());
 
-<<<<<<< HEAD
-    // List<Widget> imageList = [];
-    // for (int i = 0; i < context.read<BookInfo>().allCoverInfo.length; i++) {
-    //   for (int j = 0;
-    //       j < context.read<BookInfo>().allCoverInfo[0].length;
-    //       j++) {
-    //     imageList.add(Test(
-    //         url: context.read<BookInfo>().allCoverInfo[i][j].url.toString()));
-    //   }
-    //   imageList.add(addCover());
-    // }
-    // print(context.read<BookInfo>().allCoverInfo[0].length);
-
-    // List<Widget> imageList = List<Widget>.generate(
-    //     context.read<BookInfo>().allCoverInfo[0].length,
-    //     (index) => Test(
-    //         url: context
-    //             .read<BookInfo>()
-    //             .allCoverInfo[0][index]
-    //             .url
-    //             .toString()));
-    // imageList.add(addCover());
-
-=======
->>>>>>> 72a825fdd9b91953769e00afa82a7beabcc0c930
     return Center(
         child: SizedBox(
             width: 800,
@@ -273,48 +244,14 @@ class BookShelfList extends StatelessWidget {
                   ],
                 ),
 
-<<<<<<< HEAD
-                for (int i = 0; i < allList.length; i++)
-                  _buildMiddle(allList[i],
-                      context.read<BookInfo>().getAllItem(), context),
-                // _buildBottom(),
-
-                // _buildMiddle(imageList),
-=======
 //////////// 성공 코드
                 for (int i = 0; i < allList.length; i++)
                   _buildMiddle(allList[i],
                       context.read<BookInfo>().getAllInfo()[i], context),
->>>>>>> 72a825fdd9b91953769e00afa82a7beabcc0c930
               ],
             )));
   }
 
-<<<<<<< HEAD
-  // List<String> buildImageView(BuildContext context) {
-  //   List<String> imageList = [];
-
-  //   for (int i = 0; i < context.read<BookInfo>().allCoverInfo.length; i++) {
-  //     for (int j = 0;
-  //         j < context.read<BookInfo>().allCoverInfo[0].length;
-  //         j++) {
-  //       imageList
-  //           .add(context.read<BookInfo>().allCoverInfo[i][j].url.toString());
-  //     }
-  //   }
-  //   return imageList;
-  // }
-  Widget addCover2() {
-    return Center(
-        child: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.add_box_sharp),
-            alignment: Alignment.center));
-  }
-
-  Widget _buildMiddle(
-      List<Widget> imageList, List<String> my_text, BuildContext context) {
-=======
   Widget addCover() {
     return Center(
         child: IconButton(
@@ -323,7 +260,6 @@ class BookShelfList extends StatelessWidget {
 
   Widget _buildMiddle(
       List<Widget> imageList, List<Coverinfo> my_text, BuildContext context) {
->>>>>>> 72a825fdd9b91953769e00afa82a7beabcc0c930
     return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -332,28 +268,13 @@ class BookShelfList extends StatelessWidget {
               // width: 300,
               child: CarouselSlider(
             options: CarouselOptions(
-<<<<<<< HEAD
-              height: (MediaQuery.of(context).size.height) * 0.5,
-=======
               height: (MediaQuery.of(context).size.height) * 0.3,
->>>>>>> 72a825fdd9b91953769e00afa82a7beabcc0c930
               autoPlay: true,
               viewportFraction: 0.5,
             ),
             items: imageList.map((image) {
               return Builder(
                 builder: (BuildContext context) {
-<<<<<<< HEAD
-                  return Column(children: [
-                    // width: MediaQuery.of(context).size.width,
-                    // margin: EdgeInsets.symmetric(horizontal: 5.0),
-                    // child:
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(1.0),
-                      child: image,
-                    ),
-                  ]);
-=======
                   return Container(
                     child:
                         // width: MediaQuery.of(context).size.width,
@@ -364,24 +285,12 @@ class BookShelfList extends StatelessWidget {
                       child: image,
                     ),
                   );
->>>>>>> 72a825fdd9b91953769e00afa82a7beabcc0c930
                 },
               );
             }).toList(),
           )),
           Text(
               '제목 : ' +
-<<<<<<< HEAD
-                  my_text[0] +
-                  '\n저자명 : ' +
-                  my_text[1] +
-                  '\n장르 : ' +
-                  my_text[2] +
-                  '\n세부 장르 : ' +
-                  my_text[3] +
-                  '\n태그 : ' +
-                  my_text[4],
-=======
                   my_text[0].title.toString() +
                   '\n저자명 : ' +
                   my_text[0].author.toString() +
@@ -391,7 +300,6 @@ class BookShelfList extends StatelessWidget {
                   my_text[0].subgenre.toString() +
                   '\n태그 : ' +
                   my_text[0].tags.toString(),
->>>>>>> 72a825fdd9b91953769e00afa82a7beabcc0c930
               style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
@@ -441,15 +349,6 @@ class Test extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    return Center(
-        child: ElevatedButton(
-      onPressed: () {
-        _showdialog(context);
-      },
-      child: Image.network(url),
-    ));
-=======
     return InkWell(
       child: Ink.image(
         image: NetworkImage(url),
@@ -460,7 +359,6 @@ class Test extends StatelessWidget {
         _showdialog(context);
       },
     );
->>>>>>> 72a825fdd9b91953769e00afa82a7beabcc0c930
   }
 
   Future<dynamic> _showdialog(BuildContext context) {
@@ -482,20 +380,3 @@ class Test extends StatelessWidget {
     );
   }
 }
-<<<<<<< HEAD
-
-class addCover extends StatelessWidget {
-  //plus 버튼 만들기
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: IconButton(
-        onPressed: () {},
-        icon: const Icon(Icons.add_box_sharp),
-      ),
-    );
-  }
-}
-=======
->>>>>>> 72a825fdd9b91953769e00afa82a7beabcc0c930

@@ -19,32 +19,6 @@ class InputText extends StatefulWidget {
 
 class _InputTextState extends State<InputText> {
   String str;
-<<<<<<< HEAD
-  _InputTextState({required this.str});
-  @override
-  Widget build(BuildContext context) {
-    if (str != "출판사") {
-      return Column(
-        children: [
-          Row(
-            children: <Widget>[
-              Container(
-                child: Text(str + ' 입력',
-                    style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.5)),
-              ),
-              Container(
-                child: const Text('(필수)',
-                    style: TextStyle(fontSize: 14, letterSpacing: 1.5)),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          TextField(
-            style: const TextStyle(color: Colors.white),
-=======
   bool inputType;
   _InputTextState({required this.str, required this.inputType});
 
@@ -69,7 +43,6 @@ class _InputTextState extends State<InputText> {
         ),
         SizedBox(height: 10),
         TextField(
->>>>>>> 72a825fdd9b91953769e00afa82a7beabcc0c930
             textInputAction: TextInputAction.go,
             // controller: infoTextEditController,
             onChanged: (value) {
@@ -79,34 +52,17 @@ class _InputTextState extends State<InputText> {
                 context.read<BookInfo>().setAuthor(value);
             },
             decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: str + '을 입력하세요',
-            ),
+                border: OutlineInputBorder(),
+                fillColor: Colors.white,
+                hintText: str + '을 입력하세요',
+                hintStyle: TextStyle(color: Colors.grey)),
+            style: TextStyle(color: Colors.white, decorationColor: Colors.white)
             // onSubmitted: (value) async {
             //   _infoTextEditController.text = value;
             //   print('value : $value');
             // }
-          ),
-        ],
-      );
-    } else {
-      // 출판사의 경우 필수가 필요 없기 때문
-      return Column(
-        children: [
-          TextField(
-            style: const TextStyle(color: Colors.white),
-            textInputAction: TextInputAction.go,
-            onChanged: (value) {
-              if (str.compareTo("출판사") == 0)
-                context.read<BookInfo>().setPublisher(value);
-            },
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: str + '을 입력하세요',
             ),
-          ),
-        ],
-      );
-    }
+      ],
+    );
   }
 }
