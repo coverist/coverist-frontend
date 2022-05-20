@@ -1,3 +1,4 @@
+import 'package:coverist/constants.dart';
 import 'package:flutter/material.dart';
 
 class Coverist_Appbar extends StatelessWidget {
@@ -15,8 +16,8 @@ class Coverist_Appbar extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light().copyWith(
             appBarTheme: AppBarTheme(backgroundColor: Colors.white),
-            canvasColor: Color(0xFFbcabd2),
-            primaryColor: Color(0xFF9AA3D0),
+            canvasColor: DeepPurple300,
+            primaryColor: DeepPurple400,
             colorScheme: Theme.of(context)
                 .colorScheme
                 .copyWith(primary: Color.fromARGB(79, 255, 255, 255))),

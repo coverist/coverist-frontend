@@ -32,13 +32,16 @@ class _InputTextState extends State<InputText> {
               child: Text(str + ' 입력',
                   style: TextStyle(
                       fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                      // fontWeight: FontWeight.bold,
                       letterSpacing: 1.5,
                       color: Colors.white)),
             ),
             Container(
                 child: Text((inputType == true ? '(필수)' : '(선택)'),
-                    style: TextStyle(fontSize: 14, letterSpacing: 1.5))),
+                    style: TextStyle(
+                        fontSize: 14,
+                        letterSpacing: 1.5,
+                        color: Colors.white))),
           ],
         ),
         SizedBox(height: 10),
@@ -51,12 +54,24 @@ class _InputTextState extends State<InputText> {
               else if (str.compareTo("저자명") == 0)
                 context.read<BookInfo>().setAuthor(value);
             },
+            onTap: () {
+              setState(() {
+                InputDecoration(
+                    hintText: ' ', hintStyle: TextStyle(color: Colors.white));
+              });
+            },
             decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                fillColor: Colors.white,
-                hintText: str + '을 입력하세요',
-                hintStyle: TextStyle(color: Colors.grey)),
-            style: TextStyle(color: Colors.white, decorationColor: Colors.white)
+              filled: true,
+              fillColor: Colors.white,
+              enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white, width: 1)),
+              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: DeepPurple300, width: 2)),
+              hintText: str + '을 입력하세요',
+              hintStyle: TextStyle(color: Colors.grey),
+            ),
+            style:
+                TextStyle(color: DeepPurple400, decorationColor: Colors.white)
             // onSubmitted: (value) async {
             //   _infoTextEditController.text = value;
             //   print('value : $value');
