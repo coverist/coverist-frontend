@@ -31,7 +31,7 @@ class _InputTextState extends State<InputText> {
             Container(
               child: Text(str + ' 입력',
                   style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 26,
                       // fontWeight: FontWeight.bold,
                       letterSpacing: 1.5,
                       color: Colors.white)),
@@ -39,7 +39,7 @@ class _InputTextState extends State<InputText> {
             Container(
                 child: Text((inputType == true ? '(필수)' : '(선택)'),
                     style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 20,
                         letterSpacing: 1.5,
                         color: Colors.white))),
           ],
@@ -54,12 +54,12 @@ class _InputTextState extends State<InputText> {
               else if (str.compareTo("저자명") == 0)
                 context.read<BookInfo>().setAuthor(value);
             },
-            onTap: () {
-              setState(() {
-                InputDecoration(
-                    hintText: ' ', hintStyle: TextStyle(color: Colors.white));
-              });
-            },
+            // onTap: () {
+            //   setState(() {
+            //     InputDecoration(
+            //         hintText: ' ', hintStyle: TextStyle(color: Colors.white));
+            //   });
+            // },
             decoration: InputDecoration(
               filled: true,
               fillColor: Colors.white,
@@ -68,7 +68,7 @@ class _InputTextState extends State<InputText> {
               focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: DeepPurple300, width: 2)),
               hintText: str + '을 입력하세요',
-              hintStyle: TextStyle(color: Colors.grey),
+              hintStyle: TextStyle(color: Colors.grey, fontSize: 16),
             ),
             style:
                 TextStyle(color: DeepPurple400, decorationColor: Colors.white)

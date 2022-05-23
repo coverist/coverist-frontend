@@ -76,13 +76,17 @@ class _InfoTagState extends State<InfoTag> {
                   Container(
                     child: Text('태그 입력',
                         style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 1.5)),
+                            fontSize: 26,
+                            // fontWeight: FontWeight.bold,
+                            letterSpacing: 1.5,
+                            color: Colors.white)),
                   ),
                   Container(
                     child: Text('(필수)',
-                        style: TextStyle(fontSize: 14, letterSpacing: 1.5)),
+                        style: TextStyle(
+                            fontSize: 20,
+                            letterSpacing: 1.5,
+                            color: Colors.white)),
                   ),
                 ],
               ),
@@ -92,8 +96,11 @@ class _InfoTagState extends State<InfoTag> {
                   controller: _infoTextEditController,
                   maxLength: 20,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      border: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.white, width: 1)),
                       hintText: '입력 예) 창업',
+                      hintStyle: TextStyle(color: Colors.white),
                       prefixText: "#"),
                   onSubmitted: (value) {
                     if (_tags.length >= maxNum) {

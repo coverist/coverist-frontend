@@ -1,3 +1,4 @@
+import 'package:coverist/constants.dart';
 import 'package:coverist/screens/book_info/components/info_internetImage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -34,23 +35,26 @@ class StepButton extends StatelessWidget {
   Widget buildPrevButton(BuildContext context) {
     return ElevatedButton(
         onPressed: onPressedPrev,
-        child: Text('  이전  '),
+        child: Padding(
+            // padding: EdgeInsets.all(20),
+            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+            child: Text('이전', style: TextStyle(fontSize: 24))),
         style:
             ButtonStyle(textStyle: MaterialStateProperty.resolveWith((states) {
           if (states.contains(MaterialState.pressed)) {
             return TextStyle(color: Colors.white);
           } else {
-            return TextStyle(color: Color(0xFFbcabd2));
+            return TextStyle(color: DeepPurple400);
           }
         }), foregroundColor: MaterialStateProperty.resolveWith((states) {
           if (states.contains(MaterialState.pressed)) {
             return Colors.white;
           } else {
-            return Color(0xFFbcabd2);
+            return DeepPurple400;
           }
         }), backgroundColor: MaterialStateProperty.resolveWith((states) {
           if (states.contains(MaterialState.pressed)) {
-            return Color(0xFFbcabd2);
+            return DeepPurple400;
           } else {
             return Colors.white;
           }
@@ -70,18 +74,23 @@ class StepButton extends StatelessWidget {
                 }
               }
             : onPressedNext,
-        child: Text('   ' + (step == 3 ? '표지 만들기' : '다음') + '   '),
+        child: Padding(
+            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+            child: Text(
+              (step == 3 ? '표지 만들기' : '다음'),
+              style: TextStyle(fontSize: 24),
+            )),
         style:
             ButtonStyle(textStyle: MaterialStateProperty.resolveWith((states) {
           // disabled : onpressed가 null일때 , pressed : 클릭됐을때
           if (states.contains(MaterialState.pressed)) {
-            return TextStyle(color: Color(0xFFbcabd2));
+            return TextStyle(color: DeepPurple400);
           } else {
             return TextStyle(color: Colors.white);
           }
         }), foregroundColor: MaterialStateProperty.resolveWith((states) {
           if (states.contains(MaterialState.pressed)) {
-            return Color(0xFFbcabd2);
+            return DeepPurple400;
           } else {
             return Colors.white;
           }
@@ -89,7 +98,8 @@ class StepButton extends StatelessWidget {
           if (states.contains(MaterialState.pressed)) {
             return Colors.white;
           } else {
-            return Color(0xFFbcabd2);
+            return DeepPurple400;
+            // return Color(0xFFbcabd2);
           }
         })));
   }
