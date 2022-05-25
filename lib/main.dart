@@ -27,7 +27,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             primarySwatch:
                 _createMaterialColor(Color.fromARGB(255, 30, 27, 34)),
-            backgroundColor: Colors.black),
+            backgroundColor: Colors.black,
+            fontFamily: 'Nanum'),
         home: MainPage());
   }
 
@@ -64,21 +65,32 @@ class MainPage extends StatelessWidget {
               color: Colors.black,
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('images/cover1.png'),
-                opacity: 0.3,
+                image: AssetImage('images/back_image2.png'),
+                // opacity: 0.3,
                 // .blurred(blur: 3, blurColor: Colors.white), // 배경 이미지
               ),
             ),
             child: Column(children: <Widget>[
               SizedBox(height: 200),
-              Image(
-                image: AssetImage('images/logo7.png'),
-                fit: BoxFit.contain,
-                height: 100,
-              ),
+              // Image(
+              //   image: AssetImage('images/logo7.png'),
+              //   fit: BoxFit.contain,
+              //   height: 100,
+              // ),
               SizedBox(height: 50),
-              Text('이젠 무료로 \n 당신의 세계를 펼쳐요',
-                  style: TextStyle(color: Colors.white, fontSize: 50)),
+              RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  style: const TextStyle(fontSize: 50, color: Colors.white),
+                  children: <TextSpan>[
+                    TextSpan(text: '내 작품의 새로운 얼굴 \n이젠 '),
+                    TextSpan(
+                      text: '쉽고 간편하게',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
               SizedBox(height: 50),
               ElevatedButton(
                   style: ButtonStyle(
@@ -90,11 +102,16 @@ class MainPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30.0),
                       //side: BorderSide(color: Colors.red) // border line color
                     )),
-                    backgroundColor:
-                        MaterialStateProperty.all(Color(0xFFbcabd2)),
+                    backgroundColor: MaterialStateProperty.all(DeepPurple400),
                   ),
-                  child: Text('   표지 제작 시작하기   ',
-                      style: TextStyle(color: Colors.black, fontSize: 20)),
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                    child: Text('표지 제작하러 가기',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold)),
+                  ),
                   onPressed: () {
                     Navigator.push(
                         context,
