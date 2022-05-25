@@ -21,8 +21,8 @@ class BookInfo with ChangeNotifier {
   // List<String> _tag = [];
 
 // default 고정
-  String _title = 'my_title';
-  String _author = 'my_author';
+  String _title = '마지막 벚꽃이 질 때';
+  String _author = '김동욱';
   String _genre = '컴퓨터/IT';
   String _subgenre = '모바일프로그래밍';
   String _publisher = ' ';
