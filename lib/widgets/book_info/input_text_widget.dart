@@ -8,19 +8,15 @@ import 'package:coverist/constants.dart';
 
 class InputText extends StatefulWidget {
   final String string;
-  final bool? inputType;
-  const InputText({Key? key, required this.string, required this.inputType})
-      : super(key: key);
+  const InputText({Key? key, required this.string}) : super(key: key);
 
   @override
-  _InputTextState createState() =>
-      _InputTextState(str: string, inputType: inputType!);
+  _InputTextState createState() => _InputTextState(str: string);
 }
 
 class _InputTextState extends State<InputText> {
   String str;
-  bool inputType;
-  _InputTextState({required this.str, required this.inputType});
+  _InputTextState({required this.str});
 
   @override
   Widget build(BuildContext context) {
@@ -31,17 +27,11 @@ class _InputTextState extends State<InputText> {
             Container(
               child: Text(str + ' 입력',
                   style: TextStyle(
-                      fontSize: 26,
+                      fontSize: 18,
                       // fontWeight: FontWeight.bold,
                       letterSpacing: 1.5,
                       color: Colors.white)),
             ),
-            Container(
-                child: Text((inputType == true ? '(필수)' : '(선택)'),
-                    style: TextStyle(
-                        fontSize: 20,
-                        letterSpacing: 1.5,
-                        color: Colors.white))),
           ],
         ),
         SizedBox(height: 10),
@@ -54,12 +44,14 @@ class _InputTextState extends State<InputText> {
               else if (str.compareTo("저자명") == 0)
                 context.read<BookInfo>().setAuthor(value);
             },
-            // onTap: () {
-            //   setState(() {
-            //     InputDecoration(
-            //         hintText: ' ', hintStyle: TextStyle(color: Colors.white));
-            //   });
-            // },
+            onTap: () {
+              setState(() {
+                InputDecoration(
+                    prefixText: ' ',
+                    hintText: ' ',
+                    hintStyle: TextStyle(color: Colors.white));
+              });
+            },
             decoration: InputDecoration(
               filled: true,
               fillColor: Colors.white,
@@ -67,11 +59,12 @@ class _InputTextState extends State<InputText> {
                   borderSide: BorderSide(color: Colors.white, width: 1)),
               focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: DeepPurple300, width: 2)),
-              hintText: str + '을 입력하세요',
+              hintText: (str.compareTo("출판사") == 0
+                  ? '출판사가 없으면 비워주세요.'
+                  : str + '을 입력해주세요.'),
               hintStyle: TextStyle(color: Colors.grey, fontSize: 16),
             ),
-            style:
-                TextStyle(color: DeepPurple400, decorationColor: Colors.white)
+            style: TextStyle(color: Colors.black, decorationColor: Colors.white)
             // onSubmitted: (value) async {
             //   _infoTextEditController.text = value;
             //   print('value : $value');
