@@ -23,14 +23,19 @@ class _InfoTitleState extends State<InfoTitle> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Text("제목을 입력해주세요",
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.5)),
+              SizedBox(height: 80),
               InputText(
                 string: inputList[0],
-                inputType: true,
               ),
               SizedBox(height: 60),
               InputText(
                 string: inputList[1],
-                inputType: true,
               )
             ]),
       )

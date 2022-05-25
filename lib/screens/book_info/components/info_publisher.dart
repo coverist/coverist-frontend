@@ -25,37 +25,14 @@ class InfoLogoState extends State<InfoLogo> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("출판사를 입력 해주세요",
+              Text("출판사를 입력해주세요",
                   style: const TextStyle(
+                      color: Colors.white,
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1.5)),
-              Text("입력한 텍스트가 자연스럽게 표지에 포함돼요!!!",
-                  style: const TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.5)),
-              SizedBox(height: 40),
-              InputText(string: "출판사", inputType: false),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text('입력 안할래욥!', style: TextStyle(color: Colors.black)),
-                  Checkbox(
-                    fillColor: MaterialStateProperty.all(Colors.white),
-                    activeColor: Colors.black,
-                    checkColor: Colors.purple,
-                    value: isChecked,
-                    onChanged: (value) {
-                      setState(() {
-                        isChecked = value!;
-                        //이때 줄값만 기본값을 준다고 말해주면 될듯
-                      });
-                    },
-                  ),
-                ],
-              )
+              SizedBox(height: 80),
+              InputText(string: "출판사"),
             ]),
       )
     ]);

@@ -45,7 +45,7 @@ class _InfoTagState extends State<InfoTag> {
       InputChip actionChip = InputChip(
         label: Text('#' + _tags[i]),
         elevation: 5,
-        shadowColor: Colors.blueGrey,
+        shadowColor: DeepPurple300,
         onDeleted: () {
           _tags.removeAt(i);
 
@@ -70,23 +70,27 @@ class _InfoTagState extends State<InfoTag> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Container(
-                    child: Text('태그 입력',
-                        style: TextStyle(
-                            fontSize: 26,
-                            // fontWeight: FontWeight.bold,
-                            letterSpacing: 1.5,
-                            color: Colors.white)),
-                  ),
-                  Container(
-                    child: Text('(필수)',
-                        style: TextStyle(
-                            fontSize: 20,
-                            letterSpacing: 1.5,
-                            color: Colors.white)),
+            children: [
+              Text("태그를 입력해주세요",
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.5)),
+              SizedBox(height: 80),
+              Column(
+                children: [
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        child: Text('태그 입력',
+                            style: TextStyle(
+                                fontSize: 18,
+                                // fontWeight: FontWeight.bold,
+                                letterSpacing: 1.5,
+                                color: Colors.white)),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -96,12 +100,15 @@ class _InfoTagState extends State<InfoTag> {
                   controller: _infoTextEditController,
                   maxLength: 20,
                   decoration: InputDecoration(
-                      border: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.white, width: 1)),
-                      hintText: '입력 예) 창업',
-                      hintStyle: TextStyle(color: Colors.white),
-                      prefixText: "#"),
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white, width: 1)),
+                    hintText: '입력 예) 창업',
+                    hintStyle: TextStyle(color: Colors.grey, fontSize: 16),
+                    prefixText: "#",
+                    prefixStyle: TextStyle(color: Colors.black, fontSize: 16),
+                  ),
                   onSubmitted: (value) {
                     if (_tags.length >= maxNum) {
                       _showDialog(
