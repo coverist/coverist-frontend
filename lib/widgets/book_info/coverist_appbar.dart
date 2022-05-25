@@ -47,7 +47,7 @@ class Coverist_Appbar extends StatelessWidget {
                   image: DecorationImage(
                       fit: BoxFit.cover,
                       image: AssetImage('images/cover1.png'),
-                      opacity: 0.7
+                      opacity: 0.3
                       // .blurred(blur: 3, blurColor: Colors.white), // 배경 이미지
                       ),
                 ),

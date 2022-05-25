@@ -21,12 +21,12 @@ class BookInfo with ChangeNotifier {
   // List<String> _tag = [];
 
 // default 고정
-  String _title = 'my_title';
-  String _author = 'my_author';
-  String _genre = '컴퓨터/IT';
-  String _subgenre = '모바일프로그래밍';
+  String _title = '마지막 벚꽃이 질 때';
+  String _author = '김수민';
+  String _genre = '시/에세이';
+  String _subgenre = '나라별 에세이';
   String _publisher = ' ';
-  List<String> _tag = ['my_tag'];
+  List<String> _tag = ['벚꽃', '이야기'];
 
   String get title => _title; //외부에서 접근이 가능하도록
   String get author => _author;
