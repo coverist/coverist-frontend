@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:coverist/constants.dart';
 import 'package:coverist/screens/book_info/components/info_internetImage.dart';
 import 'package:flutter/material.dart';
