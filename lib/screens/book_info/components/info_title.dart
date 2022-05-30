@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '/widgets/book_info/input_text_widget.dart';
+import 'package:coverist/widgets/book_info/stepguide_text_widget.dart';
+
 import 'package:coverist/constants.dart';
 
 class InfoTitle extends StatefulWidget {
@@ -23,13 +25,7 @@ class _InfoTitleState extends State<InfoTitle> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("제목을 입력해주세요",
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.5)),
-              SizedBox(height: 80),
+              StepGuideText(mainText: '제목과 저자명을 입력해주세요', subText: ''),
               InputText(
                 string: inputList[0],
               ),

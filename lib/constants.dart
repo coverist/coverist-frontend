@@ -7,6 +7,7 @@ const kNextButtonColor = Color(0xFFb0bfc6); //bluegrey 색상코드임
 const kMainColor = Color(0xFF1895a3);
 const kMainTheme = Color(0xFFbcabd2); //새로운 테마 색상
 
+const DeepPurple100 = Color.fromARGB(255, 191, 163, 238);
 const DeepPurple300 = Color(0xff9575cd);
 const DeepPurple350 = Color(0xff65499c);
 const DeepPurple400 = Color(0xff7e57c2);

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:coverist/constants.dart';
 
 import 'package:coverist/widgets/book_info/genre_element/genre_chip_widget.dart';
+import 'package:coverist/widgets/book_info/stepguide_text_widget.dart';
 
 class InfoGenre extends StatefulWidget {
   const InfoGenre({Key? key}) : super(key: key);
@@ -21,24 +22,9 @@ class _InfoGenreState extends State<InfoGenre> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    const Text('도서 장르를 선택해주세요',
-                        style: TextStyle(
-                            fontSize: 30,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 1.5)),
-                    const SizedBox(height: 10),
-                    const Text('표지 제작을 원하는 도서에 대분류와 중분류를 선택해주세요',
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                            letterSpacing: 1.5)),
-                    const SizedBox(height: 80),
-                  ],
-                ),
-                widget,
+                StepGuideText(
+                    mainText: '도서 장르를 선택해주세요', subText: '표지 제작을 원하는 도서에 대분류와 중분류를 선택해주세요'),
+                GenreWidget(),
               ]))
     ]);
   }

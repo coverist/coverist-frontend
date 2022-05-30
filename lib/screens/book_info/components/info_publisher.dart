@@ -2,6 +2,8 @@ import 'package:coverist/widgets/book_info/input_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:coverist/constants.dart';
 
+import 'package:coverist/widgets/book_info/stepguide_text_widget.dart';
+
 import '/models/file_data_model.dart';
 
 class InfoLogo extends StatefulWidget {
@@ -25,13 +27,7 @@ class InfoLogoState extends State<InfoLogo> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("출판사를 입력해주세요",
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.5)),
-              SizedBox(height: 80),
+              StepGuideText(mainText: '출판사를 입력해주세요', subText: ''),
               InputText(string: "출판사"),
             ]),
       )

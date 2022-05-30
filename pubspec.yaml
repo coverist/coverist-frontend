@@ -57,6 +57,8 @@ dependencies:
   status_change: ^2.0.0
   flutter_file_picker: ^0.0.3
   blur: ^3.0.0
+  font_awesome_flutter: ^10.1.0
+  url_launcher: ^6.1.2
 
 dev_dependencies:
   flutter_test:
