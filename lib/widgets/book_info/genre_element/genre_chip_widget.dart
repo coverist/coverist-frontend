@@ -1,5 +1,6 @@
 import 'dart:js';
 
+import 'package:coverist/constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
@@ -44,7 +45,7 @@ class GenreWidgetElement extends State<GenreWidget> {
                           label: Text(snapshot.data![index].text),
                           backgroundColor: Colors.white,
                           selected: genre == snapshot.data![index].text,
-                          selectedColor: Colors.purple[450],
+                          selectedColor: DeepPurple100,
                           onSelected: (bool selected) {
                             setState(() {
                               genre = snapshot.data![index].text;

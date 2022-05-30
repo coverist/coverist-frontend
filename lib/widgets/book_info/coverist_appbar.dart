@@ -14,27 +14,29 @@ class Coverist_Appbar extends StatelessWidget {
     return MaterialApp(
         title: 'Coverist',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData.light().copyWith(
+        theme: ThemeData(
             appBarTheme: AppBarTheme(backgroundColor: Colors.white),
-            canvasColor: DeepPurple300,
-            primaryColor: DeepPurple400,
-            colorScheme: Theme.of(context)
-                .colorScheme
-                .copyWith(primary: Color.fromARGB(79, 255, 255, 255))),
+            canvasColor: DeepPurple400,
+            primaryColor: DeepPurple100,
+            accentColor: DeepPurple300,
+            selectedRowColor: Colors.black,
+            colorScheme: //
+                Theme.of(context).colorScheme.copyWith(primary: DeepPurple400)),
         home: Scaffold(
             appBar: AppBar(
               title: IconButton(
                 icon: Image.asset(
-                  'images/logo6.png',
+                  'images/mainlogo.png',
                   fit: BoxFit.fill,
                 ),
                 iconSize: 100,
                 onPressed: () {
-                  Navigator.pop(context,
+                  Navigator.pop(context);
+                  Navigator.push(context,
                       MaterialPageRoute(builder: (context) => onPressedPage));
                 },
               ),
-              centerTitle: true,
+              centerTitle: false, // 아이콘 왼쪽 정렬
               elevation: 0.0,
             ),
             body: SafeArea(

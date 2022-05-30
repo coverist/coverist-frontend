@@ -1,3 +1,4 @@
+import 'package:coverist/constants.dart';
 import 'package:coverist/models/genre.dart';
 import 'package:coverist/models/provider.dart';
 import 'package:dio/dio.dart';
@@ -48,12 +49,12 @@ class DetailGenreDialogElement extends State<DetailGenreDialog> {
                   children: List<Widget>.generate(
                       snapshot.data!.length,
                       (index) => Padding(
-                          padding: const EdgeInsets.only(left: 10, right: 5),
+                          padding: const EdgeInsets.only(left: 10, right: 10),
                           child: ChoiceChip(
                             label: Text(snapshot.data![index].text),
                             backgroundColor: Colors.white,
                             selected: subgenre == snapshot.data![index].text,
-                            selectedColor: Colors.purple,
+                            selectedColor: DeepPurple100,
                             onSelected: (bool value) {
                               setState(() {
                                 subgenre = snapshot.data![index].text;
@@ -61,7 +62,7 @@ class DetailGenreDialogElement extends State<DetailGenreDialog> {
                                 Navigator.pop(context);
                               });
                             },
-                            padding: const EdgeInsets.only(left: 10, right: 5),
+                            padding: const EdgeInsets.only(left: 10, right: 10),
                           ))),
                 )),
               ),

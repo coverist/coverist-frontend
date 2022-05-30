@@ -1,7 +1,7 @@
 import 'dart:js';
 
 import 'package:coverist/constants.dart';
-import 'package:coverist/screens/book_info/components/info_internetImage.dart';
+import 'package:coverist/screens/book_result/result_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +24,7 @@ class StepButton extends StatelessWidget {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       if (step > 0) buildPrevButton(context),
       if (step > 0) SizedBox(width: 420),
-      buildNextButton(context),
+      buildNextButton(context)
     ]);
   }
 
@@ -69,10 +69,10 @@ class StepButton extends StatelessWidget {
             ? () async {
                 String nullcheck = context.read<BookInfo>().nullcheck();
                 if (nullcheck.compareTo("allpass") != 0) {
-                  _showDialog(context, nullcheck);
+                  null_check_showDialog(context, nullcheck);
                 } else {
-                  print("send clicked");
-                  _showDialog2(context);
+                  // print("send clicked");
+                  inputcheck_showDialog2(context);
                 }
               }
             : onPressedNext,
@@ -104,30 +104,9 @@ class StepButton extends StatelessWidget {
             // return Color(0xFFbcabd2);
           }
         })));
-
-////아이콘 버튼(다음)
-    // return IconButton(
-    //   padding: EdgeInsets.all(10),
-    //   icon: Icon(
-    //     Icons.arrow_forward_ios_rounded,
-    //     color: Colors.white,
-    //     size: 40,
-    //   ),
-    //   onPressed: step == 3
-    //       ? () async {
-    //           String nullcheck = context.read<BookInfo>().nullcheck();
-    //           if (nullcheck.compareTo("allpass") != 0) {
-    //             _showDialog(context, nullcheck);
-    //           } else {
-    //             print("send clicked");
-    //             _showDialog2(context);
-    //           }
-    //         }
-    //       : onPressedNext,
-    // );
   }
 
-  void _showDialog(context, text) {
+  void null_check_showDialog(context, text) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -147,7 +126,7 @@ class StepButton extends StatelessWidget {
     );
   }
 
-  void _showDialog2(context) {
+  void inputcheck_showDialog2(context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -156,6 +135,9 @@ class StepButton extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                SizedBox(
+                  height: 10,
+                ),
                 const Text("입력하신 정보를 확인해 주세요!",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -170,7 +152,7 @@ class StepButton extends StatelessWidget {
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                   TextSpan(
-                      text: "(" + context.read<BookInfo>().author + ")" + "\n",
+                      text: context.read<BookInfo>().author + "\n",
                       style: TextStyle(fontSize: 16, color: Colors.grey[600])),
                   TextSpan(
                       text: context.read<BookInfo>().genre +
@@ -196,16 +178,17 @@ class StepButton extends StatelessWidget {
           actions: <Widget>[
             MaterialButton(
               autofocus: true,
-              color: Colors.purple[200],
-              child: const Text(
-                "정확히 입력했어요!",
-                style: TextStyle(color: Colors.white),
-              ),
+              color: DeepPurple400,
+              child: Padding(
+                  padding: EdgeInsets.all(5),
+                  child: Text(
+                    "정확히 입력했어요!",
+                    style: TextStyle(color: Colors.white),
+                  )),
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: ((context) => const GridviewPage())));
+                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => ResultImage())));
               },
             ),
           ],
@@ -220,7 +203,7 @@ List<Widget> chipmake(chip_context) {
   for (int i = 0; i < chip_context.length; i++) {
     Chip actionChip = Chip(
       labelPadding: EdgeInsets.all(2.0),
-      backgroundColor: Colors.purple[200],
+      backgroundColor: DeepPurple100,
       label: Text(
         '#' + chip_context[i],
         style: TextStyle(fontSize: 13, color: Colors.white),
