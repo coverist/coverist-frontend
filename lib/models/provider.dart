@@ -41,52 +41,70 @@ class BookInfo with ChangeNotifier {
   void setTitle(String title) {
     _title = title;
     notifyListeners();
-    print("provider title : " + title);
+    // print("provider title : " + title);
   }
 
   void setAuthor(String author) {
     _author = author;
     notifyListeners();
-    print("provider author : " + author);
+    // print("provider author : " + author);
   }
 
   void setGenre(String addgenre) {
     _genre = addgenre;
     notifyListeners();
-    print(_genre);
+    // print(_genre);
   }
 
   void setSubGenre(String addgenre) {
     _subgenre = addgenre;
     notifyListeners();
-    print(_subgenre);
+    // print(_subgenre);
   }
 
   void setTag(List<String> addTag) {
     _tag = addTag;
     notifyListeners();
-    for (int i = 0; i < _tag.length; i++)
-      print("provider tag : " + addTag.toString());
+    // for (int i = 0; i < _tag.length; i++)
+    // print("provider tag : " + addTag.toString());
   }
 
   void delTag(String delTag) {
     _tag.remove(delTag);
     notifyListeners();
-    print('wait');
+    // print('wait');
   }
 
   void setPublisher(String data) {
     _publisher = data;
     notifyListeners();
-    print('publisher : complete');
+    // print('publisher : complete');
   }
 
-  void setAllList(List<Coverinfo> ci) {
-    allCoverInfo.add(ci);
-    print('allCoverInfo : ');
-    print(allCoverInfo[0][0].url.toString());
-    print('\nlen(allCoverInfo) : ');
-    print(allCoverInfo.length);
+  void setAllList(List<Coverinfo> ci, int num) {
+    print("setalllist num : $num");
+
+    // if (seturl.compareTo('') == 0)
+    if (num == -1) {
+      print("allcoverinfo add전");
+
+      allCoverInfo.add(ci);
+      print("allcoverinfo add됨");
+    } else if (allCoverInfo[num][0].bookid == ci[num].bookid) {
+      print("setalllist num : $num");
+      print(
+          "allCoverInfo[0][0].bookid : ${allCoverInfo[0][0].bookid.toString()}");
+      print(
+          "allCoverInfo[num][0].bookid : ${allCoverInfo[num][0].bookid.toString()}");
+
+      print(ci[num].url);
+      allCoverInfo[num][0].url = ci[num].url;
+    } else {
+      print("ci[num].bookid : ${ci[num].bookid}");
+    }
+
+    // print('allCoverInfo : $allCoverInfo[0][0].url.toString()');
+    print('\nlen(allCoverInfo) : ${allCoverInfo.length}');
   }
 
   List<String> getAllItem() {
@@ -95,7 +113,7 @@ class BookInfo with ChangeNotifier {
     allItemList.add(genre);
     allItemList.add(subgenre);
     allItemList.add(tag.toString());
-    print(allItemList);
+    // print(allItemList);
     return allItemList;
   }
 
@@ -103,9 +121,9 @@ class BookInfo with ChangeNotifier {
     return allCoverInfo;
   }
 
-  Future<List<Coverinfo>> sendProvider(String seturl) async {
+  Future<List<Coverinfo>> sendProvider(String seturl, int num) async {
+    print("seturl : $seturl");
     var dio = Dio();
-    print("provider check1");
 
     String formdataTag = "";
     for (int i = 0; i < _tag.length; i++) {
@@ -116,7 +134,6 @@ class BookInfo with ChangeNotifier {
     }
 
     var formData;
-    print("예상한것처럼 작동");
     formData = FormData.fromMap({
       'title': _title,
       'author': _author,
@@ -125,26 +142,24 @@ class BookInfo with ChangeNotifier {
       'tags': formdataTag,
       'publisher': _publisher
     });
-    String api_path = "http://3.37.43.37:8080/api/v1/" + seturl;
+    String api_path = "http://3.37.43.37:8080/api/v1/book" + seturl;
     var response = await dio.post(api_path, data: formData);
 
-    print('response.toString() : ');
-    print(response.toString());
-    print('\nresponse.data[1]) : ');
-    print(response.data[1]);
+    // print('response.toString() : $response.toString()');
+    // print('\nresponse.data[1]) : $response.data[1]');
 //    //{cover_id: 0, book_id: 0, title: a, author: b, genre: 컴퓨터/IT, sub_genre: 모바일프로그래밍, tags: [dd], publisher: Coverist, url: https://coverist.s3.ap-northeast-2.amazonaws.com/XL.jpg, created_date: 2022-01-01T00:00:00}
-    print('\nresponse.data.length : ');
-    print(response.data.length);
+    // print('\nresponse.data.length : $response.data.length');
 
     var coverData = List<Coverinfo>.generate(response.data.length,
         (index) => Coverinfo.fromJson(response.data[index]));
 
+    print("coverData : $coverData");
     // print('\ncoverData[0] : ');
     // print(coverData[0]); //Instance of 'Coverinfo'
     // print('\ncoverData[0].url.toString() : ');
     // print(coverData[0].url.toString()); //https://coverist.s3.ap-northeast-2.amazonaws.com/XL.jpg
 
-    setAllList(coverData);
+    setAllList(coverData, num);
 
     return coverData;
   }
