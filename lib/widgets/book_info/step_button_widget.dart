@@ -1,4 +1,7 @@
-import 'package:coverist/screens/book_info/components/info_internetImage.dart';
+import 'dart:js';
+
+import 'package:coverist/constants.dart';
+import 'package:coverist/screens/book_result/result_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +24,7 @@ class StepButton extends StatelessWidget {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       if (step > 0) buildPrevButton(context),
       if (step > 0) SizedBox(width: 420),
-      buildNextButton(context),
+      buildNextButton(context)
     ]);
   }
 
@@ -34,23 +37,26 @@ class StepButton extends StatelessWidget {
   Widget buildPrevButton(BuildContext context) {
     return ElevatedButton(
         onPressed: onPressedPrev,
-        child: Text('  이전  '),
+        child: Padding(
+            // padding: EdgeInsets.all(20),
+            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+            child: Text('이전', style: TextStyle(fontSize: 20))),
         style:
             ButtonStyle(textStyle: MaterialStateProperty.resolveWith((states) {
           if (states.contains(MaterialState.pressed)) {
             return TextStyle(color: Colors.white);
           } else {
-            return TextStyle(color: Color(0xFFbcabd2));
+            return TextStyle(color: DeepPurple400);
           }
         }), foregroundColor: MaterialStateProperty.resolveWith((states) {
           if (states.contains(MaterialState.pressed)) {
             return Colors.white;
           } else {
-            return Color(0xFFbcabd2);
+            return DeepPurple400;
           }
         }), backgroundColor: MaterialStateProperty.resolveWith((states) {
           if (states.contains(MaterialState.pressed)) {
-            return Color(0xFFbcabd2);
+            return DeepPurple400;
           } else {
             return Colors.white;
           }
@@ -63,25 +69,30 @@ class StepButton extends StatelessWidget {
             ? () async {
                 String nullcheck = context.read<BookInfo>().nullcheck();
                 if (nullcheck.compareTo("allpass") != 0) {
-                  _showDialog(context, nullcheck);
+                  null_check_showDialog(context, nullcheck);
                 } else {
-                  print("send clicked");
-                  _showDialog2(context);
+                  // print("send clicked");
+                  inputcheck_showDialog2(context);
                 }
               }
             : onPressedNext,
-        child: Text('   ' + (step == 3 ? '표지 만들기' : '다음') + '   '),
+        child: Padding(
+            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+            child: Text(
+              (step == 3 ? '표지 만들기' : '다음'),
+              style: TextStyle(fontSize: 20),
+            )),
         style:
             ButtonStyle(textStyle: MaterialStateProperty.resolveWith((states) {
           // disabled : onpressed가 null일때 , pressed : 클릭됐을때
           if (states.contains(MaterialState.pressed)) {
-            return TextStyle(color: Color(0xFFbcabd2));
+            return TextStyle(color: DeepPurple400);
           } else {
             return TextStyle(color: Colors.white);
           }
         }), foregroundColor: MaterialStateProperty.resolveWith((states) {
           if (states.contains(MaterialState.pressed)) {
-            return Color(0xFFbcabd2);
+            return DeepPurple400;
           } else {
             return Colors.white;
           }
@@ -89,12 +100,13 @@ class StepButton extends StatelessWidget {
           if (states.contains(MaterialState.pressed)) {
             return Colors.white;
           } else {
-            return Color(0xFFbcabd2);
+            return DeepPurple400;
+            // return Color(0xFFbcabd2);
           }
         })));
   }
 
-  void _showDialog(context, text) {
+  void null_check_showDialog(context, text) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -114,41 +126,69 @@ class StepButton extends StatelessWidget {
     );
   }
 
-  void _showDialog2(context) {
+  void inputcheck_showDialog2(context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           content: Container(
-            // maxHeight: 300.0,
-            //       minHeight: 100.0,
-            //       minWidth: 200.0,
-            //       maxWidth: 400.0,
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                const Text("입력하신 정보를 확인해 주세요!"),
+                SizedBox(
+                  height: 10,
+                ),
+                const Text("입력하신 정보를 확인해 주세요!",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    )),
                 SizedBox(
                   height: 30,
                 ),
-                Text("제목 : " + context.read<BookInfo>().title),
-                Text("저자 : " + context.read<BookInfo>().author),
-                Text("분류 : " +
-                    context.read<BookInfo>().genre +
-                    "/" +
-                    context.read<BookInfo>().subgenre),
-                Text("태그 : " + context.read<BookInfo>().tag.toString())
+                RichText(
+                    text: TextSpan(children: [
+                  TextSpan(
+                      text: context.read<BookInfo>().title + " ",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                  TextSpan(
+                      text: context.read<BookInfo>().author + "\n",
+                      style: TextStyle(fontSize: 16, color: Colors.grey[600])),
+                  TextSpan(
+                      text: context.read<BookInfo>().genre +
+                          "/" +
+                          context.read<BookInfo>().subgenre +
+                          "\n",
+                      style: TextStyle(fontSize: 16, color: Colors.grey[600])),
+                  TextSpan(
+                      text: context.read<BookInfo>().publisher.toString(),
+                      style: TextStyle(fontSize: 16, color: Colors.grey)),
+                ])),
+                Align(
+                    alignment: Alignment.topLeft,
+                    child: Wrap(
+                        direction: Axis.horizontal, // 정렬 방향
+                        //alignment: WrapAlignment.spaceAround, // 정렬 방식
+                        spacing: 5, // 상하(좌우) 공간
+                        //runSpacing: 10, // 좌우(상하) 공간
+                        children: chipmake(context.read<BookInfo>().tag))),
               ],
             ),
           ),
           actions: <Widget>[
-            FlatButton(
+            MaterialButton(
               autofocus: true,
-              child: const Text("정확히 입력했어요!"),
+              color: DeepPurple400,
+              child: Padding(
+                  padding: EdgeInsets.all(5),
+                  child: Text(
+                    "정확히 입력했어요!",
+                    style: TextStyle(color: Colors.white),
+                  )),
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: ((context) => const GridviewPage())));
+                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => ResultImage())));
               },
             ),
           ],
@@ -156,4 +196,21 @@ class StepButton extends StatelessWidget {
       },
     );
   }
+}
+
+List<Widget> chipmake(chip_context) {
+  List<Widget> chips = [];
+  for (int i = 0; i < chip_context.length; i++) {
+    Chip actionChip = Chip(
+      labelPadding: EdgeInsets.all(2.0),
+      backgroundColor: DeepPurple100,
+      label: Text(
+        '#' + chip_context[i],
+        style: TextStyle(fontSize: 13, color: Colors.white),
+      ),
+    );
+    chips.add(actionChip);
+  }
+
+  return chips;
 }

@@ -40,7 +40,6 @@ class _BodyState extends State<Body> {
         if (_index > 0) {
           setState(() {
             _index -= 1;
-            print(_index);
           });
         }
       },
@@ -50,40 +49,51 @@ class _BodyState extends State<Body> {
         if (_index <= 3) {
           setState(() {
             _index += 1;
-            print(_index);
-
-            print("stepText body : " + stepText!);
           });
         }
       },
       onStepTapped: (int index) {
         setState(() {
           _index = index;
-          print(_index);
         });
       },
       steps: <Step>[
         Step(
-            title: const Text('Step 1 제목&저자명'),
+            title: StepText('제목&저자명', 0),
             content: InfoTitle(),
             isActive: _index > 0,
-            state: StepState.complete),
+            state: _index == 0 ? StepState.editing : StepState.complete),
         Step(
-            title: Text('Step 2 장르'),
+            title: StepText('장르', 0),
             content: InfoGenre(),
             isActive: _index > 1,
-            state: StepState.complete),
+            state: _index == 1 ? StepState.editing : StepState.complete),
         Step(
-            title: Text('Step 3 태그'),
+            title: StepText('태그', 0),
             content: InfoTag(),
             isActive: _index > 2,
-            state: StepState.complete),
+            state: _index == 2 ? StepState.editing : StepState.complete),
         Step(
-            title: Text('Step 4 출판사'),
+            title: StepText('출판사', 20),
             content: InfoLogo(),
             isActive: _index > 3,
-            state: StepState.complete),
+            state: _index == 3 ? StepState.editing : StepState.complete),
+        // state: StepState.complete),
       ],
     ));
+  }
+
+  StepText(String str, double rPad) {
+    return Padding(
+        padding: EdgeInsets.fromLTRB(0, 0, rPad, 0),
+        child: Text(
+          str,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            // fontWeight: FontWeight.bold
+          ),
+          textAlign: TextAlign.center,
+        ));
   }
 }

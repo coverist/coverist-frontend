@@ -1,9 +1,9 @@
+import 'package:coverist/widgets/book_info/input_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:coverist/constants.dart';
 
-import 'info_internetImage.dart';
-import '/widgets/book_info/publisher_dropzone/dropzone_widget.dart';
-import '/widgets/book_info/publisher_dropzone/dropped_file_widget.dart';
+import 'package:coverist/widgets/book_info/stepguide_text_widget.dart';
+
 import '/models/file_data_model.dart';
 
 class InfoLogo extends StatefulWidget {
@@ -14,39 +14,23 @@ class InfoLogo extends StatefulWidget {
 
 class InfoLogoState extends State<InfoLogo> {
   File_Data_Model? file;
+
+  bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
       SizedBox(
-          height: (MediaQuery.of(context).size.height) * kBookInfoHeight,
-          width: (MediaQuery.of(context).size.width) * kBookInfoWidth,
-          child: Column(
+        height: (MediaQuery.of(context).size.height) * kBookInfoHeight,
+        width: (MediaQuery.of(context).size.width) * kBookInfoWidth,
+        child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(width: 50), //유사 padding 주기
-              Column(
-                children: [
-                  SizedBox(
-                    width: 220,
-                    //height: 150, 이거 주면 짤림
-                    child: DroppedFileWidget(file: file),
-                  ),
-                  //DroppedFileWidget(file:file ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                    width: (MediaQuery.of(context).size.width) * 0.6, //
-                    height: 150,
-                    child: DropZoneWidget(
-                      onDroppedFile: (file) => setState(() => this.file = file),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ))
+              StepGuideText(mainText: '출판사를 입력해주세요', subText: ''),
+              InputText(string: "출판사"),
+            ]),
+      )
     ]);
   }
 }

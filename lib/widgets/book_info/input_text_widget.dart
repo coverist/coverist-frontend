@@ -22,41 +22,54 @@ class _InputTextState extends State<InputText> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          children: <Widget>[
-            Container(
-              child: Text(str + ' 입력',
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.5)),
-            ),
-            Container(
-              child: const Text('(필수)',
-                  style: TextStyle(fontSize: 14, letterSpacing: 1.5)),
-            ),
-          ],
-        ),
+        // Row(
+        //   children: <Widget>[
+        //     Container(
+        //       child: Text(str + ' 입력',
+        //           style: TextStyle(
+        //               fontSize: 18,
+        //               // fontWeight: FontWeight.bold,
+        //               letterSpacing: 1.5,
+        //               color: Colors.white)),
+        //     ),
+        //   ],
+        // ),
         SizedBox(height: 10),
         TextField(
-          style: const TextStyle(color: Colors.white),
-          textInputAction: TextInputAction.go,
-          // controller: infoTextEditController,
-          onChanged: (value) {
-            if (str.compareTo("제목") == 0)
-              context.read<BookInfo>().setTitle(value);
-            else if (str.compareTo("저자명") == 0)
-              context.read<BookInfo>().setAuthor(value);
-          },
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            hintText: str + '을 입력하세요',
-          ),
-          // onSubmitted: (value) async {
-          //   _infoTextEditController.text = value;
-          //   print('value : $value');
-          // }
-        ),
+            textInputAction: TextInputAction.go,
+            // controller: infoTextEditController,
+            onChanged: (value) {
+              if (str.compareTo("제목") == 0)
+                context.read<BookInfo>().setTitle(value);
+              else if (str.compareTo("저자명") == 0)
+                context.read<BookInfo>().setAuthor(value);
+            },
+            // onTap: () {
+            //   setState(() {
+            //     InputDecoration(
+            //         prefixText: ' ',
+            //         hintText: ' ',
+            //         hintStyle: TextStyle(color: Colors.white));
+            //   });
+            // },
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.white,
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white, width: 1)),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: DeepPurple300, width: 2)),
+              hintText: (str.compareTo("출판사") == 0
+                  ? '출판사가 없으면 비워주세요'
+                  : str + '을 입력해주세요'),
+              hintStyle: TextStyle(color: Colors.grey, fontSize: 16),
+            ),
+            style: TextStyle(color: Colors.black, decorationColor: Colors.white)
+            // onSubmitted: (value) async {
+            //   _infoTextEditController.text = value;
+            //   print('value : $value');
+            // }
+            ),
       ],
     );
   }

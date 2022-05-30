@@ -1,5 +1,6 @@
 import 'dart:js';
 
+import 'package:coverist/constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
@@ -39,11 +40,12 @@ class GenreWidgetElement extends State<GenreWidget> {
                 children: List<Widget>.generate(
                     snapshot.data!.length,
                     (index) => Padding(
-                        padding: const EdgeInsets.only(left: 10, right: 5),
+                        padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
                         child: ChoiceChip(
                           label: Text(snapshot.data![index].text),
+                          backgroundColor: Colors.white,
                           selected: genre == snapshot.data![index].text,
-                          selectedColor: Colors.blue,
+                          selectedColor: DeepPurple100,
                           onSelected: (bool selected) {
                             setState(() {
                               genre = snapshot.data![index].text;
@@ -58,7 +60,7 @@ class GenreWidgetElement extends State<GenreWidget> {
                               // });
                             });
                           },
-                          padding: const EdgeInsets.only(left: 10, right: 5),
+                          padding: const EdgeInsets.all(10),
                         ))));
           } else if (snapshot.hasError) {
             return Text(snapshot.stackTrace.toString());
