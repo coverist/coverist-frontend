@@ -22,27 +22,21 @@ class _InputTextState extends State<InputText> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Row(
-        //   children: <Widget>[
-        //     Container(
-        //       child: Text(str + ' 입력',
-        //           style: TextStyle(
-        //               fontSize: 18,
-        //               // fontWeight: FontWeight.bold,
-        //               letterSpacing: 1.5,
-        //               color: Colors.white)),
-        //     ),
-        //   ],
-        // ),
         SizedBox(height: 10),
         TextField(
             textInputAction: TextInputAction.go,
             // controller: infoTextEditController,
             onChanged: (value) {
-              if (str.compareTo("제목") == 0)
+              if (str.compareTo("제목") == 0) {
                 context.read<BookInfo>().setTitle(value);
-              else if (str.compareTo("저자명") == 0)
+                value = 'nan';
+              } else if (str.compareTo("저자명") == 0) {
                 context.read<BookInfo>().setAuthor(value);
+                value = 'nan';
+              } else if (str.compareTo("출판사") == 0) {
+                context.read<BookInfo>().setPublisher(value);
+                value = 'nan';
+              }
             },
             // onTap: () {
             //   setState(() {

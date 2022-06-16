@@ -13,10 +13,6 @@ class InfoLogo extends StatefulWidget {
 }
 
 class InfoLogoState extends State<InfoLogo> {
-  File_Data_Model? file;
-
-  bool isChecked = false;
-
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
@@ -27,7 +23,7 @@ class InfoLogoState extends State<InfoLogo> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              StepGuideText(mainText: '출판사를 입력해주세요', subText: ''),
+              StepGuideText(mainText: '출판사명을 입력해주세요', subText: ''),
               InputText(string: "출판사"),
             ]),
       )

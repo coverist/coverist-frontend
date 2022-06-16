@@ -26,7 +26,7 @@ class Coverist_Appbar extends StatelessWidget {
             appBar: AppBar(
               title: IconButton(
                 icon: Image.asset(
-                  'images/mainlogo.png',
+                  'assets/images/mainlogo.png',
                   fit: BoxFit.fill,
                 ),
                 iconSize: 100,
@@ -48,7 +48,7 @@ class Coverist_Appbar extends StatelessWidget {
                   color: Colors.black,
                   image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage('images/cover1.png'),
+                      image: AssetImage('assets/images/cover1.png'),
                       opacity: 0.3
                       // .blurred(blur: 3, blurColor: Colors.white), // 배경 이미지
                       ),
