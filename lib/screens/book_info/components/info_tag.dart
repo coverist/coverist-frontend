@@ -33,7 +33,7 @@ class _InfoTagState extends State<InfoTag> {
             children: <Widget>[
               StepGuideText(
                   mainText: '태그를 입력해주세요',
-                  subText: '도서를 잘 설명할 수 있는 키워드를 입력해주세요'),
+                  subText: '도서를 잘 설명할 수 있는 키워드를 입력하고 엔터를 눌러주세요(최대 5개)'),
 
               // Column(
               //   children: [

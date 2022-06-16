@@ -168,9 +168,9 @@ class BookInfo with ChangeNotifier {
     } else if (_tag == []) {
       return "태그를 입력";
     } else if (_genre == 'nan') {
-      return "대분류를 선택";
+      return "장르 대분류를 선택";
     } else if (_subgenre == 'nan') {
-      return "중분류를 선택";
+      return "장르 중분류를 선택";
     } else if (_tag.isEmpty) {
       return "태그를 입력";
     } else {

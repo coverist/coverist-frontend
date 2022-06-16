@@ -23,7 +23,8 @@ class _InfoGenreState extends State<InfoGenre> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 StepGuideText(
-                    mainText: '도서 장르를 선택해주세요', subText: '표지 제작을 원하는 도서에 대분류와 중분류를 선택해주세요'),
+                    mainText: '도서 장르를 선택해주세요',
+                    subText: '표지 제작을 원하는 도서의 대분류와 중분류를 선택해주세요'),
                 GenreWidget(),
               ]))
     ]);
