@@ -15,154 +15,216 @@ class BookShelf extends StatefulWidget {
 }
 
 class BookShelfList extends State<BookShelf> {
-  late Future<List<Coverinfo>> coverinfos;
+  late Future<List<List<Coverinfo>>> allBook;
 
-  late List<Widget> imageList;
-  List<List<Widget>> allList = [];
+  // listUpdate(String callStr) {
+  //   allList = context.read<BookInfo>().getAllInfo();
 
-  listUpdate(String callStr) {
-    // allList = [];
-    print(
-        "allCoverInfo.length ============ ${context.read<BookInfo>().allCoverInfo.length}");
+  //   print("allList.length ============ ${allList.length}");
 
-    setState(() {
-      for (int i = 0; i < context.read<BookInfo>().allCoverInfo.length; i++) {
-        print("for문 i : $i");
-        imageList = [];
-        for (int j = 0;
-            j < context.read<BookInfo>().allCoverInfo[i].length;
-            j++) {
-          imageList.add(Test(
-              url: context.read<BookInfo>().allCoverInfo[i][j].url.toString()));
+  //   setState(() {
+  //     // _fetchNewUrlData(num);
+  //     allList.forEach((coverList) {
+  //       coverList.forEach((cover) {
+  //       });
+  //     });
+  //   });
+  // }
 
-          print('imageList ===================== $imageList');
-        }
-        // imageList.add(AddCover(onPressedFunc: () {
-        //   onPlusButtonClick(i);
-        // }));
-        if (callStr.compareTo("initState") == 0) {
-          allList.add(imageList);
-          print("allList 추가");
-        }
-      }
-    });
+  onPlusButtonClick(int num) {
+    // addBookCover(num);
+    allBook = _fetchNewUrlData(num);
+    // listUpdate("onPlusButtonClick");
   }
 
-  addBookCover(int num) {
+  Future<List<List<Coverinfo>>> _fetchNewUrlData(int num) async {
     String bookid;
-    print("num : $num");
-    bookid = context.read<BookInfo>().allCoverInfo[num][0].bookid.toString();
-    print('finalimg bookid : ' + bookid);
-    coverinfos = context.read<BookInfo>().sendProvider("/" + bookid, num);
-    // context.read<BookInfo>().sendProvider('book/' + bookid);
-  }
+    // bookid = allList[num][0].bookid.toString();
 
-  void onPlusButtonClick(int num) {
-    addBookCover(num);
-    listUpdate("onPlusButtonClick");
+    // print("fetch 함수에서의 bookid : $bookid");
+    context.read<BookInfo>().sendProvider("/", num);
+    allBook = context.read<BookInfo>().getFutureInfo();
+    return allBook;
   }
 
   void initState() {
     super.initState();
-    listUpdate("initState");
+    allBook = context.read<BookInfo>().getFutureInfo();
+    print("allBook : ${allBook.toString()}");
   }
 
   @override
   Widget build(BuildContext context) {
-    // print('=====================allList : ');
-    // print(allList.toString());
-
     return Container(
-        width: (MediaQuery.of(context).size.width),
-        child: ListView(
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
-                SizedBox(height: 100),
-                Text('지금까지 만든 표지를 조회 해보아요~~',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.5,
-                        color: Colors.white)),
-                SizedBox(height: 100),
-              ],
-            ),
-
-//////////// 성공 코드
-            for (int i = 0; i < allList.length; i++)
-              _buildMiddle(allList[i], context.read<BookInfo>().getAllInfo()[i],
-                  context, i, () {
-                onPlusButtonClick(i);
-              }),
-          ],
-        ));
-  }
-
-  Widget _buildMiddle(List<Widget> imageList, List<Coverinfo> my_text,
-      BuildContext context, int num, VoidCallback onClick) {
-    return Column(
-      children: [
+      width: (MediaQuery.of(context).size.width),
+      child: Column(children: [
         Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.6,
-                  child: CarouselSlider(
-                    options: CarouselOptions(
-                      height: (MediaQuery.of(context).size.height) * 0.3,
-                      autoPlay: true,
-                      viewportFraction: 0.3,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: const [
+            SizedBox(height: 100),
+            Text('지금까지 만든 표지를 조회해보아요~~',
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.5,
+                    color: Colors.white)),
+            SizedBox(height: 100),
+          ],
+        ),
+        Container(
+          child: FutureBuilder<List<List<Coverinfo>>>(
+              future: allBook,
+              builder:
+                  (context, AsyncSnapshot<List<List<Coverinfo>>> snapshot) {
+                print("snapshot.data ${snapshot.data}");
+                if (!snapshot.hasData ||
+                    snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  print("에러 발생");
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Error: ${snapshot.error}',
+                      style: TextStyle(fontSize: 15),
                     ),
-                    items: imageList.map((image) {
-                      return FutureBuilder(
-                        builder: (context, snapshot) {
-                          return ClipRRect(
-                            borderRadius: BorderRadius.circular(1.0),
-                            child: image,
-                          );
-                        },
-                      );
-                    }).toList(),
-                  )),
-              SizedBox(width: 10),
-              Column(
-                children: [
-                  RichText(
-                      text: TextSpan(children: [
-                    TextSpan(
-                        text: my_text[0].title.toString() + " ",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.white)),
-                    TextSpan(
-                        text: "(" + my_text[0].author.toString() + ")" + "\n",
-                        style:
-                            TextStyle(fontSize: 16, color: Colors.grey[600])),
-                    TextSpan(
-                        text: my_text[0].genre.toString() +
-                            "/" +
-                            my_text[0].subgenre.toString() +
-                            "\n",
-                        style:
-                            TextStyle(fontSize: 16, color: Colors.grey[600])),
-                    TextSpan(
-                        text: my_text[0].tags.toString(),
-                        style: TextStyle(fontSize: 16, color: Colors.grey)),
-                  ])),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  // AddCover(onPressedFunc: onClick),
-                ],
-              )
-            ]),
-        SizedBox(height: 20)
-      ],
+                  );
+                } else if (snapshot.hasData) {
+                  //책장에 보여줄 책 전체 리스트(세로)
+                  return Expanded(
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          // itemCount: snapshot.data!.length,
+                          itemCount: 1,
+                          itemBuilder: (context, rowIndex) {
+                            final item = snapshot.data!;
+                            print("row_index : $rowIndex");
+                            print("item.length : ${item.length}");
+                            return Wrap(
+
+                                //책 한권에 대한 리스트(가로)
+                                children: List<Widget>.generate(
+                                    item.length,
+                                    (colIndex) => SizedBox(
+                                          height: (MediaQuery.of(context)
+                                                  .size
+                                                  .height) *
+                                              0.32,
+                                          child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Column(children: [
+                                                  SizedBox(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.6,
+                                                      child: CarouselSlider(
+                                                          options:
+                                                              CarouselOptions(
+                                                            height: (MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height) *
+                                                                0.3,
+                                                            autoPlay: true,
+                                                            viewportFraction:
+                                                                0.3,
+                                                          ),
+                                                          items: item[colIndex]
+                                                              .map((imageUrl) {
+                                                            return ClipRRect(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            1.0),
+                                                                child: UrlImageWidget(
+                                                                    url: imageUrl
+                                                                        .url));
+                                                          }).toList())),
+                                                ]),
+                                                const SizedBox(width: 10),
+                                                SizedBox(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.2,
+                                                    child: Column(children: [
+                                                      RichText(
+                                                          text: TextSpan(
+                                                              style: TextStyle(
+                                                                  fontSize: 16,
+                                                                  color: Colors
+                                                                          .grey[
+                                                                      600]),
+                                                              children: [
+                                                            TextSpan(
+                                                                text: item[colIndex]
+                                                                            [0]
+                                                                        .title
+                                                                        .toString() +
+                                                                    " ",
+                                                                style: const TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontSize:
+                                                                        20,
+                                                                    color: Colors
+                                                                        .white)),
+                                                            TextSpan(
+                                                                text: "(" +
+                                                                    item[colIndex]
+                                                                            [0]
+                                                                        .author
+                                                                        .toString() +
+                                                                    ")" +
+                                                                    "\n"),
+                                                            TextSpan(
+                                                                text: item[colIndex]
+                                                                            [0]
+                                                                        .genre
+                                                                        .toString() +
+                                                                    "/" +
+                                                                    item[colIndex]
+                                                                            [0]
+                                                                        .subgenre
+                                                                        .toString() +
+                                                                    "\n"),
+                                                            TextSpan(
+                                                                text: item[colIndex]
+                                                                        [0]
+                                                                    .tags
+                                                                    .toString()),
+                                                          ])),
+                                                      SizedBox(
+                                                        height: 15,
+                                                      ),
+                                                      // AddCover(
+                                                      //     onPressedFunc:
+                                                      //         onPlusButtonClick(index2)),
+                                                    ]))
+                                              ]),
+                                        )));
+                          }));
+                } else {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Error: ${snapshot.error}',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  );
+                }
+              }),
+        )
+      ]),
     );
   }
 }
@@ -191,9 +253,9 @@ class AddCover extends StatelessWidget {
   }
 }
 
-class Test extends StatelessWidget {
+class UrlImageWidget extends StatelessWidget {
   String url;
-  Test({Key? key, required this.url}) : super(key: key);
+  UrlImageWidget({Key? key, required this.url}) : super(key: key);
   final WebImageDownloader _webImageDownloader = WebImageDownloader();
 
   @override
