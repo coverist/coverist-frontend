@@ -111,7 +111,7 @@ class StepButton extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          content: Text(text + "를 입력해주세요!"),
+          content: Text(text + "해주세요!"),
           actions: <Widget>[
             FlatButton(
               autofocus: true,
@@ -134,11 +134,12 @@ class StepButton extends StatelessWidget {
           content: Container(
             child: Column(
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
                   height: 10,
                 ),
-                const Text("입력하신 정보를 확인해 주세요!",
+                const Text("입력하신 정보를 확인해주세요!",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     )),
@@ -146,31 +147,33 @@ class StepButton extends StatelessWidget {
                   height: 30,
                 ),
                 RichText(
-                    text: TextSpan(children: [
-                  TextSpan(
-                      text: context.read<BookInfo>().title + " ",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                  TextSpan(
-                      text: context.read<BookInfo>().author + "\n",
-                      style: TextStyle(fontSize: 16, color: Colors.grey[600])),
-                  TextSpan(
-                      text: context.read<BookInfo>().genre +
-                          "/" +
-                          context.read<BookInfo>().subgenre +
-                          "\n",
-                      style: TextStyle(fontSize: 16, color: Colors.grey[600])),
-                  TextSpan(
-                      text: context.read<BookInfo>().publisher.toString(),
-                      style: TextStyle(fontSize: 16, color: Colors.grey)),
-                ])),
+                    text: TextSpan(
+                        style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                        children: [
+                      TextSpan(
+                          text: context.read<BookInfo>().title + " ",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20)),
+                      TextSpan(text: context.read<BookInfo>().author + "\n"),
+                      TextSpan(
+                          text: context.read<BookInfo>().genre +
+                              "/" +
+                              context.read<BookInfo>().subgenre +
+                              "\n"),
+                      TextSpan(
+                        text: context.read<BookInfo>().publisher.toString() +
+                            "\n",
+                      ),
+                    ])),
                 Align(
-                    alignment: Alignment.topLeft,
+                    // alignment: Alignment.center,
                     child: Wrap(
                         direction: Axis.horizontal, // 정렬 방향
-                        //alignment: WrapAlignment.spaceAround, // 정렬 방식
+                        // alignment: WrapAlignment.center, // 정렬 방식
                         spacing: 5, // 상하(좌우) 공간
-                        //runSpacing: 10, // 좌우(상하) 공간
+                        runSpacing: 10, // 좌우(상하) 공간
                         children: chipmake(context.read<BookInfo>().tag))),
               ],
             ),

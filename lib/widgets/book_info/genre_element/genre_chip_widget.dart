@@ -71,7 +71,8 @@ class GenreWidgetElement extends State<GenreWidget> {
 
   Future<List<Genre>> _fetchGenreData() async {
     var dio = Dio();
-    final response = await dio.get("http://3.37.43.37:8080/api/v1/book/genre");
+    final response =
+        await dio.get("http://43.200.53.170:8080/api/v1/book/genre");
     //final genreData1 = (response.data as List).map((e) => e.toString()).toList();
 
     final genreData = List<Genre>.generate(

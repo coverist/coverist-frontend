@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:coverist/screens/book_info/book_info_screen.dart';
 import 'package:coverist/screens/book_shelf/book_shelf_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:coverist/widgets/book_info/finalimg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter/foundation.dart';
@@ -10,7 +11,7 @@ import 'package:provider/provider.dart';
 
 import 'package:coverist/screens/book_info/components/body.dart';
 import 'package:coverist/screens/book_shelf/components/book_shelf.dart';
-import 'package:coverist/widgets/github_button_widget.dart';
+import 'package:coverist/widgets/social_button_widget.dart';
 import 'package:coverist/constants.dart';
 import 'package:coverist/models/provider.dart';
 
@@ -76,8 +77,8 @@ class MainPage extends StatelessWidget {
           color: Colors.black,
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage('images/back_image2.png'),
-            // opacity: 0.3,
+            image: AssetImage('assets/images/back_image2.png'),
+            opacity: 0.3,
             // .blurred(blur: 3, blurColor: Colors.white), // 배경 이미지
           ),
         ),
@@ -94,29 +95,36 @@ class MainPage extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 50),
-          ElevatedButton(
-              style: ButtonStyle(
-                padding: MaterialStateProperty.all<EdgeInsets>(
-                    EdgeInsets.only(top: 15, bottom: 15, left: 20, right: 20)),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                )),
-                backgroundColor: MaterialStateProperty.all(DeepPurple400),
-              ),
+          TextButton(
+              // style: ButtonStyle(
+              //     backgroundColor:
+              //         MaterialStateProperty.all(Colors.transparent),
+              //     overlayColor: MaterialStateProperty.all(Colors.black)),
+              //   padding: MaterialStateProperty.all<EdgeInsets>(
+              //       EdgeInsets.only(top: 15, bottom: 15, left: 20, right: 20)),
+              //   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              //       RoundedRectangleBorder(
+              //     borderRadius: BorderRadius.circular(30.0),
+              //   )),
+              //   backgroundColor: MaterialStateProperty.all(DeepPurple400),
+              // ),
               child: Container(
-                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                padding: EdgeInsets.all(20),
+                // padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
                 child: Text('표지 제작하러 가기',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.bold)),
+                decoration: kGradientBoxDecoration,
               ),
               onPressed: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => book_info_screen()));
+                // Navigator.push(context,
+                // MaterialPageRoute(builder: (context) => FinalImage()));
               }),
           SizedBox(height: 80),
           IconButton(
@@ -127,6 +135,13 @@ class MainPage extends StatelessWidget {
           ),
         ]));
   }
+
+  final kGradientBoxDecoration = BoxDecoration(
+    gradient: LinearGradient(colors: [DeepPurple400, DeepPurple100]),
+    border:
+        Border.all(color: Colors.black12, width: 0.5, style: BorderStyle.solid),
+    borderRadius: BorderRadius.circular(30),
+  );
 
   Widget middle(BuildContext context) {
     List<Widget> urlList = [
@@ -156,7 +171,7 @@ class MainPage extends StatelessWidget {
             //     )),
             // Divider(),
             SizedBox(height: 50),
-            Text(
+            const Text(
               'Coverist의 기록들',
               style: TextStyle(
                   fontFamily: 'Nanum',
@@ -205,18 +220,9 @@ class MainPage extends StatelessWidget {
                   height: 60,
                   width: 100,
                   child: Image.asset(
-                    'images/mainlogo.png',
+                    'assets/images/mainlogo.png',
                     fit: BoxFit.fitWidth,
                   )),
-              // Text('COVERIST',
-              //     textAlign: TextAlign.center,
-              //     style: TextStyle(
-              //         fontWeight: FontWeight.bold,
-              //         fontSize: 30,
-              //         fontFamily: 'Nanum',
-              //         color: Colors.black,
-              //         letterSpacing: 1.5,
-              //         height: 1.3)),
               SizedBox(width: 20),
               SocialButton(
                 name: 'github',

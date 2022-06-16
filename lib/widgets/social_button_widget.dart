@@ -33,7 +33,7 @@ class SocialButton extends StatelessWidget {
 
     return IconButton(
         onPressed: onPressed as void Function()?,
-        icon: Image.asset('images/' + name + '.png', fit: BoxFit.fill),
+        icon: Image.asset('assets/images/' + name + '.png', fit: BoxFit.fill),
         iconSize: 10);
   }
 }
